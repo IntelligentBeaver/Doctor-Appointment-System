@@ -11,6 +11,14 @@
 Start of new project using various technologies and frameworks.
 
 # Help
+1. ##Laravel:
+   1. <a href="https://laravel.com/docs/10.x/installation#creating-a-laravel-project" target="_blank">Installnation Guide Docs</a>
+   1. <a href="https://youtu.be/FC7JQItVqzM?si=02obZylnkO5UxqJM" target="_blank">Installnation Video</a>
+   1. <a href="https://youtu.be/qqIlkVuUC2Y?si=PeQsOO1wdzPvMCvv" target="_blank">How to install Tailwind in Laravel and Vite</a>
+
+1. ## CRUD in Laravel
+   1. <a href="https://youtu.be/cDEVWbz2PpQ?si=gfzsieou40Jo-3ZP" target="_blank">Laravel Tutorial For Beginners (Simple User CRUD App)</a>
+
 1. ## Tailwind:
     1.  <a href="https://tailwindcomponents.com/cheatsheet/" target="_blank">Tailwind CheatSheet</a>
     1.  <a href="https://tailwindcss.com/docs/guides/laravel" target="_blank">How to Install TailwindCSS in Laravel</a>
