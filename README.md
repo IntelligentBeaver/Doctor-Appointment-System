@@ -11,7 +11,7 @@
 Start of new project using various technologies and frameworks.
 
 # Help
-## Tailwind:
-1.  <a href="https://tailwindcomponents.com/cheatsheet/" target="_blank">Tailwind CheatSheet</a>
-1.  <a href="https://tailwindcss.com/docs/guides/laravel" target="_blank">How to Install TailwindCSS in Laravel</a>
-1.  <a href="https://youtu.be/pfaSUYaSgRo?si=Yda3loVY1kEuilf8" target="_blank">TailwindCSS Basic Tutorial</a>
+1. ## Tailwind:
+    1.  <a href="https://tailwindcomponents.com/cheatsheet/" target="_blank">Tailwind CheatSheet</a>
+    1.  <a href="https://tailwindcss.com/docs/guides/laravel" target="_blank">How to Install TailwindCSS in Laravel</a>
+    1.  <a href="https://youtu.be/pfaSUYaSgRo?si=Yda3loVY1kEuilf8" target="_blank">TailwindCSS Basic Tutorial</a>
