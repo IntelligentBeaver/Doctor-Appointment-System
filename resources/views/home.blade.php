@@ -8,7 +8,8 @@
     </head>
 
     <body>
-        <a href="#">Go to "Some other site."</a>
+        <a href="{{ route('login') }}">Login</a>
+        <a href="{{ route('register') }}">Register</a>
         <h1 class="flex flex-col bg-green-300 p-5 text-center text-3xl font-bold underline">
             This is: HOMEPAGE
         </h1>
