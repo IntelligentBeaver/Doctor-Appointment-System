@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[FirstController::class,'homepage'])->name('homepage');
+Route::get('/',[FirstController::class,'view_Homepage'])->name('home');
