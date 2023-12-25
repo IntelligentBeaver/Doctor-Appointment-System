@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\auth\AdminDashboardController;
+use App\Http\Controllers\auth\DoctorDashboardController;
+use App\Http\Controllers\auth\PatientDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,27 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// HOMEPAGE Route
-Route::get('/',[HomeController::class,'view_Homepage'])->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
 
+Route::get('/dashboard', function    () {
+    return view('admin.dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-// Register Page Routes
+    Route::get('/doctordashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
+    Route::get('/patientdashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
+    Route::get('/admindashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+});
 
-// This will show register.blade.php when somebody routes to name 'register'
-//Calls the view_Register() function to view register.blade.php (Function in app\Http\Controllers\AuthController.php)
-Route::get('/register', [AuthController::class, 'view_Register'])->name('register');
-
-// This takes all form data with POST Method
-Route::post('/registersuccess', [AuthController::class, 'register'])->name('registersuccess');
-
-
-
-//Login Page Routes
-
-// This will show login.blade.php when somebody routes to name 'login'
-//Calls the view_Login() function to view login.blade.php (Function in app\Http\Controllers\AuthController.php)
-Route::get('/login', [AuthController::class, 'view_Login'])->name('login');
-
-// This takes all form data with POST Method
-Route::post('/loginsuccess', [AuthController::class, 'login'])->name('loginsuccess');
+require __DIR__.'/auth.php';
