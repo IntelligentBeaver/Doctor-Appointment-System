@@ -1,4 +1,17 @@
 <x-signinlogin>
+
+    {{-- This will print all the form validation errors. --}}
+    @if ($errors->any())
+        <div class="alert alert-error">
+            <ul style="list-style-type:disc">
+                @foreach ($errors->all() as $error)
+                    <li class="font-bold">{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
     <!-- Session Status -->
     @if (session('status'))
         <p>{{ session('status') }}</p>
@@ -11,18 +24,18 @@
             <label for="email">Email:</label>
             <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus
                 autocomplete="username">
-            @error('email')
+            {{-- @error('email')
                 <p>{{ $message }}</p>
-            @enderror
+            @enderror --}}
         </div>
 
         <!-- Password -->
         <div>
             <label for="password">Password:</label>
             <input id="password" name="password" type="password" required autocomplete="current-password">
-            @error('password')
+            {{-- @error('password')
                 <p>{{ $message }}</p>
-            @enderror
+            @enderror --}}
         </div>
 
         <!-- Remember Me -->

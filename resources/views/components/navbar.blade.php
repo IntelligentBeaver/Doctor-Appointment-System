@@ -1,5 +1,7 @@
 <nav class="navbar bg-base-200 text-base-content sticky py-5">
-    <div class="navbar-start">
+
+
+    <div class="navbar-start flex">
         <div class="dropdown">
             <div class="btn btn-ghost lg:hidden" role="button" tabindex="0">
                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -11,19 +13,22 @@
                 @if (Route::has('login'))
 
                     @auth
+                        <li class="no-animation py-5 text-center">{{ Auth::user()->name }}</li>
+
 
                         @if (auth()->user()->role === 'doctor')
-                            <li><a class="py-5 font-bold" href="{{ url('/dashboard') }}">Doctor Dashboard</a></li>
+                            <li><a class="py-5 font-bold" href="{{ url('/doctor.dashboard') }}">Doctor Dashboard</a></li>
                         @elseif(auth()->user()->role === 'patient')
-                            <li><a class="py-5 font-bold" href="{{ route('patient-dashboard') }}">Patient Dashboard</a></li>
+                            <li><a class="py-5 font-bold" href="{{ route('patient.dashboard') }}">Patient Dashboard</a></li>
                         @else
-                            <li><a class="py-5" href="">Admin Dashboard</a></li>
+                            <li><a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                            <li>
+                                <a class="py-5 font-bold" href="{{ route('admin.viewusers') }}">View Users</a>
+                            </li>
                         @endif
 
 
-                        <li><a class="py-5">{{ Auth::user()->name }}</a></li>
-                        <li><a class="py-5">{{ Auth::user()->email }}</a></li>
-                        <li><a class="py-5" href="{{ route('profile.edit') }}">Profile</a></li>
+                        <li><a class="py-5 font-bold" href="{{ route('profile.edit') }}">Profile</a></li>
                         <div class="divider m-0 p-0"></div>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
@@ -46,8 +51,57 @@
             </ul>
         </div>
 
+        @auth
 
-        <a class="mx-4" href="{{ route('home') }}">Bruh™️</a>
+
+            <div class="hidden lg:flex">
+                <div class="drawer">
+                    <input class="drawer-toggle" id="my-drawer" type="checkbox" />
+                    <div class="drawer-content flex px-12">
+
+                        <!-- Page content here -->
+                        <label class="btn btn-secondary btn-outline drawer-button" for="my-drawer">
+                            <i class="fa-solid fa-bars"></i>
+                        </label>
+
+                    </div>
+
+
+                    <div class="drawer-side z-10">
+                        <label class="drawer-overlay" for="my-drawer" aria-label="close sidebar"></label>
+                        <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+
+                            <!-- Sidebar content here -->
+                            @if (auth()->user()->role === 'doctor')
+                                <li><a class="py-5 font-semibold" href="{{ route('doctor.dashboard') }}">Doctor
+                                        Dashboard</a>
+                                </li>
+                            @elseif(auth()->user()->role === 'patient')
+                                <li><a class="py-5 font-semibold" href="{{ route('patient.dashboard') }}">Patient
+                                        Dashboard</a>
+                                </li>
+                            @else
+                                <li><a class="py-5 font-semibold" href="{{ route('admin.dashboard') }}">Admin
+                                        Dashboard</a>
+                                </li>
+                                <li>
+                                    <a class="py-5 font-semibold" href="{{ route('admin.viewusers') }}">View Users</a>
+                                </li>
+                            @endif
+                            {{-- <li>
+                                <a class="py-5" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            </li> --}}
+
+
+
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        @endauth
+        <div><a class="mx-4" href="{{ route('home') }}">Bruh™️</a></div>
     </div>
 
     <div class="navbar-center hidden lg:flex">
@@ -59,59 +113,53 @@
     </div>
 
     <div class="navbar-end hidden gap-4 lg:flex">
-
         @if (Route::has('login'))
-
-            {{-- For Authenticated Users --}}
             @auth
-                <ul class="menu menu-horizontal px-1">
-                    <li>
-                        <details>
-                            <summary>
-                                <a class="" onclick="toggleMenu()">
-                                    {{ Auth::user()->name }}
+                <div class="dropdown dropdown-bottom dropdown-end">
+                    <div class="btn m-1" role="button" tabindex="0"> {{ Auth::user()->name }}</div>
+                    <ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow" tabindex="0">
+
+
+                        @if (auth()->user()->role === 'doctor')
+                            <li><a class="py-5 font-bold" href="{{ route('doctor.dashboard') }}">Doctor
+                                    Dashboard</a>
+                            </li>
+                        @elseif(auth()->user()->role === 'patient')
+                            <li><a class="py-5 font-bold" href="{{ route('patient.dashboard') }}">Patient
+                                    Dashboard</a>
+                            </li>
+                        @else
+                            <li><a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin
+                                    Dashboard</a>
+                            </li>
+                        @endif
+
+
+                        <li><a class="py-5 font-bold" href="{{ route('profile.edit') }}">Profile</a></li>
+
+                        <div class="divider m-0 p-0"></div>
+
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button class="font-bold text-red-400"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">
+                                    Log Out
+                                </button>
                                 </a>
-                            </summary>
-                            <ul class="w-60 p-2">
-                                <li><a>{{ Auth::user()->name }}</a></li>
-                                <li><a>{{ Auth::user()->email }}</a></li>
-                                <li><a href="{{ route('profile.edit') }}">Profile</a></li>
-                                <div class="divider m-0 p-0"></div>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button class="font-bold text-red-400"
-                                            onclick="event.preventDefault(); this.closest('form').submit();">
-                                            Log Out
-                                        </button>
-                                        </a>
-                                    </form>
-                                </li>
-                            </ul>
-                    </li>
-                    </details>
-                </ul>
-                @if (auth()->user()->role === 'doctor')
-                    <a class="py-5 font-bold" href="{{ url('/dashboard') }}">Doctor Dashboard</a>
-                @elseif(auth()->user()->role === 'patient')
-                    <a class="py-5 font-bold" href="{{ route('patient-dashboard') }}">Patient Dashboard</a>
+                            </form>
+                        </li>
+
+                    </ul>
                 @else
-                    <a class="py-5" href="">Admin Dashboard</a>
-                @endif
-                {{-- End for Authenticated Users --}}
-
-
-                {{-- Show this for Unauthenticated Users --}}
-            @else
-                <a class="btn btn-primary" href="{{ route('login') }}">Log in</a>
-                @if (Route::has('register'))
-                    <a class="btn btn-outline" href="{{ route('register') }}">Sign up</a>
-                @endif
-                {{-- End of Unauthenticated users --}}
-
-            @endauth
-
+                    <a class="btn btn-primary" href="{{ route('login') }}">Log in</a>
+                    @if (Route::has('register'))
+                        <a class="btn btn-outline" href="{{ route('register') }}">Sign up</a>
+                    @endif
+                    {{-- End of Unauthenticated users --}}
+                @endauth
         @endif
+    </div>
     </div>
 
     <div class="navbar-end lg:hidden">

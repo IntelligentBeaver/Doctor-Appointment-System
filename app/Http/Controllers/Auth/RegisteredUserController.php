@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Doctor;
+use App\Models\Patient;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 
 class RegisteredUserController extends Controller
 {
@@ -22,7 +25,6 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
-
     /**
      * Handle an incoming registration request.
      *
@@ -30,10 +32,20 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required'],
+
+            // Requires only if role is patient
+            'phone' => ['required_if:role,patient'],
+            'address' => ['required_if:role,patient'],
+
+            // Requires only if role is doctor
+            'specializationname'=> ['required_if:role,doctor'],
+            'contact_information'=> ['required_if:role,doctor'],
         ]);
 
         $user = User::create([
@@ -42,6 +54,37 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'role' => $request['role'],
         ]);
+
+        $user->save();
+
+        $userId = $user->id;
+
+        if ($request['role'] === 'patient') {
+            Patient::create([
+                'user_id' => $userId,
+                'PatientName' => $request['name'],
+                'Address' => $request['address'],
+                'Phone' => $request['phone'],
+                'Email' => $request['email'],
+            ]);
+        } elseif ($request['role'] === 'doctor') {
+            $specialization = Specialization::where('SpecializationName', $request['specializationname'])->first();
+
+            // Check if Specialization is found
+            if ($specialization === null) {
+                // Handle the case where the specialization is not found
+                return redirect()->route('register')->withErrors(['specialization' => 'Specialization not found for ' . $request['specializationname']]);
+            }
+
+            // Create a new doctor
+            $doctor = Doctor::create([
+                'user_id' => $user->id,
+                'DoctorName' => $request['name'],
+                'ContactInformation' => $request['contact_information'],
+                'SpecializationID' => $specialization->SpecializationID,
+            ]);
+            $doctor->save();
+        }
 
         event(new Registered($user));
 

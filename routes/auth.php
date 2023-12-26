@@ -61,9 +61,9 @@ Route::middleware('auth')->group(function () {
                 ->name('logout');
                 
     Route::group(['prefix' => 'dashboard'], function () {
-        Route::get('doctor', [DoctorDashboardController::class,'index'])->name('doctor-dashboard');
-        Route::get('patient', [PatientDashboardController::class,'index'])->name('patient-dashboard');
-        Route::get('admin', [AdminDashboardController::class,'index'])->name('admin-dashboard');
+        Route::get('doctor', [DoctorDashboardController::class,'index'])->name('doctor.dashboard');
+        Route::get('patient', [PatientDashboardController::class,'index'])->name('patient.dashboard');
+        Route::get('admin', [AdminDashboardController::class,'index'])->name('admin.dashboard');
 
     });
 });

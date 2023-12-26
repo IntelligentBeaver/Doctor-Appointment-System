@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id('DoctorID');
+            $table->unsignedBigInteger('user_id')->unique();
             // $table->primary('DoctorID');
             $table->string('DoctorName');
             $table->unsignedBigInteger('SpecializationID');
             $table->string('ContactInformation')->nullable();
             $table->timestamps();
-            
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('SpecializationID')->references('SpecializationID')->on('specializations');
         });
     }

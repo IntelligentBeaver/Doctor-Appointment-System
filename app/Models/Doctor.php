@@ -9,7 +9,12 @@ class Doctor extends Model
 {
     protected $primaryKey = 'DoctorID';
 
-    protected $fillable = ['DoctorName', 'SpecializationID', 'ContactInformation'];
+    protected $fillable = ['user_id', 'DoctorName', 'SpecializationID', 'ContactInformation'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function specializations()
     {

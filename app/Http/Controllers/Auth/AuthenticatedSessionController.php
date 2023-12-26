@@ -29,11 +29,18 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (auth()->user()->role == 'doctor') {
-            return redirect()->route('doctor-dashboard');
+            return redirect()->route('doctor.dashboard');
         } elseif (auth()->user()->role == 'patient') {
-            return redirect()->route('patient-dashboard');
+            return redirect()->route('patient.dashboard');
         }elseif (auth()->user()->role == 'admin')
-            return redirect()->route('admin-dashboard');
+            return redirect()->route('admin.dashboard');
+
+        //     if (auth()->user()->role == 'doctor') {
+        //     return redirect()->route('testredirection');
+        // } elseif (auth()->user()->role == 'patient') {
+        //     return redirect()->route('testredirection');
+        // }elseif (auth()->user()->role == 'admin')
+        //     return redirect()->route('testredirection');
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }

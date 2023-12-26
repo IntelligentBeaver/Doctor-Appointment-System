@@ -16,7 +16,7 @@
         {{-- End of Navbar --}}
 
         <div>
-            <h1>This section has come from register--login</h1>
+            <h1>This section has come from signinlogin.php</h1>
             {{ $slot }}
         </div>
 

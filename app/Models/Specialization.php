@@ -14,4 +14,8 @@ class Specialization extends Model
     {
         return $this->hasMany(Doctor::class, 'SpecializationID');
     }
+    public static function getSpecializationList()
+{
+    return self::pluck('SpecializationName', 'SpecializationID')->toArray();
+}
 }

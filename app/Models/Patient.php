@@ -9,7 +9,12 @@ class Patient extends Model
 {
     protected $primaryKey = 'PatientID';
 
-    protected $fillable = ['PatientName', 'Address', 'Phone', 'Email'];
+    protected $fillable = ['user_id', 'PatientName', 'Address', 'Phone', 'Email'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function appointments()
     {

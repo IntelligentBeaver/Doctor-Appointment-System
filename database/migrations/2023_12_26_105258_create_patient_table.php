@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id('PatientID');
+            $table->unsignedBigInteger('user_id')->unique();
             // $table->primary('PatientID');
             $table->string('PatientName')->nullable(false);
             $table->string('Address')->nullable();
             $table->string('Phone')->nullable(false);
             $table->string('Email')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,5 +31,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('patients');
+
     }
 };

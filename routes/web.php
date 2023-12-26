@@ -21,9 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/dashboard', function    () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/dashboard', function    () {
+//     return view('admin.dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/testredirection', function () {
+    return view('testredirection');
+})->middleware(['auth'])->name('testredirection');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,7 +37,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/doctordashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
     Route::get('/patientdashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
+
+
     Route::get('/admindashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/view', [AdminDashboardController::class, 'view_Users'])->name('admin.viewusers');
+    Route::get('/admin/{id}/edit', [AdminDashboardController::class, 'edit'])->name('admin.editusers');
+    Route::put('/admin/{id}', [AdminDashboardController::class, 'update'])->name('admin.updateusers');
+    Route::delete('/admin/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.destroyusers');
+
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -7,10 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Your Doctor Appointment System</title>
+
+        <script src="https://kit.fontawesome.com/bfa75e5c98.js" crossorigin="anonymous"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
 
-    <body>
+    <body class="position-relative m-0 p-0">
         <div id="app">
             {{-- Navigation Bar --}}
 
@@ -25,9 +27,17 @@
 
 
 
-            <!-- Page Content -->
+            <!-- Homepage Content (from welcome.blade.php)-->
             <main>
                 @yield('homecontent')
+                @yield('test')
+
+            </main>
+
+
+            {{-- Dashboard Conents (from components/dashboard.blade.php) --}}
+            <main>
+                @yield('dashboardcontent')
             </main>
 
             {{-- Footer --}}
