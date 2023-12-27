@@ -8,15 +8,10 @@ use Illuminate\View\Component;
 
 class Dashboard extends Component
 {
-    public $userName;
     /**
      * Create a new component instance.
      */
-    public function __construct($userName)
-    {
-        $this->userName = $userName;
-    }
-
+    public function __construct(){}
     /**
      * Get the view / contents that represent the component.
      */

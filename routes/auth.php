@@ -60,10 +60,10 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
                 
-    Route::group(['prefix' => 'dashboard'], function () {
-        Route::get('doctor', [DoctorDashboardController::class,'index'])->name('doctor.dashboard');
-        Route::get('patient', [PatientDashboardController::class,'index'])->name('patient.dashboard');
-        Route::get('admin', [AdminDashboardController::class,'index'])->name('admin.dashboard');
+    // Route::group(['prefix' => 'dashboard'], function () {
+    //     Route::get('doctor', [DoctorDashboardController::class,'index'])->name('doctor.dashboard');
+    //     Route::get('patient', [PatientDashboardController::class,'index'])->name('patient.dashboard');
+    //     Route::get('admin', [AdminDashboardController::class,'index'])->name('admin.dashboard');
 
-    });
+    // });
 });

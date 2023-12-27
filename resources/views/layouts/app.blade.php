@@ -25,6 +25,7 @@
                 <x-navbar />
             @endauth
 
+            @yield('adminlogin')
 
 
             <!-- Homepage Content (from welcome.blade.php)-->

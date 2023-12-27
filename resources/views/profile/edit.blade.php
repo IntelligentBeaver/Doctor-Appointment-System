@@ -1,29 +1,34 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
+<x-dashboard>
+    <x-slot:title>
+        Profile
     </x-slot>
+    <x-slot:subtitle>
+        Configure Information
+    </x-slot>
+    {{-- <x-styling.header class="mx-10">
+        {{ __('Profile') }}
+    </x-styling.header>
+    <x-styling.subheader class="mx-10">{{ __('Edit your Information') }}</x-styling.subheader> --}}
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+        <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
+            <div class="bg-base-200 xs:rounded-3xl p-4 shadow-md sm:p-8">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="bg-base-200 xs:rounded-3xl p-4 shadow-md sm:p-8">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="bg-base-200 xs:rounded-3xl p-4 shadow-md sm:p-8">
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-dashboard>

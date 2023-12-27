@@ -35,13 +35,6 @@ class AuthenticatedSessionController extends Controller
         }elseif (auth()->user()->role == 'admin')
             return redirect()->route('admin.dashboard');
 
-        //     if (auth()->user()->role == 'doctor') {
-        //     return redirect()->route('testredirection');
-        // } elseif (auth()->user()->role == 'patient') {
-        //     return redirect()->route('testredirection');
-        // }elseif (auth()->user()->role == 'admin')
-        //     return redirect()->route('testredirection');
-
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

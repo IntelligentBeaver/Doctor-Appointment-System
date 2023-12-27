@@ -1,10 +1,15 @@
 <!-- resources/views/admin/users/edit.blade.php -->
 
 <x-dashboard userName="Admin">
+    <x-slot:title>
+        {{ $users->name }}
+    </x-slot>
+    <x-slot:subtitle>
+        Edit information
+    </x-slot>
     @auth
 
-
-        <x-styling.header>Edit: {{ $users->name }}</x-styling.header>
+        {{-- <x-styling.header>Edit: {{ $users->name }}</x-styling.header> --}}
 
         <div class="hero bg-base-200 h-[60svh]">
 
@@ -54,7 +59,8 @@
                     </select>
                 </div>
 
-                <div class="form-control mt-8 w-full"><button class="btn btn-success" type="submit">Update</button></div>
+                <div class="form-control mt-8 w-full"><button class="btn btn-success" type="submit">Update</button>
+                </div>
             </form>
         </div>
 

@@ -33,11 +33,12 @@ class AdminDashboardController extends Controller
             return view('admin.users.index', compact('users'));
         }
 
-        // If the user doesn't have the required role, you can redirect or display an error message
-        return redirect()->route('home')->with('error', 'Unauthorized access');
+        // If the user doesn't have the required role, redirect or display an error message
+        return redirect('/denied');
     }
     public function edit($id)
     {
+        // This will find the users from our User model (users table in MySQL) and store the array of record in $users
         $users = User::find($id);
 
         return view('admin.users.edit', compact('users'));
@@ -47,8 +48,8 @@ class AdminDashboardController extends Controller
     {
         // Validate the request and update the user information
         $request->validate([
-            'name' => 'required',
-            // Add other validation rules as needed
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
         ]);
 
         $user = User::find($id);
