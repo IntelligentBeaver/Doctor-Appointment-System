@@ -15,30 +15,27 @@
     <body class="position-relative m-0 p-0">
         <div id="app">
             {{-- Navigation Bar --}}
+            <x-navbar />
 
-            {{-- If authenticated, then show dashboard,logout option --}}
-            @auth
-                <x-navbar />
-
-                {{-- If not authenticated,then show login and register --}}
-            @else
-                <x-navbar />
-            @endauth
-
-            @yield('adminlogin')
-
-
+            <x-error-message />
+            <x-success-message />
+            @guest
+                @yield('adminlogin')
+                {{-- @else
+                {{ route('denied') }} --}}
+            @endguest
             <!-- Homepage Content (from welcome.blade.php)-->
             <main>
                 @yield('homecontent')
                 @yield('test')
-
             </main>
 
 
             {{-- Dashboard Conents (from components/dashboard.blade.php) --}}
             <main>
-                @yield('dashboardcontent')
+                @auth
+                    @yield('dashboardcontent')
+                @endauth
             </main>
 
             {{-- Footer --}}

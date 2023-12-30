@@ -1,45 +1,29 @@
-@extends('layouts.app')
-
-@section('adminlogin')
+<x-signinlogin>
     <x-styling.header class="text-error">
         Admin Login
     </x-styling.header>
     @guest
-        @if ($errors->any())
-            <div class="alert alert-error">
-                <ul style="list-style-type:disc">
-                    @foreach ($errors->all() as $error)
-                        <li class="font-bold">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        <x-message.error-message />
+        <x-message.success-message />
 
 
         <!-- Session Status -->
         @if (session('status'))
             <p>{{ session('status') }}</p>
         @endif
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('admin.login') }}">
             @csrf
-
             <!-- Email Address -->
             <div>
                 <label for="email">Email:</label>
                 <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus
                     autocomplete="username">
-                {{-- @error('email')
-                <p>{{ $message }}</p>
-            @enderror --}}
             </div>
 
             <!-- Password -->
             <div>
                 <label for="password">Password:</label>
                 <input id="password" name="password" type="password" required autocomplete="current-password">
-                {{-- @error('password')
-                <p>{{ $message }}</p>
-            @enderror --}}
             </div>
 
             <!-- Remember Me -->
@@ -63,4 +47,4 @@
     @auth
         <h1>You are already logged in.</h1>
     @endauth
-@endsection
+</x-signinlogin>

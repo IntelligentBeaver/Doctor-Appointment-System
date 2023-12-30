@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\auth\AdminDashboardController;
 use App\Http\Controllers\auth\DoctorDashboardController;
 use App\Http\Controllers\auth\PatientDashboardController;
@@ -23,23 +24,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-
-// This will take us to admin login page.
-    Route::get('/admin',function(){
-        return view('admin.login');
-    })->name('admin.login');
-
-Route::get('/testredirection', function () {
-    return view('testredirection');
-})->middleware(['auth'])->name('testredirection');
-
 // This route will get called if something fails.
 Route::get('/denied', function () {
     // dd(session());
     echo "Authentication failed or Permission Denied.";
-});
+})->name('denied');
 
+// This will take us to admin login page.
+Route::get('/admin/login', [AdminLoginController::class, 'create'])->name('admin.login');
+Route::post('/admin/login', [AdminLoginController::class, 'store'])->name('admin.login');
 
+Route::get('/testredirection', function () {
+    return view('testredirection');
+})->middleware(['auth'])->name('testredirection');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -64,10 +61,15 @@ Route::middleware('auth')->group(function () {
     //For DOCTOR
         // Route::get('/doctordashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
 
-
-// NEW technique:
-    // 1. group() method--> for grouping Routes for common middleware
-    // 2. name() method--> for providing common name for the routes. (admin.dashboard)====(dashboard)
+/*
+|--------------------------------------------------------------------------
+| NEW Technique
+|--------------------------------------------------------------------------
+|
+|    1. group() method--> for grouping Routes for common middleware
+|    2. name()  --> gives a name to the routes so that we can use them in other places like Redirect::to()...
+|
+*/
 Route::middleware(['auth', 'checkadmin:admin'])->name('admin.')->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/admin/view', [AdminDashboardController::class, 'view_Users'])->name('viewusers');

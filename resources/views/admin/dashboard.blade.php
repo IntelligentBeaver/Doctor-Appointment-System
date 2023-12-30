@@ -1,14 +1,24 @@
 <x-dashboard>
-    <x-slot:title>
-        {{ Auth::user()->name }}
-    </x-slot>
-    <x-slot:subtitle>
-        Your Dashboard
-    </x-slot>
-    {{-- 
-    <div>
-        <x-styling.header class="mx-10">{{ Auth::user()->name }}</x-styling.header>
-        <x-styling.subheader class="mx-10">Your dashboard</x-styling.subheader>
-    </div> --}}
 
+    <div>
+        <x-styling.header>{{ Auth::user()->name }}</x-styling.header>
+        <x-styling.subheader>Your dashboard</x-styling.subheader>
+    </div>
+
+    <div class="my-8 flex flex-wrap justify-evenly gap-2">
+        <x-status-card class="basis-1/4">
+            <x-slot:title>Doctors</x-slot>
+            {{ $totaldoctors }}
+        </x-status-card>
+
+        <x-status-card class="basis-1/4">
+            <x-slot:title>Patients</x-slot>
+            {{ $totalpatients }}
+        </x-status-card>
+
+        <x-status-card class="basis-1/4">
+            <x-slot:title>Appointments</x-slot>
+            Coming Soon.
+        </x-status-card>
+    </div>
 </x-dashboard>

@@ -18,7 +18,7 @@ class CheckDoctor
     {
         if($getRole==='doctor'){
             if(Auth::user()->role!=='doctor'){
-                return redirect('/denied');
+                return back()->with('errormessages',['Not Authorised to see the page']);
             }
         }
         return $next($request);

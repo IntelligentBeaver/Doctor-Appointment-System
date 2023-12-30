@@ -25,6 +25,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        
         $request->authenticate();
         $request->session()->regenerate();
 
@@ -32,10 +33,9 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('doctor.dashboard');
         } elseif (auth()->user()->role == 'patient') {
             return redirect()->route('patient.dashboard');
-        }elseif (auth()->user()->role == 'admin')
+        }elseif (auth()->user()->role == 'admin') {
             return redirect()->route('admin.dashboard');
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        }  
     }
 
     /**

@@ -1,10 +1,10 @@
 <x-dashboard>
-    <x-slot:title>
+    <x-styling.header>
         Users
-    </x-slot>
-    <x-slot:subtitle>
+    </x-styling.header>
+    <x-styling.subheader>
         Manage current users
-    </x-slot>
+    </x-styling.subheader>
     {{-- Display all these code if User is logged in --}}
     @auth
         @if (Auth::user()->role === 'admin')
@@ -24,8 +24,8 @@
                             </tr>
                             @foreach ($users as $user)
                                 <tr class="hover">
-                                    <td class="text-base font-normal">{{ $user->name }}</td>
                                     <td class="text-base font-normal">{{ $user->id }}</td>
+                                    <td class="text-base font-normal">{{ $user->name }}</td>
                                     <td class="text-base font-normal">{{ $user->email }}</td>
                                     <td class="text-base font-normal">{{ $user->role }}</td>
                                     <td class="flex gap-2 text-base font-normal">
@@ -38,30 +38,36 @@
                                                 <button class="btn btn-success">Edit</button>
                                             </a>
                                             {{-- Button for delete --}}
-                                            <form class="inline" action="{{ route('admin.destroyusers', $user->id) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a class="btn btn-error" href="#my_modal_8">Delete</a>
-                                                {{-- The popup if we click the Delete Button --}}
-                                                <div class="modal" id="my_modal_8" role="dialog">
-                                                    <div class="modal-box">
-                                                        <form method="dialog">
-                                                        </form>
-                                                        <h3 class="text-xl font-extrabold">Delete Record</h3>
-                                                        <p class="py-4">Are you sure you want to delete this record</p>
-                                                        <div class="flex flex-row-reverse gap-4">
-                                                            <div class="modal-action">
-                                                                <button class="btn btn-error" type="submit">Delete</button>
-                                                            </div>
-                                                            <div class="modal-action">
-                                                                <a class="btn btn-neutral"
-                                                                    href="{{ route('admin.viewusers') }}">Close</a>
+
+                                            @if ($user->role === 'admin')
+                                            @else
+                                                <form class="inline" action="{{ route('admin.destroyusers', $user->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <a class="btn btn-error" href="#my_modal_8">Delete</a>
+                                                    {{-- The popup if we click the Delete Button --}}
+                                                    <div class="modal" id="my_modal_8" role="dialog">
+                                                        <div class="modal-box">
+                                                            <form method="dialog">
+                                                            </form>
+                                                            <h3 class="text-xl font-extrabold">Delete Record</h3>
+                                                            <p class="py-4">Are you sure you want to delete this record
+                                                            </p>
+                                                            <div class="flex flex-row-reverse gap-4">
+                                                                <div class="modal-action">
+                                                                    <button class="btn btn-error"
+                                                                        type="submit">Delete</button>
+                                                                </div>
+                                                                <div class="modal-action">
+                                                                    <a class="btn btn-neutral"
+                                                                        href="{{ route('admin.viewusers') }}">Close</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>

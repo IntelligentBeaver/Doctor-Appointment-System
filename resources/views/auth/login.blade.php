@@ -1,17 +1,10 @@
 <x-signinlogin>
 
     {{-- This will print all the form validation errors. --}}
-    @if ($errors->any())
-        <div class="alert alert-error">
-            <ul style="list-style-type:disc">
-                @foreach ($errors->all() as $error)
-                    <li class="font-bold">{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
-
+    <x-styling.header>
+        Login
+    </x-styling.header>
     <!-- Session Status -->
     @if (session('status'))
         <p>{{ session('status') }}</p>

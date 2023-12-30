@@ -1,31 +1,21 @@
 <!-- resources/views/admin/users/edit.blade.php -->
 
 <x-dashboard userName="Admin">
-    <x-slot:title>
+    <x-styling.header>
         {{ $users->name }}
-    </x-slot>
-    <x-slot:subtitle>
+    </x-styling.header>
+    <x-styling.subheader>
         Edit information
-    </x-slot>
+    </x-styling.subheader>
+
+
     @auth
-
-        {{-- <x-styling.header>Edit: {{ $users->name }}</x-styling.header> --}}
-
         <div class="hero bg-base-200 h-[60svh]">
-
             <form action="{{ route('admin.updateusers', $users->id) }}" method="post">
                 @csrf
                 @method('put')
-                @if ($errors->any())
-                    <div class="alert alert-error px-8">
-                        <ul style="list-style-type:disc">
-                            @foreach ($errors->all() as $error)
-                                <li class="font-bold">{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
+                <x-error-message />
 
                 <!-- Form fields here, e.g. name, email, etc. -->
                 <div class="form-control mt-4 w-full max-w-xs">
@@ -44,21 +34,15 @@
                         value="{{ $users->email }}">
                 </div>
 
-
-                <div class="form-control mt-4 w-full">
-                    <div class="label">
-                        <span class="label-text">Role:</span>
+                @if ($users->role === 'admin')
+                @else
+                    <div class="form-control mt-4">
+                        <label class="label cursor-pointer" for="admin_role">
+                            <span class="label-text text-error">Assign Admin Role</span>
+                            <input class="checkbox checkbox-error" id="admin_role" name="admin_role" type="checkbox"
+                                {{ $users->role === 'admin' ? 'checked' : '' }}>
                     </div>
-                    <select class="select select-bordered w-full max-w-xs" name="role">
-                        <option value="admin" {{ $users->role === 'admin' ? 'selected' : '' }}>Admin
-                        </option>
-                        <option value="doctor" {{ $users->role === 'doctor' ? 'selected' : '' }}>Doctor
-                        </option>
-                        <option value="patient" {{ $users->role === 'patient' ? 'selected' : '' }}>
-                            Patient</option>
-                    </select>
-                </div>
-
+                @endif
                 <div class="form-control mt-8 w-full"><button class="btn btn-success" type="submit">Update</button>
                 </div>
             </form>

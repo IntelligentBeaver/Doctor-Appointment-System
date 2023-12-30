@@ -14,11 +14,11 @@ class CheckAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,$group): Response
+    public function handle(Request $request, Closure $next, $group): Response
     {
-        if ($group==='admin'){
-            if(Auth::user()->role !== 'admin'){
-                return redirect('/denied');
+        if ($group === 'admin') {
+            if (Auth::user()->role !== 'admin') {
+                return back()->with('errormessages', ['Not Authorised to see the page']);
             }
         }
         return $next($request);
