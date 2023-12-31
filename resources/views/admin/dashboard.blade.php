@@ -1,30 +1,24 @@
-<x-dashboard userName="{{ Auth::user()->role }}">
+<x-dashboard>
+
     <div>
         <x-styling.header>{{ Auth::user()->name }}</x-styling.header>
-        <x-styling.subheader class="text-xl">Your dashboard</x-styling.subheader>
-
+        <x-styling.subheader>Your dashboard</x-styling.subheader>
     </div>
-    {{-- <div class="drawer">
-        <input class="drawer-toggle" id="my-drawer" type="checkbox" />
-        <div class="drawer-content flex px-12">
 
-            <!-- Page content here -->
-            <label class="btn btn-secondary drawer-button" for="my-drawer">Open drawer</label>
+    <div class="my-8 flex flex-wrap justify-evenly gap-2">
+        <x-status-card class="basis-1/4">
+            <x-slot:title>Doctors</x-slot>
+            {{ $totaldoctors }}
+        </x-status-card>
 
-        </div>
+        <x-status-card class="basis-1/4">
+            <x-slot:title>Patients</x-slot>
+            {{ $totalpatients }}
+        </x-status-card>
 
-
-        <div class="drawer-side">
-            <label class="drawer-overlay" for="my-drawer" aria-label="close sidebar"></label>
-            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-
-                <!-- Sidebar content here -->
-                <li>
-                    <a class="" href="{{ route('admin.viewusers') }}">View Users</a>
-                </li>
-
-            </ul>
-        </div>
-    </div> --}}
-
+        <x-status-card class="basis-1/4">
+            <x-slot:title>Appointments</x-slot>
+            Coming Soon.
+        </x-status-card>
+    </div>
 </x-dashboard>

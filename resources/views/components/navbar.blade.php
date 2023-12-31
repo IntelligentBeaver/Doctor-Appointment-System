@@ -53,14 +53,13 @@
 
         @auth
 
-
             <div class="hidden lg:flex">
                 <div class="drawer">
                     <input class="drawer-toggle" id="my-drawer" type="checkbox" />
                     <div class="drawer-content flex px-12">
 
                         <!-- Page content here -->
-                        <label class="btn btn-secondary btn-outline drawer-button" for="my-drawer">
+                        <label class="btn btn-ghost btn-outline drawer-button" for="my-drawer">
                             <i class="fa-solid fa-bars"></i>
                         </label>
 
@@ -73,28 +72,28 @@
 
                             <!-- Sidebar content here -->
                             @if (auth()->user()->role === 'doctor')
-                                <li><a class="py-5 font-semibold" href="{{ route('doctor.dashboard') }}">Doctor
+                                <li><a class="py-5 font-semibold hover:shadow-lg"
+                                        href="{{ route('doctor.dashboard') }}">Doctor
                                         Dashboard</a>
                                 </li>
                             @elseif(auth()->user()->role === 'patient')
-                                <li><a class="py-5 font-semibold" href="{{ route('patient.dashboard') }}">Patient
+                                <li><a class="py-5 font-semibold hover:shadow-lg"
+                                        href="{{ route('patient.dashboard') }}">Patient
                                         Dashboard</a>
                                 </li>
                             @else
-                                <li><a class="py-5 font-semibold" href="{{ route('admin.dashboard') }}">Admin
+                                <li><a class="py-5 font-semibold hover:shadow-lg"
+                                        href="{{ route('admin.dashboard') }}">Admin
                                         Dashboard</a>
                                 </li>
                                 <li>
-                                    <a class="py-5 font-semibold" href="{{ route('admin.viewusers') }}">View Users</a>
+                                    <a class="py-5 font-semibold hover:shadow-lg"
+                                        href="{{ route('admin.viewusers') }}">View Users</a>
                                 </li>
                             @endif
                             {{-- <li>
                                 <a class="py-5" href="{{ route('admin.dashboard') }}">Dashboard</a>
                             </li> --}}
-
-
-
-
 
                         </ul>
                     </div>
@@ -107,8 +106,8 @@
     <div class="navbar-center hidden lg:flex">
 
         <ul class="menu menu-horizontal px-1">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
+            <li><a class="py-4 hover:shadow-lg">Item 1</a></li>
+            <li><a class="py-4 hover:shadow-lg">Item 2</a></li>
         </ul>
     </div>
 

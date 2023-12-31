@@ -1,15 +1,10 @@
 <x-signinlogin>
 
+    <x-styling.header>
+        Register
+    </x-styling.header>
+
     {{-- This will print all the form validation errors. --}}
-    @if ($errors->any())
-        <div class="alert alert-error">
-            <ul style="list-style-type:disc">
-                @foreach ($errors->all() as $error)
-                    <li class="font-bold">{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <form id="registerForm" method="POST" action="{{ route('register') }}">
         @csrf
@@ -22,8 +17,7 @@
         <!-- Name -->
         <div>
             <label for="name">Name:</label>
-            <input id="name" name="name" type="text" value="{{ old('name') }}" autofocus
-                autocomplete="name">
+            <input id="name" name="name" type="text" value="{{ old('name') }}" autofocus autocomplete="name">
         </div>
 
         <!-- Email Address -->

@@ -10,13 +10,14 @@
     </head>
 
     <body>
-
         {{-- Navbar Component --}}
         <x-navbar />
         {{-- End of Navbar --}}
 
+        <x-message.error-message />
+        <x-message.success-message />
+
         <div>
-            <h1>This section has come from signinlogin.php</h1>
             {{ $slot }}
         </div>
 
