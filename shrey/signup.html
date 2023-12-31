@@ -86,7 +86,7 @@
             var confirmPassword = document.getElementById('confirmPassword').value;
             var errorMessage = document.getElementById('error-message');
 
-            // Basic email validation
+            // email structure validation
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 errorMessage.innerHTML = 'Invalid email address';
@@ -104,9 +104,9 @@
                 return;
             }
 
-            // If all validations pass, you can proceed with signup logic
+            
             errorMessage.innerHTML = 'Signup successful!';
-            // Here you can add code to submit the form or perform other actions
+            
         }
     </script>
 
