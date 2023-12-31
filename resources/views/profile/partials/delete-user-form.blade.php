@@ -12,7 +12,7 @@
     <form method="post" action="{{ route('profile.destroy') }}">
         @csrf
         @method('delete')
-        <div><a class="btn btn-error w-28" href="#my_modal_8">Delete</a></div>
+        <div><a class="btn btn-error w-28 rounded-xl" href="#my_modal_8">Delete</a></div>
         {{-- The popup if we click the Delete Button --}}
         <div class="modal" id="my_modal_8" role="dialog">
             <div class="modal-box">
@@ -22,10 +22,10 @@
                 <p class="py-4">Are you sure you want to delete this record</p>
                 <div class="flex flex-row-reverse gap-4">
                     <div class="modal-action">
-                        <button class="btn btn-error" type="submit">Delete</button>
+                        <button class="btn btn-error rounded-xl" type="submit">Delete</button>
                     </div>
                     <div class="modal-action">
-                        <a class="btn btn-neutral" href="{{ route('profile.edit') }}">Close</a>
+                        <a class="btn btn-neutral rounded-xl" href="{{ route('profile.edit') }}">Close</a>
                     </div>
                 </div>
             </div>

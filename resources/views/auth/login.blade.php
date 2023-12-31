@@ -1,7 +1,5 @@
 <x-signinlogin>
 
-    {{-- This will print all the form validation errors. --}}
-
     <x-styling.header>
         Login
     </x-styling.header>
@@ -17,18 +15,12 @@
             <label for="email">Email:</label>
             <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus
                 autocomplete="username">
-            {{-- @error('email')
-                <p>{{ $message }}</p>
-            @enderror --}}
         </div>
 
         <!-- Password -->
         <div>
             <label for="password">Password:</label>
             <input id="password" name="password" type="password" required autocomplete="current-password">
-            {{-- @error('password')
-                <p>{{ $message }}</p>
-            @enderror --}}
         </div>
 
         <!-- Remember Me -->

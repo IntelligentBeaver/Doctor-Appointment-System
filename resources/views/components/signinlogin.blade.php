@@ -7,6 +7,22 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Get Started</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            p,
+            a,
+            li {
+                font-family: 'Lato', sans-serif;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: 'Arvo', serif;
+            }
+        </style>
     </head>
 
     <body>
