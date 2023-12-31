@@ -17,6 +17,7 @@
             {{-- Navigation Bar --}}
             <x-navbar />
 
+
             <x-error-message />
             <x-success-message />
             @guest
