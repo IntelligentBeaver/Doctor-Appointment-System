@@ -21,8 +21,6 @@
             <x-success-message />
             @guest
                 @yield('adminlogin')
-                {{-- @else
-                {{ route('denied') }} --}}
             @endguest
             <!-- Homepage Content (from welcome.blade.php)-->
             <main>
