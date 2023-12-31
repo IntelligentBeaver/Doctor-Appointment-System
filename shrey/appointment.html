@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Appointment Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,16 +26,12 @@
             margin-bottom: 8px;
         }
 
-        input {
+        input, textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 16px;
             box-sizing: border-box;
         }
-
-        /* .redirect{
-           text-align:center;
-        } */
 
         button {
             background-color: #4caf50;
@@ -60,23 +56,38 @@
 <body>
 
     <div class="container">
-        <h2>Login</h2>
-        <form id="loginForm" onsubmit="validateForm(event)">
+        <h2>Book an Appointment</h2>
+        <form id="appointmentForm" onsubmit="validateForm(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="date">Appointment Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="specialization">Doctor Specialization:</label>
+            <!-- <select name="specialization" id="one">
+                <option value="">ahd</option>
+                <option value="">ahd</option>
+                <option value="">ahd</option>
+            </select> -->
+
+            <label for="doc-name"> Your Doctor of Choice:</label>
+            <!-- <select name="docname" id="one">
+                <option value="">abcd</option>
+                <option value="">abcd</option>
+                <option value="">abcd</option>
+            </select> -->
+            
+
+            <label for="reason">Reason for Appointment:</label>
+            <textarea id="reason" name="reason" rows="4" required></textarea>
 
             <div class="error-message" id="error-message"></div>
-            
-            
-                Don't have an account? <a href="">sign in</a>
-          
-            <br>
-            <br>
 
-            <button type="submit">Login</button>
+            <button type="submit">Book Appointment</button>
         </form>
     </div>
 
@@ -84,8 +95,10 @@
         function validateForm(event) {
             event.preventDefault();
 
+            var name = document.getElementById('name').value;
             var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+            var date = document.getElementById('date').value;
+            var reason = document.getElementById('reason').value;
             var errorMessage = document.getElementById('error-message');
 
             //email structure validation
@@ -95,14 +108,8 @@
                 return;
             }
 
-            // Password length validation
-            if (password.length < 8) {
-                errorMessage.innerHTML = 'Password must be at least 8 characters long';
-                return;
-            }
-
-            errorMessage.innerHTML = 'Login successful!';
-            
+            errorMessage.innerHTML = 'Appointment booked successfully!';
+ 
         }
     </script>
 

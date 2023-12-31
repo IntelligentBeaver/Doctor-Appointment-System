@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +34,11 @@
             box-sizing: border-box;
         }
 
+        /* .redirect {
+            text-align: center;
+        } */
+
+
         button {
             background-color: #4caf50;
             color: #fff;
@@ -53,6 +59,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -72,7 +79,14 @@
 
             <div class="error-message" id="error-message"></div>
 
+            <div class="redirect">
+                Already have an account? <a href="">log in</a>
+            </div>
+            <br>
+
             <button type="submit">Sign Up</button>
+   
+
         </form>
     </div>
 
@@ -104,11 +118,12 @@
                 return;
             }
 
-            
+
             errorMessage.innerHTML = 'Signup successful!';
-            
+
         }
     </script>
 
 </body>
+
 </html>
