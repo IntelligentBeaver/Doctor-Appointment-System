@@ -51,8 +51,8 @@
             </ul>
         </div>
 
-        @auth
 
+        @auth
             <div class="hidden lg:flex">
                 <div class="drawer">
                     <input class="drawer-toggle" id="my-drawer" type="checkbox" />
@@ -72,28 +72,23 @@
 
                             <!-- Sidebar content here -->
                             @if (auth()->user()->role === 'doctor')
-                                <li><a class="py-5 font-semibold hover:shadow-lg"
-                                        href="{{ route('doctor.dashboard') }}">Doctor
+                                <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('doctor.dashboard') }}">Doctor
                                         Dashboard</a>
                                 </li>
                             @elseif(auth()->user()->role === 'patient')
-                                <li><a class="py-5 font-semibold hover:shadow-lg"
+                                <li><a class="py-5 font-bold hover:shadow-lg"
                                         href="{{ route('patient.dashboard') }}">Patient
                                         Dashboard</a>
                                 </li>
                             @else
-                                <li><a class="py-5 font-semibold hover:shadow-lg"
-                                        href="{{ route('admin.dashboard') }}">Admin
+                                <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.dashboard') }}">Admin
                                         Dashboard</a>
                                 </li>
                                 <li>
-                                    <a class="py-5 font-semibold hover:shadow-lg"
-                                        href="{{ route('admin.viewusers') }}">View Users</a>
+                                    <a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.viewusers') }}">View
+                                        Users</a>
                                 </li>
                             @endif
-                            {{-- <li>
-                                <a class="py-5" href="{{ route('admin.dashboard') }}">Dashboard</a>
-                            </li> --}}
 
                         </ul>
                     </div>
@@ -106,8 +101,8 @@
     <div class="navbar-center hidden lg:flex">
 
         <ul class="menu menu-horizontal px-1">
-            <li><a class="py-4 hover:shadow-lg">Item 1</a></li>
-            <li><a class="py-4 hover:shadow-lg">Item 2</a></li>
+            <li><a class="py-4 font-bold hover:shadow-lg" href="{{ route('contacts') }}">Contact Us</a></li>
+            <li><a class="py-4 font-bold hover:shadow-lg">Item 2</a></li>
         </ul>
     </div>
 
@@ -170,8 +165,8 @@
                 </svg>
             </div>
             <ul class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li><a class="py-5" href="#">Link1</a></li>
-                <li><a class="py-5" href="#">Link2</a></li>
+                <li><a class="py-5 font-bold hover:shadow-lg" href="#">Link 2</a></li>
+                <li><a class="py-4 font-bold hover:shadow-lg" href="{{ route('contacts') }}">Contact Us</a></li>
             </ul>
         </div>
     </div>

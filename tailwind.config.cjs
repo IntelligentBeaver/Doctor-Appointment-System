@@ -21,7 +21,6 @@ module.exports = {
     daisyui: {
         darkTheme: "dark",
         themes: [
-                "nord",
             {
                 light: {
                     ...require("daisyui/src/theming/themes")["light"],
@@ -36,10 +35,12 @@ module.exports = {
                     error: "#dd1b53",
                 },
             },
+            "dark",
             "cupcake",
+            "nord",
             "winter",
             "nord",
-            "black"
+            "black",
         ],
     },
     plugins: [require("daisyui"), forms],

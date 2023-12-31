@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\auth\AdminDashboardController;
 use App\Http\Controllers\auth\DoctorDashboardController;
@@ -37,6 +38,10 @@ Route::post('/admin/login', [AdminLoginController::class, 'store'])->name('admin
 Route::get('/testredirection', function () {
     return view('testredirection');
 })->middleware(['auth'])->name('testredirection');
+
+
+// Contact Us Page
+Route::get('/contacts', [ContactsController::class,'create'])->name('contacts');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -81,6 +86,5 @@ Route::middleware(['auth', 'checkadmin:admin'])->name('admin.')->group(function 
 Route::middleware(['auth', 'checkpatient:patient'])->get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
 
 Route::middleware(['auth', 'checkdoctor:doctor'])->get('/doctor/dashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
-
 
 require __DIR__ . '/auth.php';

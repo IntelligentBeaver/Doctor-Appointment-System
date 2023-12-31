@@ -8,8 +8,31 @@
 
         <title>Your Doctor Appointment System</title>
 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com" rel="preconnect">
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+            rel="stylesheet">
         <script src="https://kit.fontawesome.com/bfa75e5c98.js" crossorigin="anonymous"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            p,
+            a,
+            li {
+                font-family: 'Lato', sans-serif;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: 'Arvo', serif;
+            }
+        </style>
     </head>
 
     <body class="position-relative m-0 p-0">
@@ -17,12 +40,14 @@
             {{-- Navigation Bar --}}
             <x-navbar />
 
-
             <x-error-message />
+
             <x-success-message />
+
             @guest
                 @yield('adminlogin')
             @endguest
+
             <!-- Homepage Content (from welcome.blade.php)-->
             <main>
                 @yield('homecontent')
@@ -36,6 +61,8 @@
                     @yield('dashboardcontent')
                 @endauth
             </main>
+
+            @yield('contactssection')
 
             {{-- Footer --}}
             <x-footer />
