@@ -72,7 +72,7 @@ class AdminDashboardController extends Controller
         }
         
         $user->update($request->all());
-        return redirect()->route('admin.viewusers')->with('success', 'User updated successfully');
+        return redirect()->route('admin.viewusers')->with('success', ['User updated successfully']);
     }
 
     public function destroy($id)
