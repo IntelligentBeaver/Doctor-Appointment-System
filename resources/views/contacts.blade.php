@@ -9,8 +9,8 @@
     <x-styling.header>
         Contact Us
     </x-styling.header>
-    <main id='contact-main'>
-        <div class="get-in-touch bg-base-200 rounded-xl">
+    <main class="xs:flex-col flex flex-wrap justify-around p-8 sm:flex-row">
+        <div class="get-in-touch bg-base-200 sm:max-w-80 rounded-xl">
             <div class="my-4">
                 <h2 class="text-2xl font-bold">Get in Touch</h2>
                 <p>Connect with us on social media:</p>
