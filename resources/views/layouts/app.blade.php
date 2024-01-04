@@ -21,7 +21,7 @@
     <body class="position-relative m-0 p-0">
         <div id="app">
             {{-- Navigation Bar --}}
-            <x-navbar />
+            <x-navigation.navbar />
 
             <x-error-message />
 

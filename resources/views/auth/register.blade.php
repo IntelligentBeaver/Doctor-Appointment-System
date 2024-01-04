@@ -5,20 +5,22 @@
         <h1 class="text-5xl font-bold">
             Register
         </h1>
+
         <form id="registerForm" method="POST" action="{{ route('register') }}">
             @csrf
             <!-- Logo -->
             {{-- <div>
                 <img class="w-30" src="{{ asset('path/to/your/logo.png') }}" alt="Logo">
             </div> --}}
+
             <!-- Name -->
             <div class="py-2">
                 <label class="form-control w-full">
                     <div class="label">
                         <span class="label-text text-base">Name:</span>
                     </div>
-                    <input class="rounded-xl" id="name" name="name" type="text" value="{{ old('name') }}"
-                        autofocus autocomplete="name">
+                    <input class="input input-bordered w-full rounded-xl" id="name" name="name" type="text"
+                        value="{{ old('name') }}" autofocus autocomplete="name">
                 </label>
             </div>
 
@@ -36,8 +38,8 @@
                     <div class="label">
                         <span class="label-text text-base">Email:</span>
                     </div>
-                    <input class="rounded-xl" id="email" name="email" type="email" value="{{ old('email') }}"
-                        autocomplete="username">
+                    <input class="input input-bordered w-full rounded-xl" id="email" name="email" type="email"
+                        value="{{ old('email') }}" autocomplete="username">
 
                 </label>
             </div>
@@ -72,8 +74,8 @@
                     <div class="label">
                         <span class="label-text text-base">Specialization:</span>
                     </div>
-                    <input class="rounded-xl" id="specializationname" name="specializationname" type="text"
-                        placeholder="Enter specialization">
+                    <input class="input input-bordered w-full rounded-xl" id="specializationname"
+                        name="specializationname" type="text" placeholder="Enter specialization">
                 </label>
             </div>
 
@@ -90,8 +92,8 @@
                     <div class="label">
                         <span class="label-text text-base">Specialization:</span>
                     </div>
-                    <input class="rounded-xl" id="contact_information" name="contact_information" type="text"
-                        value="{{ old('contact_information') }}">
+                    <input class="input input-bordered w-full rounded-xl" id="contact_information"
+                        name="contact_information" type="text" value="{{ old('contact_information') }}">
                 </label>
             </div>
 
@@ -111,7 +113,8 @@
                     <div class="label">
                         <span class="label-text text-base">Address:</span>
                     </div>
-                    <input class="rounded-xl" id="address" name="address" type="text" value="{{ old('address') }}">
+                    <input class="input input-bordered w-full rounded-xl" id="address" name="address" type="text"
+                        value="{{ old('address') }}">
                 </label>
             </div>
 
@@ -129,7 +132,8 @@
                     <div class="label">
                         <span class="label-text text-base">Phone:</span>
                     </div>
-                    <input class="rounded-xl" id="phone" name="phone" type="text" value="{{ old('phone') }}">
+                    <input class="input input-bordered w-full rounded-xl" id="phone" name="phone" type="text"
+                        value="{{ old('phone') }}">
                 </label>
             </div>
 
@@ -146,8 +150,8 @@
                     <div class="label">
                         <span class="label-text text-base">Password:</span>
                     </div>
-                    <input class="rounded-xl" id="password" name="password" type="password" required
-                        autocomplete="new-password">
+                    <input class="input input-bordered w-full rounded-xl" id="password" name="password" type="password"
+                        required autocomplete="new-password">
                 </label>
             </div>
 
@@ -165,8 +169,8 @@
                     <div class="label">
                         <span class="label-text text-base">Confirm Password:</span>
                     </div>
-                    <input class="rounded-xl" id="password_confirmation" name="password_confirmation" type="password"
-                        required autocomplete="new-password">
+                    <input class="input input-bordered w-full rounded-xl" id="password_confirmation"
+                        name="password_confirmation" type="password" required autocomplete="new-password">
                 </label>
             </div>
 
@@ -177,8 +181,8 @@
             </div> --}}
 
             <div class="mt-4 flex items-center justify-end gap-3">
-                <a href="{{ route('login') }}">Already registered?</a>
-                <button class="btn btn-secondary" type="submit">Register</button>
+                <a class="link-hover hover:link-info" href="{{ route('login') }}">Already registered?</a>
+                <button class="btn min-w-32 btn-secondary" type="submit">Register</button>
             </div>
 
         </form>

@@ -35,7 +35,7 @@
                                             <span class="font-bold">You</span>
                                         @else
                                             <a href="{{ route('admin.editusers', $user->id) }}">
-                                                <button class="btn btn-success">Edit</button>
+                                                <button class="btn btn-info">Edit</button>
                                             </a>
                                             {{-- Button for delete --}}
 

@@ -17,12 +17,19 @@
         font-family: 'Arvo', serif;
     }
         .get-in-touch {
-            /* flex: 1; */
+            flex: 1;
             /* max-width: 400px; */
             padding: 2rem;
             margin: 1rem;
         }
-
+        
+        .contact-form {
+            flex: 1;
+            /* max-width: 600px; */
+            padding: 2rem;
+            margin: 1rem;
+        }
+        
         .social-media a {
             text-decoration: none;
             /* color: #333; */
@@ -33,12 +40,6 @@
             margin-right: 0.5rem;
         }
 
-        .contact-form {
-            /* flex: 1; */
-            /* max-width: 600px; */
-            padding: 2rem;
-            margin: 1rem;
-        }
 
         #contact-btn {
             background-color: #333;
