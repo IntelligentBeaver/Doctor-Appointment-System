@@ -42,7 +42,7 @@ Route::get('/testredirection', function () {
 
 // Contact Us Page
 Route::get('/contacts', [ContactsController::class,'create'])->name('contacts');
-
+Route::post('/contacts', [ContactsController::class,'store'])->name('contacts')->middleware('web');
 
 /*
 |--------------------------------------------------------------------------
