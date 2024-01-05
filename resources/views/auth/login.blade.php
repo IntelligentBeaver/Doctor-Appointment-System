@@ -11,29 +11,14 @@
         </h1>
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <div class="py-2">
-                <label class="form-control w-full">
-                    <div class="label">
-                        <span class="label-text text-base">Email:</span>
-                    </div>
-                    <input class="input input-bordered w-full rounded-xl" id="email" name="email" type="email"
-                        value="{{ old('email') }}" placeholder="example@example.com" required autofocus
-                        autocomplete="username">
-                </label>
-            </div>
 
+            {{-- Email --}}
+            <x-styling.input name="email" type="email" label="Email" />
 
-            <div class="py-2">
-                <label class="form-control w-full">
-                    <div class="label">
-                        <span class="label-text text-base">Password:</span>
-                    </div>
-                    <input class="input input-bordered w-full rounded-xl" id="password" name="password" type="password"
-                        placeholder="Your password" required autocomplete="current-password">
-                </label>
-            </div>
+            {{-- Password --}}
+            <x-styling.input name="password" type="password" label="Password" />
 
-
+            {{-- Other Links --}}
             <div class="py-2">
                 <p>Don't have an account? <a class="link-hover hover:link-info" href="{{ route('register') }}">Sign
                         in</a></p>
@@ -42,25 +27,6 @@
             <div class="mt-2 flex items-center">
                 <button class="btn min-w-32 btn-secondary" type=" submit">Login</button>
             </div>
-
-
-
-
-            <!-- Email Address -->
-            {{-- <div>
-                <label for="email">Email:</label>
-                <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus
-                    autocomplete="username">
-            </div> --}}
-
-
-            <!-- Password -->
-            {{-- <div>
-                <label for="password">Password:</label>
-                <input id="password" name="password" type="password" required autocomplete="current-password">
-            </div> --}}
-
-
 
             <!-- Remember Me -->
             {{-- <div>
