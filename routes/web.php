@@ -43,39 +43,23 @@ Route::get('/testredirection', function () {
 // Contact Us Page
 Route::get('/contacts', [ContactsController::class,'create'])->name('contacts');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-
-
-// Previous technique for using middleware 'auth', 'checkadmin','checkpatient' and 'checkdoctor' (repetitive)
-
-    //For ADMIN:
-        // Route::middleware(['auth', 'checkadmin'])->get('/admindashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-        // Route::middleware(['auth', 'checkadmin'])->get('/admin/view', [AdminDashboardController::class, 'view_Users'])->name('admin.viewusers');
-        // Route::middleware(['auth', 'checkadmin'])->get('/admin/{id}/edit', [AdminDashboardController::class, 'edit'])->name('admin.editusers');
-        // Route::middleware(['auth', 'checkadmin'])->get('/admin/{id}', [AdminDashboardController::class, 'update'])->name('admin.updateusers');
-        // Route::middleware(['auth', 'checkadmin'])->get('/admin/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.destroyusers');
-
-    //For PATIENT:
-        // Route::get('/patientdashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
-    
-    //For DOCTOR
-        // Route::get('/doctordashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
 
 /*
 |--------------------------------------------------------------------------
-| NEW Technique
+| Routing Technique
 |--------------------------------------------------------------------------
 |
 |    1. group() method--> for grouping Routes for common middleware
 |    2. name()  --> gives a name to the routes so that we can use them in other places like Redirect::to()...
 |
 */
-Route::middleware(['auth', 'checkadmin:admin'])->name('admin.')->group(function () {
+Route::middleware(['auth','disable.cache'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'checkadmin:admin','disable.cache'])->name('admin.')->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/admin/view', [AdminDashboardController::class, 'view_Users'])->name('viewusers');
     Route::get('/admin/{id}/edit', [AdminDashboardController::class, 'edit'])->name('editusers');
@@ -83,8 +67,8 @@ Route::middleware(['auth', 'checkadmin:admin'])->name('admin.')->group(function 
     Route::delete('/admin/{id}', [AdminDashboardController::class, 'destroy'])->name('destroyusers');
 });
 
-Route::middleware(['auth', 'checkpatient:patient'])->get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
+Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
 
-Route::middleware(['auth', 'checkdoctor:doctor'])->get('/doctor/dashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
+Route::middleware(['auth', 'checkdoctor:doctor','disable.cache'])->get('/doctor/dashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
 
 require __DIR__ . '/auth.php';

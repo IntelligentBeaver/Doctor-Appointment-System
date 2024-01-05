@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         // This is our custom made Route Middleware.
         // These will check for specified number of routes. 
         'checkadmin' => \App\Http\Middleware\CheckAdmin::class,
+        'disable.cache' => \App\Http\Middleware\DisableCache::class,
         'checkpatient'=>CheckPatient::class,
         'checkdoctor'=>CheckDoctor::class,
     ];

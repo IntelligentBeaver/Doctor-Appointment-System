@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class PatientDashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         // Add any necessary logic to fetch data or perform actions specific to the patient's dashboard

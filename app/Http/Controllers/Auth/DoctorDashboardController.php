@@ -8,6 +8,10 @@ use Illuminate\View\View;
 
 class DoctorDashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         // Add any necessary logic to fetch data or perform actions specific to the doctor's dashboard
