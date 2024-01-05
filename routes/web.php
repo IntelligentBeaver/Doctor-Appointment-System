@@ -33,7 +33,7 @@ Route::get('/denied', function () {
 
 // This will take us to admin login page.
 Route::get('/admin/login', [AdminLoginController::class, 'create'])->name('admin.login');
-Route::post('/admin/login', [AdminLoginController::class, 'store'])->name('admin.login');
+Route::post('/admin/login', [AdminLoginController::class, 'store']);
 
 Route::get('/testredirection', function () {
     return view('testredirection');
@@ -42,7 +42,7 @@ Route::get('/testredirection', function () {
 
 // Contact Us Page
 Route::get('/contacts', [ContactsController::class,'create'])->name('contacts');
-Route::post('/contacts', [ContactsController::class,'store'])->name('contacts')->middleware('web');
+Route::post('/contacts', [ContactsController::class,'store'])->middleware('web');
 
 /*
 |--------------------------------------------------------------------------
