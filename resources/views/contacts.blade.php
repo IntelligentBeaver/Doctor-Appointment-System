@@ -39,7 +39,7 @@
                 <div class="py-2">
                     <label class="form-control">
                         <div class="label">
-                            <span class="label-text text-base">Your Message</span>
+                            <span class="label-text text-base font-semibold">Your Message</span>
                         </div>
                         <textarea class="textarea textarea-bordered h-24 w-full" id="description" name="description" placeholder="Description"
                             required></textarea>

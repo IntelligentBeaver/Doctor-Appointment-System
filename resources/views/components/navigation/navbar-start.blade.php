@@ -19,6 +19,9 @@
                     <li>
                         <a class="py-5 font-bold" href="{{ route('admin.viewusers') }}">View Users</a>
                     </li>
+                    <li>
+                        <a class="py-5 font-bold" href="{{ route('admin.addspecialization') }}">Add Specialization</a>
+                    </li>
                 @endif
 
                 <li><a class="py-5 font-bold" href="{{ route('profile.edit') }}">Profile</a></li>
@@ -94,6 +97,10 @@
                             <li>
                                 <a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.viewusers') }}">View
                                     Users</a>
+                            </li>
+                            <li>
+                                <a class="py-5 font-bold" href="{{ route('admin.addspecialization') }}">Add
+                                    Specialization</a>
                             </li>
                         @endif
 

@@ -1,7 +1,7 @@
 {
-    "name": "bruh/doctor-appointment-system",
+    "name": "laravel/laravel",
     "type": "project",
-    "description": "A simple but effective doctor appointment system made by 3 extreme professionals.",
+    "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {

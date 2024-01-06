@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\Specialization;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\AddSpecializationController;
 use App\Http\Controllers\auth\AdminDashboardController;
 use App\Http\Controllers\auth\DoctorDashboardController;
 use App\Http\Controllers\auth\PatientDashboardController;
@@ -65,10 +67,11 @@ Route::middleware(['auth', 'checkadmin:admin','disable.cache'])->name('admin.')-
     Route::get('/admin/{id}/edit', [AdminDashboardController::class, 'edit'])->name('editusers');
     Route::put('/admin/{id}', [AdminDashboardController::class, 'update'])->name('updateusers');
     Route::delete('/admin/{id}', [AdminDashboardController::class, 'destroy'])->name('destroyusers');
+    Route::get('/admin/addspecialization', [AddSpecializationController::class,'index'])->name('addspecialization');
+    Route::post('/admin/addspecialization', [AddSpecializationController::class, 'store']);
 });
 
 Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
 
 Route::middleware(['auth', 'checkdoctor:doctor','disable.cache'])->get('/doctor/dashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
-
 require __DIR__ . '/auth.php';
