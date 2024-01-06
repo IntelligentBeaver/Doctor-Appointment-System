@@ -7,8 +7,9 @@
                 <img src="{{ asset('images/Medicine-bro.svg') }}" alt="">
             </div>
             <div class="content">
-                <h3 class="heading mb-8 text-7xl font-semibold">Getting sick is a pain.</h3>
-                <h3 class="heading mb-8 text-7xl font-semibold">Urgent care shouldn't be.</h3>
+                <h3 class="heading mb-8 text-7xl font-semibold">Getting sick is a pain.
+                    <br> Urgent care shouldn't be.
+                </h3>
                 <p class="py-4 text-2xl">A better way to access your local urgent care facilities & a more proactive approach
                     to
                     care for you and your loved ones.</p>
