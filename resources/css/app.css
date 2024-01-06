@@ -26,6 +26,14 @@
         font-family: 'Arvo', serif;
     }
 
+    .card-border-blue{
+        --border:.3rem solid var(--blue);
+        border: var(--border);
+    }
+    .card-border-black{
+        --border:.3rem solid var(--black);
+        border: var(--border);
+    }
 
     /* Homepage */
 .btnappointment{
@@ -94,7 +102,7 @@
        .icons-container .icons{
         /* background: #F9F7EE; */
         border: var(--border);
-        box-shadow: var(--box-shadow);
+        /* box-shadow: var(--box-shadow); */
         border-radius: 1.5rem;
         text-align: center;
         padding: 3.5rem;
@@ -162,7 +170,7 @@
     }
     .review .box-container .box{
         border:var(--border);
-        box-shadow: var(--box-shadow);
+        /* box-shadow: var(--box-shadow); */
         border-radius: 1.5rem;
         padding:2.5rem;
         text-align: center;

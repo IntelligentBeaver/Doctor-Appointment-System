@@ -17,22 +17,22 @@
             </div>
         </section>
         <section class="icons-container py-20">
-            <div class="icons transition-transform ease-in-out hover:scale-105">
+            <div class="icons shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
                 <i class="fa-solid fa-file-medical"></i>
                 <h3 class="mb-8 text-4xl font-semibold">Book An Appointment</h3>
                 <p class="py-3 text-xl">Appointment with the best doctors of your choice</p>
             </div>
-            <div class="icons transition-transform ease-in-out hover:scale-105">
+            <div class="icons shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
                 <i class="fas fa-users"></i>
                 <h3 class="mb-8 text-4xl font-semibold">Online Consultation</h3>
                 <p class="py-3 text-xl">Effective online consultation with top doctors</p>
             </div>
-            <div class="icons transition-transform ease-in-out hover:scale-105">
+            <div class="icons shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
                 <i class="fa-solid fa-prescription-bottle-medical"></i>
                 <h3 class="mb-8 text-4xl font-semibold">Health packages</h3>
                 <p class="py-3 text-xl">Buy best health packages at an affordable rate</p>
             </div>
-            <div class="icons transition-transform ease-in-out hover:scale-105">
+            <div class="icons shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
                 <i class="fas fa-location"></i>
                 <h3 class="mb-8 text-4xl font-semibold">Find a doctor near you</h3>
                 <p class="py-3 text-xl">Finding doctors near you made easy with us</p>
@@ -60,7 +60,7 @@
             <x-styling.header class="heading text-center">Reviews!</x-styling.header>
             {{-- <h1 class="heading">Reviews!</h1> --}}
             <div class="box-container px-32">
-                <div class="box transition-transform ease-in-out hover:scale-105">
+                <div class="box shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
                     <h3 class="mb-8 text-4xl font-semibold">Chandler Bing</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -76,7 +76,7 @@
                         quas,
                         earum nemo animi culpa dolor.</p>
                 </div>
-                <div class="box transition-transform ease-in-out hover:scale-105">
+                <div class="box shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
                     <h3 class="mb-8 text-4xl font-semibold">Monica Geller</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
@@ -92,7 +92,7 @@
                         quas,
                         earum nemo animi culpa dolor.</p>
                 </div>
-                <div class="box transition-transform ease-in-out hover:scale-105">
+                <div class="box shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
                     <h3 class="mb-8 text-4xl font-semibold">Joey Tribbiani</h3>
                     <div class="stars">
                         <i class="fas fa-star"></i>
