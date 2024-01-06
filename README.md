@@ -10,6 +10,13 @@
 ## Doctor Appointment System
 Start of new project using various technologies and frameworks.
 
+### Pages:
+1. Home
+2. Contacts
+3. Appointments
+4. Login
+5. Signup
+
 # Help
 1. ## Laravel
    1. <a href="https://laravel.com/docs/10.x/installation#creating-a-laravel-project" target="_blank">Installnation Guide Docs</a>
