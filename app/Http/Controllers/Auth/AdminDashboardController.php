@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,19 +11,19 @@ class AdminDashboardController extends Controller
 
     public function __construct()
     {
-        // You can also perform role-based checks in the constructor if needed
         $this->middleware('auth');
     }
     public function index()
     {
         if (auth()->user()->role == 'admin') {
             $users = User::all();
-            $totalpatients = User::where('role', 'patient')->count();            
+            $totalpatients = User::where('role', 'patient')->count();
             $totaldoctors = User::where('role', 'doctor')->count();
 
-            return view('admin.dashboard',compact('totalpatients','totaldoctors'));
+            return view('admin.dashboard', compact('totalpatients', 'totaldoctors'));
         }
-        // If the user doesn't have the required role,go back and display an error message
+
+        // If the user doesn't have the required role, go back and display an error message
         return redirect()->route('home')->with('errormessage', ['Unauthorized access.']);
     }
 
@@ -35,7 +35,7 @@ class AdminDashboardController extends Controller
             return view('admin.users.index', compact('users'));
         }
 
-       // If the user doesn't have the required role,go back and display an error message
+        // If the user doesn't have the required role, go back and display an error message
         return redirect()->route('home')->with('errormessage', ['Unauthorized access.']);
     }
     public function edit($id)
@@ -58,19 +58,19 @@ class AdminDashboardController extends Controller
 
         // $adminRole = $request->has('admin_role') ? 'admin' : $user->role;
         // $user->update(['role' => $adminRole]);
-        
+
         if ($request->has('admin_role')) {
+
             // Checkbox is checked, assign admin role
             $user->update(['role' => 'admin']);
-            
+
             // Handle deletion from related tables
             $user->doctor()->delete();
             $user->patient()->delete();
-        }
-        else{
+        } else {
             $user->update(['role' => $user->role]);
         }
-        
+
         $user->update($request->all());
         return redirect()->route('admin.viewusers')->with('success', ['User updated successfully']);
     }
@@ -81,9 +81,9 @@ class AdminDashboardController extends Controller
 
         if ($user) {
             $user->delete();
-            return redirect()->route('admin.viewusers')->with('success', 'User deleted successfully');
+            return redirect()->route('admin.viewusers')->with('success', ['User deleted successfully']);
         }
 
-        return redirect()->route('admin.viewusers')->with('error', 'User not found');
+        return redirect()->route('admin.viewusers')->with('errormessages', ['User not found']);
     }
 }

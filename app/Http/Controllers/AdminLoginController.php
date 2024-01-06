@@ -29,6 +29,5 @@ class AdminLoginController extends Controller
             else{
             return back()->with('errormessages', ['Invalid Login']);
             }
-        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 }

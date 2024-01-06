@@ -19,9 +19,23 @@ module.exports = {
         extend: {},
     },
     daisyui: {
+
+        // This is for theme when users enable the dark mode.
         darkTheme: "dark",
         themes: [
             {
+                // The first theme will get applied as light mode.
+                mytheme: {
+                    primary: "#2e37ff",
+                    secondary: "#009700",
+                    accent: "#00e6d3",
+                    neutral: "#100309",
+                    "base-100": "#F9F7EE",
+                    info: "#0090de",
+                    success: "#00fdc8",
+                    warning: "#ea5f00",
+                    error: "#db0021",
+                },
                 light: {
                     ...require("daisyui/src/theming/themes")["light"],
                     primary: "#007eff",

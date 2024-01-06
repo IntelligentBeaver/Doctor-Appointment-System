@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            background-color:white;
+            overflow: auto;
+
+            width:100%;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #fff;
+
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:#F2FAFB ;
+
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 2000px;
+            margin: 0 auto;
+            padding: 50px;
+            margin-top: 50px;
+            margin-bottom: 90px;
+            background-color: rgb(245, 245, 216);
+        }
+
+        .description {
+            width: 60%;
+        }
+
+        .description h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .description p {
+            font-size: 1.2em;
+            color: #666;
+        }
+        .image {
+            width: 50%;
+        }
+        .image img {
+            width: 100%;
+            height: auto;
+            border-radius: 0px;
+        }
+        .button{
+            background-color: #01a0ac;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px 3px;
+            cursor: pointer;
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* body{
+            width:100%;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #fff;
+        } */
+        .imgSlider{
+            width: 90%;
+            border-radius: 20px;
+            height: 600px;
+            background-image: url('doctor1.jpg');
+            background-size: 100% 100%;
+            position: relative;
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+            animation: changeImage 20s linear infinite;
+            /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+        }
+        @keyframes changeImage{
+            0%{
+                background-image: url('doctor1.jpg');
+            }
+            25%{
+                background-image: url('doctor4.jpg');
+            }
+            50%{
+                background-image: url('doctor3.jpeg');
+            }
+            75%{
+                background-image: url('doctor5.jpg');
+            }
+            100%{
+                background-image: url('doctor1.jpg');
+            }
+        }
+
+        /* body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:#F2FAFB ;
+        } */
+
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 20px auto;
+           height: 100vh;
+        }
+
+        .flex-item {
+            flex: 0 0 calc(25% - 20px); 
+            margin: 10px;
+            background-color: #01a0ac;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .flex-item img {
+            width: 50%;
+            height: auto;
+        }
+
+        .description {
+            padding: 20px;
+        }
+
+        .description h2 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .description p {
+            color: #333;
+        }
+
+        /* body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        } */
+
+        .container1 {
+            display: flex;
+            background-color: rgb(235, 228, 228);
+            padding: 20px;
+            justify-content: space-around;
+            align-items: center;
+           
+        }
+        
+        .left-div {
+            width: 40%; 
+            text-align: left;
+            color: black;
+        }
+
+        .right-div {
+            width: 50%; 
+            display: flex;
+           flex-direction: row;
+           flex-wrap: nowrap;
+            justify-content: space-around;
+        }
+
+        .flexbox {
+            width: 25%; 
+            background-color: #01a0ac;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .flexbox h3{
+            color: white;
+        }
+        .flexbox p{
+            color: black;
+        }
+        
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="description">
+            <h1>Getting sick is a pain. <br>Urgent care shouldn't be.</h1> 
+       <h3>A better way to access your local urgent care facilities & a more proactive approach to care for you and your loved ones.</h3>
+        <button class="button">Book An Appointment</button>
+        </div>
+        <div class="image">
+            <img src="doctor-removebg-preview.png" alt="Doctor Image">
+        </div>
+    </div>
+
+    <div class="imgSlider">
+    </div>
+
+        <div class="flex-container">
+            <div class="flex-item">
+                <img src="clipboard.png" alt="Image 1">
+                <div class="description">
+                    <h2>Book An Appointment</h2>
+                    <p>Appointment with the best doctors of your choice</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <img src="prescription.png" alt="Image 2">
+                <div class="description">
+                    <h2>Online Consultation</h2>
+                    <p>Effective online consultation with top doctors</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <img src="pill-box.png" alt="Image 3">
+                <div class="description">
+                    <h2>Health packages</h2>
+                    <p>Buy best health packages at an affordable rate</p>
+                </div>
+            </div>
+            <div class="flex-item">
+                <img src="location.png" alt="Image 4">
+                <div class="description">
+                    <h2>Find a doctor near you</h2>
+                    <p>Finding doctors near you made easy with us</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container1">
+            <div class="left-div">
+                <h1>Why consult with us?</h1>
+                <h4>Online healthcare service providing company aimed to make healthcare services easy, fast and affordable</h4>
+            </div>
+            <div class="right-div">
+                <div class="flexbox">
+                    <h3>Enormous database</h3> <br>
+                    <p>List of registered doctors, hospitals, labs, diagnostics, and so on in a platform!</p>
+                </div>
+                <div class="flexbox">                 
+                    <h3>Safest online healthcare platform</h3> <br>
+                    <p>Safety of your information is our top priority.User's information is highly confidential.</p>
+                </div>    
+                <div class="flexbox">                 
+                    <h3>Excellent Customer Service</h3> <br>
+                    <p>Eveready Customer service Team at service to guide users 24/7.</p>
+                </div>             
+            </div>
+        </div>
+
+</body>
+</html>
+

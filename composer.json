@@ -1,11 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "bruh/doctor-appointment-system",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "A simple but effective doctor appointment system made by 3 extreme professionals.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.1",
+        "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",

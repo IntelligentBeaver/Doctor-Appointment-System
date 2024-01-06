@@ -10,8 +10,16 @@
 ## Doctor Appointment System
 Start of new project using various technologies and frameworks.
 
+### Pages:
+1. Home
+2. Contacts
+3. Appointments [Soon]
+4. Login
+5. Signup
+6. Payment [Soon]
+
 # Help
-1. ##Laravel:
+1. ## Laravel
    1. <a href="https://laravel.com/docs/10.x/installation#creating-a-laravel-project" target="_blank">Installnation Guide Docs</a>
    1. <a href="https://youtu.be/FC7JQItVqzM?si=02obZylnkO5UxqJM" target="_blank">Installnation Video</a>
    1. <a href="https://youtu.be/qqIlkVuUC2Y?si=PeQsOO1wdzPvMCvv" target="_blank">How to install Tailwind in Laravel and Vite</a>

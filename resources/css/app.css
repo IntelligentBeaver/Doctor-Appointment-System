@@ -2,24 +2,214 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+        --blue:#2e37ff;
+        --green:#009700;
+        --black:#100309;
+        --box-shadow:.5rem .5rem 0 rgba(152, 163, 161, 0.2);
+        --text-shadow:.4rem .4rem 0 rgba(139, 137, 137, 0.2);
+        --border:.3rem solid var(--blue);
+        }
+
+    p,
+    a,
+    li {
+        font-family: 'Lato', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Arvo', serif;
+    }
+
+    .card-border-blue{
+        --border:.3rem solid var(--blue);
+        border: var(--border);
+    }
+    .card-border-black{
+        --border:.3rem solid var(--black);
+        border: var(--border);
+    }
+
+    /* Homepage */
+.btnappointment{
+            display: inline-block;
+            margin-top: 1rem;
+            padding: .5rem;
+            padding-left: 1rem;
+            border-radius: .5rem;
+            box-shadow: var(--box-shadow);
+            color:white;
+            background-color: #009700;
+            cursor: pointer;
+            font-size: 1.7rem;
+        }
+
+.btnappointment span{
+    padding: .7rem .1rem;
+    border-radius: .5rem;
+    background:var(--green);
+    color: white;
+    margin-left: .5rem;
+
+}
+
+        .home{
+            display:flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap:1.5rem;
+            /* padding-top:10rem; */
+        }
+
+        .home .image{
+            flex:1 1 45rem;
+        }
+
+        .home .image img{
+            flex:1 1 45rem;
+        }
+        .home .content{
+            flex:1 1 45rem;
+        }
+        .home .content h3{
+            line-height:1.3;
+            /* font-size: 4rem;
+            color:var(--black);
+            line-height: 2.1; */
+            text-shadow: var(--box-shadow);
+        }
+        .home .content p{
+            /* font-size: 2rem; */
+            color: var(--blue);
+            line-height: 2.1;
+            /* text-shadow: var(--text-shadow); */
+            /* padding:1rem; */
+        }
+
+
+       .icons-container{
+        display:grid;
+        gap:2rem;
+        grid-template-columns: repeat(auto-fit,  minmax(20rem,1fr));
+        /* padding-top: 5rem;
+        padding-bottom: 5rem; */
+       }
+       .icons-container .icons{
+        /* background: #F9F7EE; */
+        border: var(--border);
+        /* box-shadow: var(--box-shadow); */
+        border-radius: 1.5rem;
+        text-align: center;
+        padding: 3.5rem;
+       }
+    .icons-container .icons i{
+        font-size: 4.5rem;
+        color: var(--blue);
+        padding-bottom: .7rem;
+    }
+    .icons-container .icons h3{
+        /* font-size: 2.5rem;
+        color: var(--black);
+        padding: .5rem 0; */
+        text-shadow: var(--text-shadow);
+    }
+    .icons-container .icons p{
+        /* font-size: 2rem;
+        color: var(--black); */
+        padding: .5rem 0;
+    }
+
+
+.heading {
+    /* color: var(--blue); */
+    text-shadow: var(--text-shadow);
+    /* text-align: center;
+    font-size: 4rem;
+    padding-bottom: 2rem; */
+}
+    .about .row{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .about .row .image{
+        flex:1 1 45rem;
+    }
+    .about .row .image img{
+    width:100%;
+    }
+    .about .row .content{
+        flex:1 1 45rem;
+    }
+    .about .row .content h3{
+        /* color: var(--black); */
+        text-shadow: var(--text-shadow);
+        /* font-size: 4rem;
+        line-height: 1.8; */
+    }
+    .about .row .content p{
+        color: var(--blue);
+       /* padding: 1rem 0; */
+        /* font-size: 2rem; */
+        line-height: 1.8;
+    }
+
+
+    .review .box-container{
+        display: grid;
+        gap:2rem;
+        grid-template-columns: repeat(auto-fit,  minmax(27rem,1fr));
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+    .review .box-container .box{
+        border:var(--border);
+        /* box-shadow: var(--box-shadow); */
+        border-radius: 1.5rem;
+        padding:2.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+    }
+    .review .box-container .box h3{
+        /* font-size: 2.3rem;
+        padding:.5rem 0; */
+    }
+    .review .box-container .box .stars{
+        font-size: 1.5rem;
+    }
+    .review .box-container .box .text {
+        font-size: 1.7rem;
+        line-height: 1.8;
+        padding-top: .4rem;
+    }
+
+
+
+
+    /* Contacts Page */
+
         .get-in-touch {
             flex: 1;
-            max-width: 400px;
-            /* background-color: #fff; */
+            /* max-width: 400px; */
             padding: 2rem;
             margin: 1rem;
         }
-
-        /* .get-in-touch h2 {
-            color: #333;
-        } */
-
-        /* .social-media {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 1rem;
-        } */
-
+        
+        .contact-form {
+            flex: 1;
+            /* max-width: 600px; */
+            padding: 2rem;
+            margin: 1rem;
+        }
+        
         .social-media a {
             text-decoration: none;
             /* color: #333; */
@@ -30,42 +220,6 @@
             margin-right: 0.5rem;
         }
 
-        .contact-form {
-            flex: 1;
-            max-width: 600px;
-            /* background-color: #fff; */
-            padding: 2rem;
-            margin: 1rem;
-        }
-
-        /* .contact-form h2 {
-            color: #333;
-        } */
-
-        /* .form-group {
-            margin-bottom: 1rem;
-        } */
-
-        /* label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #555;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        } */
-
-        #contact-main {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            padding: 2rem;
-        }
 
         #contact-btn {
             background-color: #333;

@@ -27,7 +27,7 @@
 
     <body>
         {{-- Navbar Component --}}
-        <x-navbar />
+        <x-navigation.navbar />
         {{-- End of Navbar --}}
 
         <x-message.error-message />
