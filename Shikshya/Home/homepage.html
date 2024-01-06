@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Document</title>
+    <style>
+           
+  @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+
+       :root{
+        --blue:#2e37ff;
+        --green:#009700;
+        --black:#100309;
+        --box-shadow:.5rem .5rem 0 rgba(152, 163, 161, 0.2);
+        --text-shadow:.4rem .4rem 0 rgba(139, 137, 137, 0.2);
+        --border:.3rem solid var(--blue);
+        
+       }
+        *{
+           
+            font-family: 'Poppins', sans-serif;
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-transform: capitalize;
+            transition: all .2s ease-out;
+            text-decoration: none;
+
+        }
+        html{
+            font-size: 62%;
+            overflow-x: hidden;
+            scroll-padding-top: 7rem;
+            scroll-behavior: smooth;
+        }
+        section{
+            padding:2rem 9%;
+            background-color: #F9F7EE;
+        }
+
+          section:nth-child(even){
+            background:white;
+        }
+
+        .btn{
+            display: inline-block;
+            margin-top: 1rem;
+            padding: .5rem;
+            padding-left: 1rem;
+            border-radius: .5rem;
+            box-shadow: var(--box-shadow);
+            color:white;
+            background-color: #009700;
+            cursor: pointer;
+            font-size: 1.7rem;
+        }
+.btn span{
+    padding: .7rem .1rem;
+    border-radius: .5rem;
+    background:var(--green);
+    color: white;
+    margin-left: .5rem;
+
+}
+
+        .home{
+            display:flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap:1.5rem;
+            padding-top:10rem;
+        }
+
+        .home .image{
+            flex:1 1 45rem;
+        }
+
+        .home .image img{
+            flex:1 1 45rem;
+        }
+        .home .content{
+            flex:1 1 45rem;
+        }
+        .home .content h3{
+            font-size: 4rem;
+            color:var(--black);
+            line-height: 2.1;
+            text-shadow: var(--box-shadow);
+        }
+        .home .content p{
+            font-size: 2rem;
+            color: var(--blue);
+            line-height: 2.1;
+            /* text-shadow: var(--text-shadow); */
+            padding:1rem;
+        }
+
+
+       .icons-container{
+        display:grid;
+        gap:2rem;
+        grid-template-columns: repeat(auto-fit,  minmax(20rem,1fr));
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+       }
+       .icons-container .icons{
+        /* background: #F9F7EE; */
+        border: var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 1.5rem;
+        text-align: center;
+        padding: 3.5rem;
+       }
+    .icons-container .icons i{
+        font-size: 4.5rem;
+        color: var(--blue);
+        padding-bottom: .7rem;
+    }
+    .icons-container .icons h3{
+        font-size: 2.5rem;
+        color: var(--black);
+        padding: .5rem 0;
+        text-shadow: var(--text-shadow);
+    }
+    .icons-container .icons p{
+        font-size: 2rem;
+        color: var(--black);
+        padding: .5rem 0;
+    }
+
+
+.heading {
+    color: var(--blue);
+    text-shadow: var(--text-shadow);
+    text-align: center;
+    font-size: 4rem;
+    padding-bottom: 2rem;
+}
+    .about .row{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    .about .row .image{
+        flex:1 1 45rem;
+    }
+    .about .row .image img{
+       width:100%;
+    }
+    .about .row .content{
+        flex:1 1 45rem;
+    }
+    .about .row .content h3{
+        color: var(--black);
+        text-shadow: var(--text-shadow);
+        font-size: 4rem;
+        line-height: 1.8;
+    }
+    .about .row .content p{
+        color: var(--blue);
+       padding: 1rem 0;
+        font-size: 2rem;
+        line-height: 1.8;
+    }
+
+
+    .review .box-container{
+        display: grid;
+        gap:2rem;
+        grid-template-columns: repeat(auto-fit,  minmax(27rem,1fr));
+        /* padding-top: 5rem;
+        padding-bottom: 5rem; */
+    }
+    .review .box-container .box{
+        border:var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 1.5rem;
+        padding:2.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 0;
+    }
+    .review .box-container .box h3{
+        font-size: 2.3rem;
+        padding:.5rem 0;
+    }
+    .review .box-container .box .stars{
+        font-size: 1.5rem;
+    }
+    .review .box-container .box .text {
+        font-size: 1.7rem;
+        line-height: 1.8;
+        padding-top: .4rem;
+    }
+
+
+    </style>
+</head>
+<body>
+    <section class="home" id="home">
+        <div class="image">
+            <img src="Medicine-bro.svg" alt="">
+        </div>
+        <div class="content">
+            <h3>Getting sick is a pain. <br>Urgent care shouldn't be.</h3> 
+            <p>A better way to access your local urgent care facilities & a more proactive approach to care for you and your loved ones.</p>
+            <a href="#" class="btn"> Book An Appointment <span class="fas fa-chevron-right"></span></a>
+        </div>
+    </section>
+
+
+
+    <section class="icons-container">
+    <div class="icons">
+        <i class="fa-solid fa-file-medical"></i>
+        <h3>Book An Appointment</h3>
+        <p>Appointment with the best doctors of your choice</p>
+    </div>
+    <div class="icons">
+        <i class="fas fa-users"></i>
+        <h3>Online Consultation</h3>
+        <p>Effective online consultation with top doctors</p>
+    </div>
+    <div class="icons">
+        <i class="fa-solid fa-prescription-bottle-medical"></i>
+        <h3>Health packages</h3>
+        <p>Buy best health packages at an affordable rate</p>
+    </div>
+    <div class="icons">
+        <i class="fas fa-location"></i>
+        <h3>Find a doctor near you</h3>
+        <p>Finding doctors near you made easy with us</p>
+    </div>
+    </section>
+
+    
+
+
+
+    <section class="about" id="about">
+       <h1 class="heading">Prepared Patients </h1>
+       <div class="row">
+        <div class="image">
+            <img src="Doctors-bro.svg" alt="">
+        </div>
+        <div class="content">
+            <h3>Compare Wait Times</h3>
+            <h3>Get In Line Early</h3>
+            <p>Random provides a place to compare wait times at clinics,hospitals in your area and then get it right form your phone-empowering you to find the right facility and skip the agony of waiting room.</p>
+        </div>
+       </div>
+
+    </section>
+
+  <section class="review" id="review">
+    <h1 class="heading">Reviews!</h1>
+    <div class="box-container">
+        <div class="box">
+            <h3>Chandler Bing</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse laboriosam accusamus aperiam dolores soluta repellendus. Ipsa, atque ratione. Repellendus ipsa voluptas deserunt quod officiis quas, earum nemo animi culpa dolor.</p>
+        </div>
+        <div class="box">
+            <h3>Monica Geller</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse laboriosam accusamus aperiam dolores soluta repellendus. Ipsa, atque ratione. Repellendus ipsa voluptas deserunt quod officiis quas, earum nemo animi culpa dolor.</p>
+        </div>
+        <div class="box">
+            <h3>Joey Tribbiani</h3>
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse laboriosam accusamus aperiam dolores soluta repellendus. Ipsa, atque ratione. Repellendus ipsa voluptas deserunt quod officiis quas, earum nemo animi culpa dolor.</p>
+        </div>
+    </div>
+  </section>
+
+</body>
+</html>
