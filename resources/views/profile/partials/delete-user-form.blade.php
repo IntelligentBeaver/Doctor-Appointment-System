@@ -12,7 +12,7 @@
     <form method="post" action="{{ route('profile.destroy') }}">
         @csrf
         @method('delete')
-        <div><a class="btn btn-error w-28 rounded-xl" href="#my_modal_8">Delete</a></div>
+        <div><a class="btn btn-error min-w-28 rounded-xl" href="#my_modal_8">Delete</a></div>
         {{-- The popup if we click the Delete Button --}}
         <div class="modal" id="my_modal_8" role="dialog">
             <div class="modal-box">

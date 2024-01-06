@@ -9,8 +9,8 @@
     <x-styling.header>
         Contact Us
     </x-styling.header>
-    <main id='contact-main'>
-        <div class="get-in-touch bg-base-200 rounded-xl">
+    <main class="xs:flex-col flex flex-wrap justify-around p-8 sm:flex-row">
+        <div class="get-in-touch bg-base-200 sm:max-w-80 rounded-xl">
             <div class="my-4">
                 <h2 class="text-2xl font-bold">Get in Touch</h2>
                 <p>Connect with us on social media:</p>
@@ -27,32 +27,19 @@
 
         <div class="contact-form bg-base-200 rounded-xl">
             <h2 class="text-2xl font-bold">Contact Form</h2>
-            <form action="#" method="post">
+            <form action="{{ route('contacts') }}" method="POST">
+                @csrf
+                <x-styling.input name="email" type="email" label="Email" />
 
-                <div class="py-2">
-                    <label class="form-control w-full">
-                        <div class="label">
-                            <span class="label-text text-base">Email</span>
-                        </div>
-                        <input class="input input-bordered w-full" type="email" placeholder="Type here" required />
-                    </label>
-                </div>
-
-                <div class="py-2">
-                    <label class="form-control w-full">
-                        <div class="label">
-                            <span class="label-text text-base">Phone</span>
-                        </div>
-                        <input class="input input-bordered w-full" type="number" placeholder="Type here" required />
-                    </label>
-                </div>
+                <x-styling.input name="phone" type="number" label="Phone" />
 
                 <div class="py-2">
                     <label class="form-control">
                         <div class="label">
                             <span class="label-text text-base">Your Message</span>
                         </div>
-                        <textarea class="textarea textarea-bordered h-24 w-full" placeholder="Bio" required></textarea>
+                        <textarea class="textarea textarea-bordered h-24 w-full" id="description" name="description" placeholder="Description"
+                            required></textarea>
                     </label>
                 </div>
 

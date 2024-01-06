@@ -19,8 +19,9 @@
 
         <div>
             <label class="block text-sm font-medium" for="name">{{ __('Name') }}</label>
-            <input class="mt-1 block w-full rounded-xl" id="name" name="name" type="text"
-                placeholder="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
+            <input class="input input-bordered mt-1 block w-full rounded-xl" id="name" name="name"
+                type="text" value="{{ old('name', $user->name) }}" {{-- placeholder="{{ old('name', $user->name) }}" --}} required autofocus
+                autocomplete="name">
             @error('name')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -29,8 +30,9 @@
 
         <div>
             <label class="block text-sm font-medium" for="email ">{{ __('Email') }}</label>
-            <input class="mt-1 block w-full rounded-xl" id="email" name="email" type="email"
-                placeholder="{{ old('email', $user->email) }}" required autocomplete="username" />
+            <input class="input input-bordered mt-1 block w-full rounded-xl" id="email" name="email"
+                type="email" value="{{ old('email', $user->email) }}" {{-- placeholder="{{ old('email', $user->email) }}"  --}} required
+                autocomplete="username" />
             @error('email')
                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
             @enderror
@@ -57,7 +59,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button class="btn btn-primary rounded-xl" type="submit">Save</button>
+            <button class="btn btn-primary min-w-28 rounded-xl" type="submit">Save</button>
 
             @if (session('status') === 'profile-updated')
                 <p class="text-sm text-gray-600 dark:text-gray-400" x-data="{ show: true }" x-show="show" x-transition
