@@ -13,9 +13,10 @@ Start of new project using various technologies and frameworks.
 ### Pages:
 1. Home
 2. Contacts
-3. Appointments
+3. Appointments [Soon]
 4. Login
 5. Signup
+6. Payment [Soon]
 
 # Help
 1. ## Laravel
