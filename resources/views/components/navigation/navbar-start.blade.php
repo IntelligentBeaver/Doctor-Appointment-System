@@ -109,5 +109,14 @@
             </div>
         </div>
     @endauth
-    <div><a class="mx-4" href="{{ route('home') }}">Bruh™️</a></div>
+    <div><a class="mx-4" href="{{ route('home') }}">
+            <div class="h-12">
+                <img class="h-full w-full object-cover dark:hidden" src="{{ asset('images/logo-light.svg') }}"
+                    alt="Light Image">
+                <img class="hidden h-full w-full object-cover dark:block" src="{{ asset('images/logo-dark.svg') }}"
+                    alt="Dark Image">
+            </div>
+        </a>
+
+    </div>
 </div>
