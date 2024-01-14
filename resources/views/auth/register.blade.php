@@ -45,8 +45,18 @@
             {{-- Additional Fields for Doctor --}}
 
             {{-- Specialization --}}
-            <div id="specializationFields" style="display: none">
-                <x-styling.input name="specializationname" type="text" label="Specialization" />
+            <div class="mt-4" id="specializationFields" style="display: none">
+                <label class="form-control w-full max-w-xs" for="SpecializationID">
+                    <div class="label">
+                        <span class="label-text text-base font-semibold">Select Specialization:</span>
+                    </div>
+                    <select class="select select-bordered" id="specialization" name="specialization" required>
+                        <option disabled selected>Pick one</option>
+                        @foreach ($specializations as $id => $name)
+                            <option value="{{ $name }}">{{ $name }}</option>
+                        @endforeach
+                    </select>
+                </label>
             </div>
 
             {{-- Contact Information --}}

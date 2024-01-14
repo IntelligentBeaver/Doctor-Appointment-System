@@ -3,7 +3,8 @@
         <div class="label">
             <span class="label-text text-base font-semibold">{{ $label }}</span>
         </div>
-        <input class="input input-bordered w-full rounded-xl" id="{{ $name }}" name="{{ $name }}"
-            type="{{ $type }}" value="{{ old($name) }}" placeholder="Enter {{ $label }}" autofocus>
+        <input id="{{ $name }}" name="{{ $name }}" type="{{ $type }}" value="{{ old($name) }}"
+            {{ $attributes->merge(['class' => 'input input-bordered w-full rounded-xl']) }}
+            placeholder="Enter {{ $label }}" autofocus>
     </label>
 </div>

@@ -23,7 +23,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $specializations = Specialization::pluck('SpecializationName', 'SpecializationID');
+
+        return view('auth.register',compact('specializations'));
     }
     /**
      * Handle an incoming registration request.
@@ -44,7 +46,7 @@ class RegisteredUserController extends Controller
             'address' => ['required_if:role,patient'],
 
             // Requires only if role is doctor
-            'specializationname'=> ['required_if:role,doctor'],
+            'specialization'=> ['required_if:role,doctor'],
             'contact_information'=> ['required_if:role,doctor'],
         ]);
 
@@ -68,20 +70,22 @@ class RegisteredUserController extends Controller
                 'Email' => $request['email'],
             ]);
         } elseif ($request['role'] === 'doctor') {
-            $specialization = Specialization::where('SpecializationName', $request['specializationname'])->first();
+        
+            $specialization = Specialization::where('SpecializationName', $request['specialization'])->first();
 
             // Check if Specialization is found
             if ($specialization === null) {
                 // Handle the case where the specialization is not found
-                return redirect()->route('register')->withErrors(['specialization' => 'Specialization not found for ' . $request['specializationname']]);
+                return redirect()->route('register')->withErrors(['specialization' => 'Specialization not found for ' . $request['specialization']]);
             }
 
             // Create a new doctor
             $doctor = Doctor::create([
                 'user_id' => $user->id,
                 'DoctorName' => $request['name'],
-                'ContactInformation' => $request['contact_information'],
                 'SpecializationID' => $specialization->SpecializationID,
+                'ContactInformation' => $request['contact_information']
+                // 'SpecializationID' => $request['specialization'],
             ]);
             $doctor->save();
         }

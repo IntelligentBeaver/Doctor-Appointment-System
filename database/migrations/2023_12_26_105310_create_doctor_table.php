@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('DoctorID');
             $table->unsignedBigInteger('user_id')->unique();
             // $table->primary('DoctorID');
-            $table->string('DoctorName');
             $table->unsignedBigInteger('SpecializationID');
+            $table->string('DoctorName');
             $table->string('ContactInformation')->nullable();
             $table->timestamps();
 

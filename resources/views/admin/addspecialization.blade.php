@@ -27,23 +27,24 @@
         <x-styling.subheader>
             Add a new Specialization:
         </x-styling.subheader>
-        <div class="bg-base-200 max-w-96 mx-auto my-8 flex justify-center rounded-xl px-10 py-10">
-            <form action="{{ route('admin.addspecialization') }}" method="POST">
-                @csrf
-                <x-styling.input name="specializationname" type="text" label="Specialization" />
-                <div class="py-2">
-                    <label class="form-control">
-                        <div class="label">
-                            <span class="label-text text-base font-semibold">Description</span>
-                        </div>
-                        <textarea class="textarea textarea-bordered h-24 w-full" id="description" name="description" placeholder="Description"></textarea>
-                    </label>
-                </div>
-
-                <div class="py-2">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
-            </form>
+        <div class="px-20">
+            <div class="bg-base-200 mx-auto my-8 flex items-center rounded-xl px-10 py-10">
+                <form class="w-full" action="{{ route('admin.addspecialization') }}" method="POST">
+                    @csrf
+                    <x-styling.input name="specializationname" type="text" label="Specialization" />
+                    <div class="py-2">
+                        <label class="form-control">
+                            <div class="label">
+                                <span class="label-text text-base font-semibold">Description</span>
+                            </div>
+                            <textarea class="textarea textarea-bordered h-24 w-full" id="description" name="description" placeholder="Description"></textarea>
+                        </label>
+                    </div>
+                    <div class="py-2">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
