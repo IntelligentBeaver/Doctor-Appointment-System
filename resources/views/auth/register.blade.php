@@ -1,16 +1,24 @@
 <x-signinlogin>
 
-    <div class="bg-base-200 my-50 mx-auto my-20 max-w-[500px] rounded-xl px-10 py-14">
+    <div class="card-move-y bg-base-200 my-50 mx-auto my-20 max-w-[500px] rounded-xl px-10 py-14">
 
-        <h1 class="text-6xl font-bold">
-            Register
-        </h1>
+        <div class="flex items-center justify-between gap-10 py-4">
+            <h1 class="text-6xl font-bold">
+                Register
+            </h1>
+            <div>
+                <img class="h-full w-full object-cover dark:hidden" src="{{ asset('images/logo-light.svg') }}"
+                    alt="Light Image">
+                <img class="max-w-24 hidden h-full w-full object-cover dark:block"
+                    src="{{ asset('images/logo-dark.svg') }}" alt="Dark Image">
+            </div>
+        </div>
 
         <form id="registerForm" method="POST" action="{{ route('register') }}">
             @csrf
             <!-- Logo -->
             {{-- <div>
-                <img class="w-30" src="{{ asset('path/to/your/logo.png') }}" alt="Logo">
+                <img class="w-30" src="{{ asset('images/logo.png') }}" alt="Logo">
             </div> --}}
 
             <!-- Name -->

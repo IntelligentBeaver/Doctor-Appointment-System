@@ -2,7 +2,7 @@
     @if (Route::has('login'))
         @auth
             <div class="dropdown dropdown-bottom dropdown-end">
-                <div class="btn m-1" role="button" tabindex="0"> {{ Auth::user()->name }}</div>
+                <div class="btn btn-neutral m-1" tabindex="0"> {{ Auth::user()->name }}</div>
                 <ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow" tabindex="0">
                     @if (auth()->user()->role === 'doctor')
                         <li><a class="py-5 font-bold" href="{{ route('doctor.dashboard') }}">Doctor

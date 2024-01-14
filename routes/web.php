@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\AddSpecializationController;
 use App\Http\Controllers\auth\AdminDashboardController;
 use App\Http\Controllers\auth\DoctorDashboardController;
@@ -45,6 +46,8 @@ Route::get('/testredirection', function () {
 // Contact Us Page
 Route::get('/contacts', [ContactsController::class,'create'])->name('contacts');
 Route::post('/contacts', [ContactsController::class,'store'])->middleware('web');
+
+Route::get('/appointments',[AppointmentsController::class,'create'])->name('appointments');
 
 /*
 |--------------------------------------------------------------------------
