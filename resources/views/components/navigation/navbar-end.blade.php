@@ -1,44 +1,52 @@
-<div class="navbar-end hidden gap-4 lg:flex">
-    @if (Route::has('login'))
-        @auth
-            <div class="dropdown dropdown-bottom dropdown-end">
-                <div class="btn btn-neutral m-1" tabindex="0"> {{ Auth::user()->name }}</div>
-                <ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow" tabindex="0">
-                    @if (auth()->user()->role === 'doctor')
-                        <li><a class="py-5 font-bold" href="{{ route('doctor.dashboard') }}">Doctor
-                                Dashboard</a>
-                        </li>
-                    @elseif(auth()->user()->role === 'patient')
-                        <li><a class="py-5 font-bold" href="{{ route('patient.dashboard') }}">Patient
-                                Dashboard</a>
-                        </li>
-                    @else
-                        <li><a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin
-                                Dashboard</a>
-                        </li>
-                    @endif
-                    <li><a class="py-5 font-bold" href="{{ route('profile.edit') }}">Profile</a></li>
-                    <div class="divider m-0 p-0"></div>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="font-bold text-red-400"
-                                onclick="event.preventDefault(); this.closest('form').submit();">
-                                Log Out
-                            </button>
-                            </a>
-                        </form>
+<div class="navbar-end gap-4 lg:flex">
+    @auth
+        <div class="dropdown dropdown-bottom dropdown-end">
+            <div class="m-1" tabindex="0">
+                <div class="btn btn-ghost btn-circle avatar" role="button" tabindex="0">
+                    <div class="w-10 rounded-full">
+                        <img src="{{ asset(Auth::user()->image) }}" alt="{{ Auth::user()->name }}" />
+                    </div>
+                </div>
+            </div>
+            <ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow" tabindex="0">
+                @if (auth()->user()->role === 'doctor')
+                    <li><a class="py-5 font-bold" href="{{ route('doctor.dashboard') }}">Doctor
+                            Dashboard</a>
                     </li>
-                </ul>
-            @else
-                <a class="btn btn-primary" href="{{ route('login') }}">Log in</a>
-                @if (Route::has('register'))
-                    <a class="btn btn-outline" href="{{ route('register') }}">Sign up</a>
+                @elseif(auth()->user()->role === 'patient')
+                    <li><a class="py-5 font-bold" href="{{ route('patient.dashboard') }}">Patient
+                            Dashboard</a>
+                    </li>
+                @else
+                    <li><a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin
+                            Dashboard</a>
+                    </li>
                 @endif
-                {{-- End of Unauthenticated users --}}
-            @endauth
-    @endif
-</div>
+                <li><a class="py-5 font-bold" href="{{ route('profile.edit') }}">Profile</a></li>
+                <div class="divider m-0 p-0"></div>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="font-bold text-red-400"
+                            onclick="event.preventDefault(); this.closest('form').submit();">
+                            Log Out
+                        </button>
+                        </a>
+                    </form>
+                </li>
+            </ul>
+            {{-- End of Unauthenticated users --}}
+        @else
+            @if (Route::has('login'))
+                <a class="btn btn-primary" href="{{ route('login') }}">Log in</a>
+            @endif
+            @if (Route::has('register'))
+                <a class="btn btn-outline" href="{{ route('register') }}">Sign up</a>
+            @endif
+
+        @endauth
+
+    </div>
 </div>
 {{-- <div class="navbar-end lg:hidden">
     <div class="dropdown dropdown-end">

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Doctor;
 use App\Models\Patient;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Specialization;
 use Illuminate\Validation\Rules;
@@ -25,7 +26,7 @@ class RegisteredUserController extends Controller
     {
         $specializations = Specialization::pluck('SpecializationName', 'SpecializationID');
 
-        return view('auth.register',compact('specializations'));
+        return view('auth.register', compact('specializations'));
     }
     /**
      * Handle an incoming registration request.
@@ -38,6 +39,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'image' => ['nullable','image','max:8192', 'mimes:png,jpg,jpeg,webp'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role' => ['required'],
 
@@ -46,13 +48,23 @@ class RegisteredUserController extends Controller
             'address' => ['required_if:role,patient'],
 
             // Requires only if role is doctor
-            'specialization'=> ['required_if:role,doctor'],
-            'contact_information'=> ['required_if:role,doctor'],
+            'specialization' => ['required_if:role,doctor'],
+            'contact_information' => ['required_if:role,doctor'],
         ]);
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $type = $file->getMimeType();
+            $filename =time().'.'. $extension;
+            $path = 'images/avatar/';
+            $file->move(public_path($path), $filename);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'image'=>$path.$filename,
             'password' => Hash::make($request->password),
             'role' => $request['role'],
         ]);
@@ -70,7 +82,7 @@ class RegisteredUserController extends Controller
                 'Email' => $request['email'],
             ]);
         } elseif ($request['role'] === 'doctor') {
-        
+
             $specialization = Specialization::where('SpecializationName', $request['specialization'])->first();
 
             // Check if Specialization is found
@@ -94,6 +106,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('home')->with('success',['Account Created Successfully']);
+        return redirect()->route('home')->with('success', ['Account Created Successfully']);
     }
 }

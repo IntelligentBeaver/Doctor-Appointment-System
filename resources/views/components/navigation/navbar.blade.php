@@ -1,4 +1,4 @@
-<nav class="navbar bg-base-200 text-base-content sticky">
+<nav class="navbar bg-base-200 text-base-content sticky z-50">
 
 
     {{-- Items in the left side(start) of the navigation bar --}}

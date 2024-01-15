@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <form id="registerForm" method="POST" action="{{ route('register') }}">
+        <form id="registerForm" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             @csrf
             <!-- Logo -->
             {{-- <div>
@@ -77,6 +77,21 @@
                 <x-styling.input name="phone" type="text" label="Phone" />
             </div>
 
+
+            {{-- Image Upload for Avatar --}}
+            <div class="py-4">
+                <label class="form-control w-full max-w-xs">
+                    <div class="label">
+                        <span class="label-text text-base font-semibold">Upload an Image:</span>
+                        <span class="label-text-alt">Avatar</span>
+                    </div>
+                    <input class="file-input file-input-bordered w-full max-w-xs" id="image" name="image"
+                        type="file" />
+                </label>
+            </div>
+
+
+
             <!-- Password -->
             <x-styling.input name="password" type="password" label="Password" />
 
@@ -92,18 +107,3 @@
         </form>
     </div>
 </x-signinlogin>
-
-{{-- Conditional Fields for Doctor and Patient --}}
-
-<!-- Additional Fields for Doctor -->
-{{-- <div class="mt-4" id="specializationFields" style="display: block;">
-    <label for="specializationname ">Specialization:</label>
-    <select class="form-select" id="specializationname " name="specializationname ">
-        <option disabled selected>Select specialization</option>
-
-        @foreach (\App\Models\Specialization::getSpecializationList() as $id => $name)
-            <option name="{{ $name }}" value="{{ $name }}">{{ $name }}</option>
-        @endforeach
-
-    </select>
-</div> --}}
