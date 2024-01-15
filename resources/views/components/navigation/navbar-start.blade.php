@@ -29,7 +29,7 @@
                     <li><a class="py-5" href="{{ route('contacts') }}">Contact Us</a></li>
                 @endif
                 @if (Route::has('appointments'))
-                    <li><a class="py-5" href="#">Appointments</a></li>
+                    <li><a class="py-5" href="{{ route('appointments') }}">Appointments</a></li>
                 @endif
 
                 <div class="divider m-0 p-0"></div>
@@ -56,7 +56,7 @@
                     <li><a class="py-5" href="{{ route('contacts') }}">Contact Us</a></li>
                 @endif
                 @if (Route::has('appointments'))
-                    <li><a class="py-5" href="#">Appointments</a></li>
+                    <li><a class="py-5" href="{{ route('appointments') }}">Appointments</a></li>
                 @endif
             @endauth
         </ul>

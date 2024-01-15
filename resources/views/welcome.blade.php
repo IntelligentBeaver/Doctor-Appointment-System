@@ -13,7 +13,7 @@
                     A better way to access your local urgent care facilities & a
                     more proactive approach to care for you and your loved ones.
                 </p>
-                <a class="btnappointment" href="#">
+                <a class="btnappointment" href="{{ route('appointments') }}">
                     Book An Appointment <span class="fas fa-chevron-right"></span></a>
             </div>
         </section>
