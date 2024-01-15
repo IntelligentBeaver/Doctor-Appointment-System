@@ -9,9 +9,8 @@
     <x-styling.header>
         Contact Us
     </x-styling.header>
-    <main class="xs:flex-col flex flex-wrap justify-around p-8 sm:flex-row">
-        <div
-            class="get-in-touch bg-base-200 sm:max-w-80 card rounded-xl shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
+    <main class="flex flex-col flex-wrap justify-around gap-8 py-8 sm:flex-row sm:px-8">
+        <div class="get-in-touch sm:max-w-80 bg-base-200 card-move-y mx-auto w-full sm:rounded-xl">
             <div class="my-4">
                 <h2 class="text-2xl font-bold">Get in Touch</h2>
                 <p>Connect with us on social media:</p>
@@ -27,8 +26,7 @@
         </div>
 
 
-        <div
-            class="contact-form bg-base-200 rounded-xl shadow-xl transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300">
+        <div class="contact-form bg-base-200 card-move-y sm:rounded-xl">
             <h2 class="text-2xl font-bold">Contact Form</h2>
             <form action="{{ route('contacts') }}" method="POST">
                 @csrf

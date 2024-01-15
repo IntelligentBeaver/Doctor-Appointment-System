@@ -195,14 +195,13 @@
             flex: 1;
             /* max-width: 400px; */
             padding: 2rem;
-            margin: 1rem;
         }
         
         .contact-form {
             flex: 1;
             /* max-width: 600px; */
             padding: 2rem;
-            margin: 1rem;
+            /* margin: 1rem; */
         }
         
         .social-media a {
