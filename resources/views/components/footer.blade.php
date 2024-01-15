@@ -1,10 +1,44 @@
-<footer class="footer bg-neutral text-neutral-content p-10">
+<footer class="footer bg-base-200 text-base-content p-10">
     <aside>
-        <h1 class="mb-2 text-3xl font-black">Bruh™️</h1>
-        <p>Providing nothing since never.</p>
+        <div><a class="mx-4" href="{{ route('home') }}">
+                <div class="h-12">
+                    <img class="h-full w-full object-cover dark:hidden" src="{{ asset('images/logo-light.svg') }}"
+                        alt="Light Image">
+                    <img class="hidden h-full w-full object-cover dark:block" src="{{ asset('images/logo-dark.svg') }}"
+                        alt="Dark Image">
+                </div>
+            </a>
+
+        </div>
+        <p><b>MedAppoint.</b><br />Providing fast and efficient appointments.</p>
     </aside>
     <nav>
-        <header class="footer-title">Social</header>
+        <header class="footer-title">Services</header>
+        <a class="link link-hover" href="{{ route('appointments') }}">Find Doctors</a>
+        <a class="link link-hover" href="{{ route('appointments') }}">Book an appointment</a>
+        @auth
+            @if (auth()->user()->role === 'doctor')
+                <a class="link link-hover" href="{{ route('doctor.dashboard') }}">Dashboard</a>
+                <a class="link link-hover" href="{{ route('profile.edit') }}">Profile</a>
+            @elseif(auth()->user()->role === 'patient')
+                <a class="link link-hover" href="{{ route('patient.dashboard') }}">Dashboard</a>
+                <a class="link link-hover" href="{{ route('profile.edit') }}">Profile</a>
+            @elseif (auth()->user()->role === 'admin')
+                <a class="link link-hover" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                <a class="link link-hover" href="{{ route('profile.edit') }}">Profile</a>
+            @endif
+        @else
+            <a class="link link-hover" href="{{ route('login') }}">Dashboard</a>
+            <a class="link link-hover" href="{{ route('login') }}">Profile</a>
+        @endauth
+    </nav>
+    <nav>
+        <header class="footer-title">Company</header>
+        <a class="link link-hover">About</a>
+        <a class="link link-hover" href="{{ route('contacts') }}">Contact Us</a>
+    </nav>
+    <nav>
+        <header class="footer-title">Socials</header>
         <div class="grid grid-flow-col gap-4">
             <a><svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24">

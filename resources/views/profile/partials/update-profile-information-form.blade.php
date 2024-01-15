@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium">
+        <h2 class="text-xl font-bold">
             {{ __('Profile Information') }}
         </h2>
 
@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form class="mt-6 space-y-6" method="post" action="{{ route('profile.update') }}">
+    <form class="mt-6 space-y-6" method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -57,6 +57,14 @@
                 </div>
             @endif --}}
         </div>
+        <label class="form-control w-full max-w-xs">
+            <div class="label">
+                <span class="label-text text-sm font-medium">Upload a new Photo</span>
+                <span class="label-text-alt">Avatar</span>
+            </div>
+            <input class="file-input file-input-secondary file-input-bordered w-full max-w-xs" id="image"
+                name="image" type="file" />
+        </label>
 
         <div class="flex items-center gap-4">
             <button class="btn btn-primary min-w-28 rounded-xl" type="submit">Save</button>
