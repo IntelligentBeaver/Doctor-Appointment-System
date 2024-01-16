@@ -11,7 +11,8 @@
                 <li class="no-animation py-5 text-center">{{ Auth::user()->name }}</li>
 
                 @if (auth()->user()->role === 'doctor')
-                    <li><a class="py-5 font-bold" href="{{ url('/doctor.dashboard') }}">Doctor Dashboard</a></li>
+                    <li><a class="py-5 font-bold" href="{{ route('doctor.dashboard') }}">Doctor Dashboard</a></li>
+                    <li><a class="py-5 font-bold" href="{{ route('doctor.timeslots.create') }}">Timeslots</a></li>
                 @elseif(auth()->user()->role === 'patient')
                     <li><a class="py-5 font-bold" href="{{ route('patient.dashboard') }}">Patient Dashboard</a></li>
                 @else
@@ -83,8 +84,13 @@
 
                         <!-- Sidebar content here -->
                         @if (auth()->user()->role === 'doctor')
-                            <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('doctor.dashboard') }}">Doctor
+                            <li>
+                                <a class="py-5 font-bold hover:shadow-lg" href="{{ route('doctor.dashboard') }}">Doctor
                                     Dashboard</a>
+                            </li>
+                            <li>
+                                <a class="py-5 font-bold hover:shadow-lg"
+                                    href="{{ route('doctor.timeslots.create') }}">Timeslots</a>
                             </li>
                         @elseif(auth()->user()->role === 'patient')
                             <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('patient.dashboard') }}">Patient

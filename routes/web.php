@@ -3,10 +3,12 @@
 use App\Models\Specialization;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EsewaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AppointmentsController;
+use App\Http\Controllers\DoctorTimeSlotController;
 use App\Http\Controllers\AddSpecializationController;
 use App\Http\Controllers\auth\AdminDashboardController;
 use App\Http\Controllers\auth\DoctorDashboardController;
@@ -76,5 +78,23 @@ Route::middleware(['auth', 'checkadmin:admin','disable.cache'])->name('admin.')-
 
 Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
 
-Route::middleware(['auth', 'checkdoctor:doctor','disable.cache'])->get('/doctor/dashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
+
+
+
+// Route::middleware(['auth', 'checkdoctor:doctor','disable.cache'])->get('/doctor/dashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
+
+Route::middleware(['auth', 'checkdoctor:doctor', 'disable.cache'])->name('doctor.')->group(function () {
+    Route::get('/doctor/dashboard', [DoctorDashboardController::class,'index'])->name('dashboard');
+    Route::get('/doctor/timeslots', [DoctorTimeSlotController::class, 'create'])->name('timeslots.create');
+    Route::post('/doctor/timeslots',[DoctorTimeSlotController::class,'store'])->name('timeslots.store');
+});
+
+
+
+
+Route::get('/payment', [EsewaController::class, 'create'])->name('payments.create')->middleware('auth');
+Route::post('/payment',[EsewaController::class,'store'])->name('payments.store')->middleware('auth');
+Route::get('/success', [EsewaController::class,'paymentSuccess'])->middleware('auth');
+Route::get('/failure', [EsewaController::class,'paymentFailure'])->middleware('auth');
+
 require __DIR__ . '/auth.php';

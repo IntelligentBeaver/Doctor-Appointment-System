@@ -6,6 +6,7 @@
 
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
+            <li><a class="py-3" href="{{ route('payments.create') }}">Payments</a></li>
             @if (Route::has('contacts'))
                 <li><a class="py-3" href="{{ route('contacts') }}">Contact Us</a></li>
             @endif

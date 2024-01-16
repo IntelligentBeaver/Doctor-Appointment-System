@@ -52,6 +52,13 @@
             </main>
 
             <div class="animate-fade-in">
+                @auth
+                    @yield('payment-section')
+                    @yield('payment-message')
+                @endauth
+            </div>
+
+            <div class="animate-fade-in">
                 @yield('contactssection')
             </div>
 

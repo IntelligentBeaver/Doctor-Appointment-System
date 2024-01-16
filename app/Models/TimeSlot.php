@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TimeSlot extends Model
 {
+    protected $table = 'timeslots';
     protected $primaryKey = 'TimeSlotID';
 
     protected $fillable = ['StartTime', 'EndTime', 'DayOfWeek'];

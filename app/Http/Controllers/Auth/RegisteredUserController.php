@@ -59,15 +59,25 @@ class RegisteredUserController extends Controller
             $filename =time().'.'. $extension;
             $path = 'images/avatar/';
             $file->move(public_path($path), $filename);
+            
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'image'=>$path.$filename,
+                'password' => Hash::make($request->password),
+                'role' => $request['role'],
+            ]);
+        }
+        else{
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => $request['role'],
+            ]);
         }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'image'=>$path.$filename,
-            'password' => Hash::make($request->password),
-            'role' => $request['role'],
-        ]);
+
 
         $user->save();
 
