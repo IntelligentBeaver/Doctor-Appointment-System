@@ -21,18 +21,23 @@ class EsewaController extends Controller
     
     public function create()
     {
-        return view("payments.payments");
+        $name=Auth::user()->name;
+        $email=Auth::user()->email;
+        return view("payments.payments",compact("name","email"));
     }
     public function store(Request $request)
     {
         $pid = uniqid();
         $amount = $request->amount;
+        
         $id=Auth::user()->id;
+        $name=Auth::user()->name;
+        $email=Auth::user()->email;
 
         Order::create([
             'user_id' => $id,
-            'Name' => $request->name,
-            'Email' => $request->email,
+            'Name' => $name,
+            'Email' => $email,
             'product_id' => $pid,
             'amount' => $request->amount,
             'esewa_status' => 'unverified',
