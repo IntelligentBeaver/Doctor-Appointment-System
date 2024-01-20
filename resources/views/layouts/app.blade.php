@@ -8,6 +8,9 @@
 
         <title>Your Doctor Appointment System</title>
 
+        <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.js"></script>
+
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com" rel="preconnect">
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -43,6 +46,12 @@
                 @yield('test')
             </main>
 
+            <div class="animate-fade-in">
+                @auth
+                    @yield('payment-section')
+                    @yield('payment-message')
+                @endauth
+            </div>
 
             {{-- Dashboard Conents (from components/dashboard.blade.php) --}}
             <main class="animate-fade-in">
@@ -51,19 +60,19 @@
                 @endauth
             </main>
 
-            <div class="animate-fade-in">
-                @auth
-                    @yield('payment-section')
-                    @yield('payment-message')
-                @endauth
-            </div>
 
             <div class="animate-fade-in">
                 @yield('contactssection')
             </div>
 
+            {{-- Appointment Contents --}}
             <div class="animate-fade-in">
                 @yield('appointments-section')
+            </div>
+
+            <div class="animate-fade-in">
+                @yield('book-appoointment')
+                @yield('confirm')
             </div>
 
 

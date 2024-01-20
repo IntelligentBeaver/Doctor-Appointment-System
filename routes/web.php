@@ -51,6 +51,10 @@ Route::post('/contacts', [ContactsController::class,'store'])->middleware('web')
 
 Route::get('/appointments',[AppointmentsController::class,'create'])->name('appointments');
 
+
+
+// Route::get('/appointments/book',[AppointmentsController::class,'store'])->name('bookappointment');
+
 /*
 |--------------------------------------------------------------------------
 | Routing Technique
@@ -74,9 +78,17 @@ Route::middleware(['auth', 'checkadmin:admin','disable.cache'])->name('admin.')-
     Route::delete('/admin/{id}', [AdminDashboardController::class, 'destroy'])->name('destroyusers');
     Route::get('/admin/addspecialization', [AddSpecializationController::class,'index'])->name('addspecialization');
     Route::post('/admin/addspecialization', [AddSpecializationController::class, 'store']);
+    Route::get('/admin/timeslots', [DoctorTimeSlotController::class, 'create'])->name('timeslots.create');
+    Route::post('/admin/timeslots',[DoctorTimeSlotController::class,'store'])->name('timeslots.store');
 });
 
-Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('patient.dashboard');
+Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->name('patient.')->group(function () {
+    Route::get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('dashboard');
+    
+    Route::get('/appointment/book/{doctorId}/{availabilityId}/{timeslotID}/{appointdate}/{startTime}/{endTime}', [AppointmentsController::class,'book'])->name('appointment.book');
+    Route::post('/appointment/book', [AppointmentsController::class,'store'])->name('appointment.store');
+});
+
 
 
 
@@ -85,14 +97,12 @@ Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->get('/patie
 
 Route::middleware(['auth', 'checkdoctor:doctor', 'disable.cache'])->name('doctor.')->group(function () {
     Route::get('/doctor/dashboard', [DoctorDashboardController::class,'index'])->name('dashboard');
-    Route::get('/doctor/timeslots', [DoctorTimeSlotController::class, 'create'])->name('timeslots.create');
-    Route::post('/doctor/timeslots',[DoctorTimeSlotController::class,'store'])->name('timeslots.store');
 });
 
 
 
 
-Route::get('/payment', [EsewaController::class, 'create'])->name('payments.create')->middleware('auth');
+Route::get('/payment/{appointmentID}', [EsewaController::class, 'create'])->name('payments.create')->middleware('auth');
 Route::post('/payment',[EsewaController::class,'store'])->name('payments.store')->middleware('auth');
 Route::get('/success', [EsewaController::class,'paymentSuccess'])->middleware('auth');
 Route::get('/failure', [EsewaController::class,'paymentFailure'])->middleware('auth');

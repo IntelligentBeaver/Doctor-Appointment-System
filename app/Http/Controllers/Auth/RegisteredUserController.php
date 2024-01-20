@@ -69,9 +69,11 @@ class RegisteredUserController extends Controller
             ]);
         }
         else{
+            $path = 'images/avatar/';
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'image'=>$path.'placeholder.jpg',
                 'password' => Hash::make($request->password),
                 'role' => $request['role'],
             ]);

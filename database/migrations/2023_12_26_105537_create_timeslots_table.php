@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('timeslots', function (Blueprint $table) {
-            $table->id('TimeSlotID');
-            // $table->primary('TimeSlotID');
-            $table->time('StartTime');
-            $table->time('EndTime');
-            $table->string('DayOfWeek', 15);
-            $table->timestamps();
-        });
+        $table->id('TimeSlotID');
+        $table->time('StartTime');
+        $table->time('EndTime');
+        // $table->string('SelectedDay');
+        // $table->unsignedBigInteger('DoctorID');
+        $table->timestamps();
+
+        // $table->foreign('DoctorID')->references('DoctorID')->on('doctors')->onDelete('cascade');
+    });
     }
 
     /**

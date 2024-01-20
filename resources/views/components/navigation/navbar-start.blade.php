@@ -12,16 +12,20 @@
 
                 @if (auth()->user()->role === 'doctor')
                     <li><a class="py-5 font-bold" href="{{ route('doctor.dashboard') }}">Doctor Dashboard</a></li>
-                    <li><a class="py-5 font-bold" href="{{ route('doctor.timeslots.create') }}">Timeslots</a></li>
                 @elseif(auth()->user()->role === 'patient')
                     <li><a class="py-5 font-bold" href="{{ route('patient.dashboard') }}">Patient Dashboard</a></li>
                 @else
-                    <li><a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                    <li>
+                        <a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                    </li>
                     <li>
                         <a class="py-5 font-bold" href="{{ route('admin.viewusers') }}">View Users</a>
                     </li>
                     <li>
                         <a class="py-5 font-bold" href="{{ route('admin.addspecialization') }}">Add Specialization</a>
+                    </li>
+                    <li>
+                        <a class="py-5 font-bold" href="{{ route('admin.timeslots.create') }}">Add Timeslots</a>
                     </li>
                 @endif
 
@@ -88,10 +92,6 @@
                                 <a class="py-5 font-bold hover:shadow-lg" href="{{ route('doctor.dashboard') }}">Doctor
                                     Dashboard</a>
                             </li>
-                            <li>
-                                <a class="py-5 font-bold hover:shadow-lg"
-                                    href="{{ route('doctor.timeslots.create') }}">Timeslots</a>
-                            </li>
                         @elseif(auth()->user()->role === 'patient')
                             <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('patient.dashboard') }}">Patient
                                     Dashboard</a>
@@ -107,6 +107,10 @@
                             <li>
                                 <a class="py-5 font-bold" href="{{ route('admin.addspecialization') }}">Add
                                     Specialization</a>
+                            </li>
+                            <li>
+                                <a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.timeslots.create') }}">Add
+                                    Timeslots</a>
                             </li>
                         @endif
 

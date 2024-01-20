@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('Status', 50);
             $table->timestamps();
 
-            $table->foreign('PatientID')->references('PatientID')->on('patients');
+            $table->foreign('PatientID')->references('PatientID')->on('patients')->onDelete('cascade');
+            // $table->foreign('PatientID')->references('PatientID')->on('patients');
             $table->foreign('DoctorID')->references('DoctorID')->on('doctors');
             $table->foreign('TimeSlotID')->references('TimeSlotID')->on('timeslots');
         });

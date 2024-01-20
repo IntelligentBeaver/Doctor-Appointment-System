@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
@@ -16,26 +17,32 @@ class EsewaController extends Controller
 {
     private function renderMessageView($msg, $desc, $type)
     {
+
         return view('payments.message', compact('msg', 'desc', 'type'));
     }
-    
-    public function create()
+
+    public function create($appointmentID)
     {
-        $name=Auth::user()->name;
-        $email=Auth::user()->email;
-        return view("payments.payments",compact("name","email"));
+        $appointment = Appointment::where('AppointmentID', $appointmentID)->first();
+
+        $name = Auth::user()->name;
+        $email = Auth::user()->email;
+        $address = Auth::user()->patient->Address;
+        return view("payments.payments", compact("name", "email","address", "appointment"));
     }
     public function store(Request $request)
     {
         $pid = uniqid();
-        $amount = $request->amount;
-        
-        $id=Auth::user()->id;
-        $name=Auth::user()->name;
-        $email=Auth::user()->email;
+        // $amount = $request->amount;
+        $amount = 500;
+
+        $id = Auth::user()->id;
+        $name = Auth::user()->name;
+        $email = Auth::user()->email;
 
         Order::create([
             'user_id' => $id,
+            'AppointmentID' => $request->appointment_id,
             'Name' => $name,
             'Email' => $email,
             'product_id' => $pid,
@@ -65,11 +72,16 @@ class EsewaController extends Controller
         $amt = $_GET['amt'];
 
         $order = Order::where('product_id', $pid)->first();
-        // dd($order);
-        $update_status = Order::find($order->OrderID)->update([
-            'esewa_status' => 'verified',
-            'updated_at' => Carbon::now(),
-        ]);
+        if($order){
+            $order->appointment->update([
+            'Status' => 'Booked',
+            ]);
+            $update_status = Order::find($order->OrderID)->update([
+                'esewa_status' => 'verified',
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+        
         if ($update_status) {
             $type = 'success';
             $msg = 'Success!';

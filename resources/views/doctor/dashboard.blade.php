@@ -8,17 +8,17 @@
     <div class="xs:flex-col my-8 flex flex-wrap justify-evenly gap-2 sm:flex-row">
         <x-status-card class="basis-1/4">
             <x-slot:title>Appointments</x-slot>
-            {{-- {{ $totaldoctors }} --}}
+            {{ $appointmentCount }}
         </x-status-card>
 
         <x-status-card class="basis-1/4">
             <x-slot:title>Today</x-slot>
-            {{-- {{ $totalpatients }} --}}
+            {{ $todaysAppointments }}
         </x-status-card>
 
         <x-status-card class="basis-1/4">
-            <x-slot:title>Some other fature</x-slot>
-            Coming Soon.
+            <x-slot:title>Patients</x-slot>
+            {{ $count }}
         </x-status-card>
     </div>
 

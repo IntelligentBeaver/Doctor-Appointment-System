@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Appointment extends Model
 {
     protected $primaryKey = 'AppointmentID';
 
-    protected $fillable = ['PatientID', 'DoctorID', 'TimeSlotID', 'Date', 'Status'];
+    protected $fillable = ['PatientID', 'DoctorID', 'TimeSlotID', 'Date', 'Status','TokenNumber'];
 
     public function patient()
     {
@@ -24,5 +25,9 @@ class Appointment extends Model
     public function timeSlot()
     {
         return $this->belongsTo(TimeSlot::class, 'TimeSlotID');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'AppointmentID');
     }
 }
