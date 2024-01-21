@@ -13,10 +13,10 @@
             @elseif ($type === 'error')
                 <div
                     class="bg-error card-move-y flex max-w-3xl flex-col content-center items-center justify-center rounded-xl p-24">
-                    <x-styling.header class="text-error-content">
+                    <x-styling.header class="text-neutral">
                         {{ $msg }}
                     </x-styling.header>
-                    <x-styling.subheader class="text-error-content">
+                    <x-styling.subheader class="text-neutral">
                         {{ $desc }}
                     </x-styling.subheader>
         @endif
