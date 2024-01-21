@@ -10,8 +10,9 @@
 
         @if (isset($doctors))
             @foreach ($doctors as $doctor)
-                <div class="my-8 px-8">
-                    <div class="card card-side bg-base-300 card-move-y mx-auto flex max-w-5xl flex-col py-8 sm:flex-row">
+                <div class="my-8">
+                    <div
+                        class="card card-side bg-base-300 card-move-y mx-8 flex max-w-5xl flex-col py-8 sm:flex-row lg:mx-auto">
 
                         <figure class="mx-auto overflow-hidden pl-8">
                             <img class="mask mask-squircle w-32" src="{{ asset($doctor->user->image) }}" alt="Doctor" />
@@ -20,6 +21,11 @@
                         <div class="card-body flex flex-col items-center justify-between gap-4 sm:flex-row">
                             <div class="flex flex-col">
                                 <h2 class="card-title text-2xl">{{ $doctor->DoctorName }}</h2>
+                                @if ($doctor->specialization)
+                                    <p>{{ $doctor->specialization->SpecializationName }}</p>
+                                @else
+                                    <p>No specialization available</p>
+                                @endif
                             </div>
 
                             {{-- Availibilities --}}
