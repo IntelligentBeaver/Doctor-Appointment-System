@@ -67,6 +67,11 @@
         </ul>
     </div>
 
+
+
+
+
+
     {{-- For large screen devices --}}
     @auth
         <div class="hidden lg:flex">
@@ -78,10 +83,7 @@
                     <label class="btn btn-ghost btn-outline drawer-button" for="my-drawer">
                         <i class="fa-solid fa-bars"></i>
                     </label>
-
                 </div>
-
-
                 <div class="drawer-side z-10">
                     <label class="drawer-overlay" for="my-drawer" aria-label="close sidebar"></label>
                     <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">

@@ -84,6 +84,8 @@ Route::middleware(['auth', 'checkadmin:admin','disable.cache'])->name('admin.')-
 
 Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->name('patient.')->group(function () {
     Route::get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/patient/appointments/view', [PatientDashboardController::class,'viewAppointments'])->name('appointment.view');
+    Route::delete('/appointment/{AppointmentID}', [PatientDashboardController::class, 'destroy'])->name('appointment.destroy');
     
     Route::get('/appointment/book/{doctorId}/{availabilityId}/{timeslotID}/{appointdate}/{startTime}/{endTime}', [AppointmentsController::class,'book'])->name('appointment.book');
     Route::post('/appointment/book', [AppointmentsController::class,'store'])->name('appointment.store');

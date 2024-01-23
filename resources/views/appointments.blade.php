@@ -38,7 +38,7 @@
                                                 $previousDate = null;
                                             @endphp
 
-                                            @foreach ($doctor->availabilities as $availability)
+                                            @foreach ($doctor->availabilities->sortBy('Date') as $availability)
                                                 @php
                                                     $timeslotID = $availability->timeSlot->TimeSlotID;
                                                     $currentStartTime = \Carbon\Carbon::parse($availability->timeSlot->StartTime);
