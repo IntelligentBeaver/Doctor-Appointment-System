@@ -12,17 +12,17 @@
             @foreach ($doctors as $doctor)
                 <div class="my-8">
                     <div
-                        class="card card-side bg-base-300 card-move-y mx-8 flex max-w-5xl flex-col py-8 sm:flex-row lg:mx-auto">
+                        class="card card-side bg-base-300 card-move-y mx-8 flex max-w-5xl flex-col py-2 sm:flex-row lg:mx-auto">
 
-                        <figure class="mx-auto overflow-hidden pl-8">
+                        <figure class="mx-auto overflow-hidden sm:pl-8">
                             <img class="mask mask-squircle w-32" src="{{ asset($doctor->user->image) }}" alt="Doctor" />
                         </figure>
 
                         <div class="card-body flex flex-col items-center justify-between gap-4 sm:flex-row">
                             <div class="flex flex-col">
-                                <h2 class="card-title text-2xl">{{ $doctor->DoctorName }}</h2>
+                                <h2 class="card-title text-center text-2xl sm:text-left">{{ $doctor->DoctorName }}</h2>
                                 @if ($doctor->specialization)
-                                    <p>{{ $doctor->specialization->SpecializationName }}</p>
+                                    <p class="text-center sm:text-left">{{ $doctor->specialization->SpecializationName }}</p>
                                 @else
                                     <p>No specialization available</p>
                                 @endif
