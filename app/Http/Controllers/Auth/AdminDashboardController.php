@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Appointment;
+use App\Models\Availability;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,13 +21,45 @@ class AdminDashboardController extends Controller
             $users = User::all();
             $totalpatients = User::where('role', 'patient')->count();
             $totaldoctors = User::where('role', 'doctor')->count();
+            $totalappointments = Appointment::all()->count();
 
-            return view('admin.dashboard', compact('totalpatients', 'totaldoctors'));
+            return view('admin.dashboard', compact('totalpatients', 'totaldoctors', 'totalappointments'));
         }
 
         // If the user doesn't have the required role, go back and display an error message
         return redirect()->route('home')->with('errormessage', ['Unauthorized access.']);
     }
+
+
+    public function viewAppointments()
+    {
+        $appointments = Appointment::all();
+        return view('admin.appointments.viewappointments', compact('appointments'));
+    }
+    public function destroyAppointment($AppointmentID)
+    {
+        $appointment = Appointment::find($AppointmentID);
+
+        if ($appointment) {
+
+            $doctorid = $appointment->DoctorID;
+            $timeSlotid = $appointment->TimeSlotID;
+            $date = $appointment->Date;
+            $availibility = Availability::create([
+                'DoctorID' => $doctorid,
+                'TimeSlotID' => $timeSlotid,
+                'Date' => $date,
+                'Status' => 'active',
+            ]);
+
+            $appointment->delete();
+            return redirect()->back()->with('success', ['Appointment deleted succesfully.']);
+        } else {
+            return redirect()->route('patient.appointment.view')->with('errormessages', ['Could not cancel the appointment. Please try again later.']);
+        }
+    }
+
+
 
     public function view_Users()
     {
@@ -80,6 +114,10 @@ class AdminDashboardController extends Controller
         $user = User::find($id);
 
         if ($user) {
+            // Update appointments
+            Appointment::where('DoctorID', $user->doctor->DoctorID)->delete();
+            Availability::where('DoctorID', $user->doctor->DoctorID)->delete();
+
             $user->delete();
             return redirect()->route('admin.viewusers')->with('success', ['User deleted successfully']);
         }

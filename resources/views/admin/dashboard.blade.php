@@ -6,19 +6,19 @@
     </div>
 
     <div class="my-8 flex flex-wrap justify-evenly gap-2">
-        <x-status-card class="basis-1/4">
+        <x-status-card class="basis-1/4" href="{{ route('admin.viewusers') }}">
             <x-slot:title>Doctors</x-slot>
             {{ $totaldoctors }}
         </x-status-card>
 
-        <x-status-card class="basis-1/4">
+        <x-status-card class="basis-1/4" href="{{ route('admin.viewusers') }}">
             <x-slot:title>Patients</x-slot>
             {{ $totalpatients }}
         </x-status-card>
 
-        <x-status-card class="basis-1/4">
+        <x-status-card class="basis-1/4" href="{{ route('admin.appointment.view') }}">
             <x-slot:title>Appointments</x-slot>
-            Coming Soon.
+            {{ $totalappointments }}
         </x-status-card>
     </div>
 </x-dashboard>

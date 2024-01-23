@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Doctor;
 use App\Models\Appointment;
 use App\Models\Availability;
@@ -15,6 +16,21 @@ class AppointmentsController extends Controller
 
         $doctors = Doctor::with(['availabilities.timeSlot'])->get();
         $specializations = Specialization::with('doctors')->get();
+
+        $doctors->transform(function ($doctor) {
+            $doctor->availabilities = $doctor->availabilities->reject(function ($availability) {
+                // Checks if the date is less than today
+                return Carbon::parse($availability->Date)->isPast();
+            });
+
+            return $doctor;
+        });
+
+        // Removes doctors without available appointments
+        $doctors = $doctors->reject(function ($doctor) {
+            return $doctor->availabilities->isEmpty();
+        });
+
 
         if ($doctors->isEmpty()) {
             $message = "No doctors available. Please check back later.";

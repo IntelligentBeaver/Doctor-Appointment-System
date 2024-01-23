@@ -19,6 +19,9 @@
                         <a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                     </li>
                     <li>
+                        <a class="py-5 font-bold" href="{{ route('admin.appointment.view') }}">View Appointments</a>
+                    </li>
+                    <li>
                         <a class="py-5 font-bold" href="{{ route('admin.viewusers') }}">View Users</a>
                     </li>
                     <li>
@@ -101,6 +104,9 @@
                         @else
                             <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.dashboard') }}">Admin
                                     Dashboard</a>
+                            </li>
+                            <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.appointment.view') }}">View
+                                    Appointments</a>
                             </li>
                             <li>
                                 <a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.viewusers') }}">View
