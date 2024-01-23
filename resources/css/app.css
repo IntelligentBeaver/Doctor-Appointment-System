@@ -26,13 +26,8 @@
         font-family: 'Arvo', serif;
     }
 
-    .card-border-blue{
-        --border:.3rem solid var(--blue);
-        border: var(--border);
-    }
-    .card-border-black{
-        --border:.3rem solid var(--black);
-        border: var(--border);
+    .card-move-y{
+        @apply shadow-lg duration-200 transition-all ease-in-out hover:-translate-y-2 hover:shadow-gray-300 dark:hover:shadow-gray-700;
     }
 
     /* Homepage */
@@ -200,14 +195,13 @@
             flex: 1;
             /* max-width: 400px; */
             padding: 2rem;
-            margin: 1rem;
         }
         
         .contact-form {
             flex: 1;
             /* max-width: 600px; */
             padding: 2rem;
-            margin: 1rem;
+            /* margin: 1rem; */
         }
         
         .social-media a {

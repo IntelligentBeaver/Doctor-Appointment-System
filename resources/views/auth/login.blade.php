@@ -5,10 +5,18 @@
         <p>{{ session('status') }}</p>
     @endif
 
-    <div class="bg-base-200 my-50 mx-auto my-20 max-w-[500px] rounded-xl px-10 py-14">
-        <h1 class="text-5xl font-bold">
-            Login
-        </h1>
+    <div class="bg-base-200 my-50 card-move-y mx-auto my-20 max-w-[500px] rounded-xl px-10 py-14">
+        <div class="flex items-center justify-between gap-10 py-4">
+            <h1 class="text-6xl font-bold">
+                Login
+            </h1>
+            <div>
+                <img class="h-full w-full object-cover dark:hidden" src="{{ asset('images/logo-light.svg') }}"
+                    alt="Light Image">
+                <img class="max-w-24 hidden h-full w-full object-cover dark:block"
+                    src="{{ asset('images/logo-dark.svg') }}" alt="Dark Image">
+            </div>
+        </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 

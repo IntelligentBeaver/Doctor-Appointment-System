@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DoctorDashboardController extends Controller
 {
@@ -14,7 +15,31 @@ class DoctorDashboardController extends Controller
     }
     public function index()
     {
-        // Add any necessary logic to fetch data or perform actions specific to the doctor's dashboard
-        return view('doctor.dashboard'); // Return the doctor dashboard view
+        $doctor = auth()->user()->doctor;
+
+        $PatientIDs = $doctor->appointments->pluck('PatientID');
+        $count = 0;
+        $previousindex=0;
+        foreach($PatientIDs as $PatientIDindex){   
+            if($PatientIDindex==$previousindex){
+                continue;
+            }
+            else{
+                $count++;
+            }
+            $previousindex = $PatientIDindex;
+        }
+
+        $appointments = $doctor->appointments;
+        $appointmentCount = $appointments->count();
+
+        $todaysAppointments = $appointments->filter(function ($appointment) {
+            return Carbon::parse($appointment->Date)->isToday();
+        });
+        if($todaysAppointments=='[]'){
+            $todaysAppointments = '0';
+        }
+        
+        return view('doctor.dashboard',compact('appointmentCount','todaysAppointments','count')); // Return the doctor dashboard view
     }
 }   

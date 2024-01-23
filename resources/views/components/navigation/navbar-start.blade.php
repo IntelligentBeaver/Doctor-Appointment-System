@@ -11,13 +11,21 @@
                 <li class="no-animation py-5 text-center">{{ Auth::user()->name }}</li>
 
                 @if (auth()->user()->role === 'doctor')
-                    <li><a class="py-5 font-bold" href="{{ url('/doctor.dashboard') }}">Doctor Dashboard</a></li>
+                    <li><a class="py-5 font-bold" href="{{ route('doctor.dashboard') }}">Doctor Dashboard</a></li>
                 @elseif(auth()->user()->role === 'patient')
                     <li><a class="py-5 font-bold" href="{{ route('patient.dashboard') }}">Patient Dashboard</a></li>
                 @else
-                    <li><a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+                    <li>
+                        <a class="py-5 font-bold" href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                    </li>
                     <li>
                         <a class="py-5 font-bold" href="{{ route('admin.viewusers') }}">View Users</a>
+                    </li>
+                    <li>
+                        <a class="py-5 font-bold" href="{{ route('admin.addspecialization') }}">Add Specialization</a>
+                    </li>
+                    <li>
+                        <a class="py-5 font-bold" href="{{ route('admin.timeslots.create') }}">Add Timeslots</a>
                     </li>
                 @endif
 
@@ -26,7 +34,7 @@
                     <li><a class="py-5" href="{{ route('contacts') }}">Contact Us</a></li>
                 @endif
                 @if (Route::has('appointments'))
-                    <li><a class="py-5" href="#">Appointments</a></li>
+                    <li><a class="py-5" href="{{ route('appointments') }}">Appointments</a></li>
                 @endif
 
                 <div class="divider m-0 p-0"></div>
@@ -53,11 +61,16 @@
                     <li><a class="py-5" href="{{ route('contacts') }}">Contact Us</a></li>
                 @endif
                 @if (Route::has('appointments'))
-                    <li><a class="py-5" href="#">Appointments</a></li>
+                    <li><a class="py-5" href="{{ route('appointments') }}">Appointments</a></li>
                 @endif
             @endauth
         </ul>
     </div>
+
+
+
+
+
 
     {{-- For large screen devices --}}
     @auth
@@ -70,17 +83,15 @@
                     <label class="btn btn-ghost btn-outline drawer-button" for="my-drawer">
                         <i class="fa-solid fa-bars"></i>
                     </label>
-
                 </div>
-
-
                 <div class="drawer-side z-10">
                     <label class="drawer-overlay" for="my-drawer" aria-label="close sidebar"></label>
                     <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
 
                         <!-- Sidebar content here -->
                         @if (auth()->user()->role === 'doctor')
-                            <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('doctor.dashboard') }}">Doctor
+                            <li>
+                                <a class="py-5 font-bold hover:shadow-lg" href="{{ route('doctor.dashboard') }}">Doctor
                                     Dashboard</a>
                             </li>
                         @elseif(auth()->user()->role === 'patient')
@@ -95,6 +106,14 @@
                                 <a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.viewusers') }}">View
                                     Users</a>
                             </li>
+                            <li>
+                                <a class="py-5 font-bold" href="{{ route('admin.addspecialization') }}">Add
+                                    Specialization</a>
+                            </li>
+                            <li>
+                                <a class="py-5 font-bold hover:shadow-lg" href="{{ route('admin.timeslots.create') }}">Add
+                                    Timeslots</a>
+                            </li>
                         @endif
 
                     </ul>
@@ -102,5 +121,14 @@
             </div>
         </div>
     @endauth
-    <div><a class="mx-4" href="{{ route('home') }}">Bruh™️</a></div>
+    <div><a class="mx-4" href="{{ route('home') }}">
+            <div class="h-12">
+                <img class="h-full w-full object-cover dark:hidden" src="{{ asset('images/logo-light.svg') }}"
+                    alt="Light Image">
+                <img class="hidden h-full w-full object-cover dark:block" src="{{ asset('images/logo-dark.svg') }}"
+                    alt="Dark Image">
+            </div>
+        </a>
+
+    </div>
 </div>

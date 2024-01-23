@@ -16,10 +16,24 @@ module.exports = {
             ...defaultTheme.screens,
         },
 
-        extend: {},
+        extend: {
+            animation: {
+                "fade-in": "fadeIn 800ms ease-out",
+            },
+            keyframes: {
+                fadeIn: {
+                    from: { opacity: "0" },
+                    to: { opacity: "1" },
+                },
+            },
+        },
     },
-    daisyui: {
 
+
+
+
+    
+    daisyui: {
         // This is for theme when users enable the dark mode.
         darkTheme: "dark",
         themes: [

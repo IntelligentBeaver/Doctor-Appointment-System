@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class TimeSlot extends Model
 {
+    protected $table = 'timeslots';
     protected $primaryKey = 'TimeSlotID';
 
-    protected $fillable = ['StartTime', 'EndTime', 'DayOfWeek'];
+    protected $fillable = ['DoctorID', 'StartTime', 'EndTime'];
+    // protected $fillable = ['StartTime', 'EndTime', 'DayOfWeek'];
     public function availabilities()
     {
         return $this->hasMany(Availability::class, 'TimeSlotID');

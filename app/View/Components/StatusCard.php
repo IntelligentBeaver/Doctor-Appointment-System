@@ -8,12 +8,10 @@ use Illuminate\View\Component;
 
 class StatusCard extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $href;
+    public function __construct(string $href="#")
     {
-        //
+        $this->href = $href;
     }
 
     /**
@@ -22,5 +20,6 @@ class StatusCard extends Component
     public function render(): View|Closure|string
     {
         return view('components.status-card');
+
     }
 }
