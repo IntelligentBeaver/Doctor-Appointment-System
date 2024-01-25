@@ -1,0 +1,685 @@
+\documentclass[a4 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{indentfirst}
+\linespread{1.5}
+
+\setlength{\parskip}{6pt}
+
+\usepackage{geometry}
+\usepackage{float} 
+\usepackage{times}
+\geometry{left = 1in,
+            right =1in,
+            top=1in,
+            bottom=1in}
+\usepackage{amsmath}
+\usepackage{anyfontsize}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{bibliography.bib}
+% \pagenumbering{gobble}
+\usepackage{subcaption}
+% \usepackage{lipsum}
+% \usepackage{caption}
+
+
+\usepackage{fancyhdr}
+% Set page numbering
+\pagestyle{fancy}
+\fancyhf{}
+% \rfoot{\thepage/\pageref{14}}
+\fancyfoot[C]{\thepage}
+
+% Set headers
+\lhead{}
+\chead{\textbf{MedAppoint: Doctor Appointment System}}
+\rhead{}
+
+
+    \title{ A  First Project Proposal On\\\textbf{MedAppoint: Doctor Appointment System }}
+  \author{Submitted in Partial Fulfillment of the Requirements for \\
+  The Degree of \textbf{Bachelor of Engineering in Information Technology}\\ Under Pokhara University\vspace{.5in}
+   \\\textbf{Submitted by:\vspace{0.2in}} \\\textbf{Aman Sheikh, 211506 \vspace{0.1in}}\\\textbf{Shikshya K.C., 
+    211541 \vspace{0.1in}}\\
+ \textbf{Shreya Khanal, 211546 \vspace{0.1in}}\\\\}
+ 
+ \date{ \vspace{0.6in}Date:\\\textbf{24/01/2024}}
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\begin{minipage}{0.2\textwidth}
+    \includegraphics[width=3cm]{ncit_logo.jpg} 
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \section*{Department of IT Engineering\vspace{-.1in}}
+    \section*{\underline{\huge Nepal College of Information Technology}}
+    \textbf{Balkumari, Lalitpur}
+\end{minipage}
+
+\newpage
+
+\section*{Abstract}
+\pagenumbering{Roman}
+
+The increasing integration of technology into healthcare services has led to the development of efficient and patient-centric solutions. The primary objective of the platform prioritizes user experience, offering a user-friendly interface for patients to seamlessly book appointments with healthcare professionals.
+
+This doctor appointment website encompasses a range of features, including real-time appointment availability, patient reviews. Through these functionalities, patients can easily locate suitable healthcare providers, access their profiles, and schedule appointments based on their preferences. The website also facilitates effective communication between patients and healthcare providers, fostering a patient-centered approach to care.
+
+The technologies like HTML, CSS, and JavaScript will be used to build the frontend of the application. On the server side, PHP and MySQL will be used. With the advanced search feature and interactive maps, the process of booking doctor's appointment gets simplified. This project will therefore simplify the process of finding accommodations to solve the problems that exist in the traditional approach.
+
+\noindent \textbf{Keywords}
+
+\noindent{Health, Appointment, Schedule, Admin, Doctors, Patients}
+
+
+% \pagenumbering{Roman}
+
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\section{Introduction}
+\pagenumbering{arabic}
+MedAppoint: Doctor Appointment System is a technological solution designed to address the evolving needs and challenges within the healthcare sector. This innovative platform leverages digital advancements to streamline and enhance the process of scheduling appointments with healthcare professionals.  In this section, problems, project objectives, it's significance, project scope, and limitations will be described in detail.
+
+\subsection{Problem Statement}
+Implementing an online booking portal for doctors can address several challenges associated with traditional appointment scheduling methods. Here are some common problems:
+
+1. Time-Consuming Manual Processes:
+    Traditional appointment scheduling involves time-consuming manual processes, including phone calls, paper-based appointment books, and manual record-keeping.
+
+2. Appointment Conflicts and Overbooking:
+    Without a centralized system, healthcare facilities may face issues with appointment conflicts, leading to overbooking and disruptions in the daily schedule.
+
+3. Limited Accessibility:
+    Patients may face challenges in accessing healthcare services due to limited office hours, and the need for appointments during working hours can be inconvenient.
+
+4. Missed Appointments and No-Shows:
+    Missed appointments and no-shows are common in traditional systems, leading to inefficient resource utilization and potential delays in patient care.
+
+5. Limited Patient Engagement:
+    Traditional systems may lack effective means of patient engagement and communication outside of scheduled appointments.
+
+6. Lack of Real-time Information:
+    Patients may not have access to real-time information about the availability of doctors, leading to uncertainty and delays in scheduling appointments.
+
+7. Inefficient Resource Allocation:
+     Without a centralized scheduling system, healthcare providers may struggle to allocate resources efficiently, leading to idle time or overwhelmed staff.
+
+8. Difficulty in Managing Multiple Providers:
+     In facilities with multiple healthcare providers, managing appointments and coordinating schedules manually can be challenging.
+
+\subsection{Project Objectives}
+To address the problems stated above in problem statement section 1.1, the existing and
+traditional approach to schedule an appointment with doctor should be completely reformed. So, with the
+purpose of providing an efficient solution for the stated problems, MedAppoint is introduced with the following objectives:
+
+1. Efficient Appointment Scheduling:
+    Develops a user-friendly interface that allows patients to easily schedule, reschedule, or cancel appointments with healthcare providers.
+
+2. Real-time Availability Information:
+    Implements a system that provides accurate and up-to-date information on the availability of doctors, ensuring patients can make informed decisions when booking appointments.
+
+3. Centralized Patient Information:
+    Creates a centralized database to store and manage patient information securely, allowing healthcare providers easy access to relevant patient data during appointments.
+
+4. User Authentication and Security:
+    Implements robust user authentication and security measures to safeguard patient data and ensure the confidentiality and privacy of sensitive medical information.
+
+5. Multi-Provider Support:
+    Designs the system to accommodate multiple healthcare providers within a facility, allowing seamless coordination and scheduling across various medical professionals.
+
+6. Customizable User Profiles:
+    Develops customizable user profiles for both patients and healthcare providers, allowing them to manage personal information, preferences, and communication settings.
+
+
+\subsection{Significance of Study}
+The proposed doctor appointment system holds immense significance in reshaping the healthcare landscape, ushering in a new era of accessibility and efficiency. This platform serves as a crucial bridge between patients and healthcare providers, offering a centralized and user-friendly interface for scheduling appointments. The enhanced accessibility is particularly impactful for individuals facing mobility challenges, those residing in remote areas, or those seeking specialized medical services. By streamlining appointment scheduling and reducing administrative overhead, this system optimizes the allocation of healthcare resources, allowing medical practitioners to dedicate more time to patient care, thereby elevating the quality of healthcare services.
+
+Patients, benefiting from the convenience of online appointment booking, experience reduced waiting times and gain greater control over their healthcare journey. This system's efficiency extends beyond scheduling, facilitating seamless information exchange between patients and healthcare providers.
+
+Overall the proposed doctor appointment system represents more than a digital tool; it symbolizes a transformative shift towards patient-centric, efficient, and technology-driven healthcare system, with patient engagement.
+    
+\subsection{Scope of the project}
+Implementing an online booking portal addresses these challenges, providing a more efficient, convenient, and patient-friendly approach to appointment scheduling in the healthcare sector. Additional solutions MedAppoint: Doctor Appointment System can address are as follows:
+
+1.
+    MedAppoint automates the appointment scheduling process, saving time for both healthcare providers and patients. It eliminates the need for phone calls and paperwork.
+
+2. 
+    It provides real-time availability information, reducing the risk of appointment conflicts. Patients can see and choose available time slots, minimizing the likelihood of overbooking.
+
+3. 
+    It offers 24/7 accessibility, allowing patients to schedule appointments at their convenience. This enhances accessibility for individuals with busy schedules.
+
+
+4. 
+    It provides up-to-date information on doctor availability, enabling patients to make informed decisions and choose convenient time slots.
+
+5. 
+    It offers insights into appointment trends and resource utilization, helping healthcare facilities optimize their schedules and allocate resources more effectively.
+
+6. 
+    The proposed system often includes features for managing multiple providers, allowing seamless coordination and scheduling across the healthcare team.
+
+\subsection{Limitations of the Project}
+There are certain limitations to the proposed system.
+
+One significant limitation pertains to the digital divide, as not all patients may have equal access to technology or possess the digital literacy required for navigating online appointment platforms. This discrepancy may inadvertently exclude certain demographics, particularly older adults or those in economically disadvantaged communities, hindering their ability to benefit from the convenience of online scheduling.
+
+Another limitation lies in the potential overreliance on technology, which may compromise the personal touch traditionally associated with healthcare interactions. The automation of appointment scheduling, while efficient, may diminish the patient-provider relationship, leading to a perceived decrease in the quality of care. Additionally, technological glitches or system downtimes could pose challenges, disrupting the seamless flow of appointment scheduling and potentially causing frustration among both patients and healthcare providers.
+
+Furthermore, privacy and security concerns are paramount in healthcare, and the digital nature of appointment systems raises questions about the protection of sensitive patient information. Safeguarding electronic health records and ensuring compliance with stringent data protection regulations become critical considerations to prevent unauthorized access or data breaches.
+
+Therefore, it is essential to have consideration of these limitations while designing and implementing the proposed system to ensure its effectiveness and efficiency in the long run.
+
+\section{Literature Review}
+The Literature Review for MedAppoint: Doctor Appointment System project involved an extensive review of relevant academic and industry research to gain insights into best practices, existing solutions, and advancements in this field.
+A key study that provided valuable insight is summarized below:
+\newline
+    Study : "A Comprehensive Review of Doctor Appointment Systems"
+\begin{itemize}
+\item This study conducted a comprehensive review of existing doctor appointment systems available in the market like merodoctor.com and hamrodoctor.com.
+\item It explored the functionalities, features, and benefits offered by various commercial and open-source solutions.
+\item The study analyzed the strengths and limitations of different systems and identified key areas for improvement.
+\item The findings from this study helped in understanding the current landscape of doctor appointment systems and identifying the essential features to be included in the proposed system.
+\end{itemize}
+
+\section{Methodology}
+% We will be adopting the following methodologies for a smooth development process to meet
+% the requirements of the project and not deviate from it.
+MedAppoint: Doctor Appointment System will follow the incremental approach to software development. This model allows the project to be divided into smaller, functional segments, allowing for partial implementation and testing of features in sequential cycles. The system is developed using the PHP programming language with a MySQL database backend. 
+
+The proposed system will be designed to provide a comprehensive platform for appointing doctors. The system is expected to be developed as a website, accessible from any device with an internet connection. The system of the project will include modules for its operations like user(patient) registration, viewing doctors with their specialization, appointing the doctors, and payment.
+
+The technical architecture of the system will consist of three tiers: the client-side(presentation layer), the server-side(application layer), and the database layer. The client-side layer of the system will be developed using HTML, CSS, and JavaScript, and will be designed to be user-friendly and responsive. The server-side layer of the system will be developed using PHP and will include data processing functions. The database layer will be developed using MySQL, and it will be responsible for storing and retrieving data.
+
+Several security measures to ensure the privacy and confidentiality of patient data will be included in the proposed system. These measures in the system will include role-based access control, data encryption, and regular data backups.
+\subsection{Software Development Life Cycle}
+
+We will be following the incremental model of software development as a framework for this project. The incremental model of software development is an approach where the development process is broken down into smaller increments, each involving different phases such as Requirement Analysis, Design, Implementation, Testing, and Maintenance. In this model, each increment delivers a partial but usable version of the project.
+
+In the first increment, we developed the core product having major functionalities such as user account creation, login, and an appointment page where the user(patient) can schedule an appointment with the doctor.
+
+In the second increment, we built a dashboard that contains the list of doctor's profiles with their specialization so that users(patients) can view and book an appointment with the doctor, a patient's dashboard where the users can manage their profile and an admin's dashboard where admin can manage both doctors and patients information.
+
+In the third increment, we added a payment page where the user(patients) can pay after appointing the doctor.
+Each increment has the following phases:
+\begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=1\linewidth]{image.png}
+% \begin{figure}
+%         \centering
+        \includegraphics[width=1\linewidth]{image.png}
+    %     \caption{Enter Caption}
+    %     \label{fig:enter-label}
+    % \end{figure}
+    \caption{Incremental Model Of Software Engineering}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsubsection{Requirements Gathering}
+\begin{itemize}
+\item User Stories: Develops user stories to capture detailed requirements from the perspectives of different system users, including patients, healthcare providers, and administrators.
+\item Functional Requirements: Specifies the functional requirements of the system, including appointment scheduling, user registration, user authentication, notifications, and reporting functionalities.
+\item Non-Functional Requirements: Identify non-functional requirements such as system performance, security, privacy, and scalability to ensure the system meets the necessary quality attributes.
+\end{itemize}
+
+\subsubsection{Analysis}
+\begin{itemize}
+\item Business Process Analysis: Analyzing existing business processes related to appointment scheduling, patient management, and administrative tasks to identify areas for improvement.
+\item Feasibility Study: Conduct a feasibility study to assess the technical, operational, and economic feasibility of implementing the system.
+\item Risk Analysis: Identifying potential risks associated with the project, including technical challenges, resource constraints
+\end{itemize}
+\subsubsection{Design}
+\begin{itemize}
+\item System Architecture: Defines the technical architecture of the system, outlining how the client-side, server-side, and database components will interact using technologies like HTML, CSS, JavaScript, PHP, and MySQL.
+\item Database Design: Creates a database schema that efficiently stores and retrieves data related to users, appointments, and other relevant entities. Establishes relationships between tables for data consistency.
+\item User Interface Design: Develops intuitive and user-friendly interfaces for patients, healthcare providers, and administrators. Ensures a responsive design for accessibility across different devices.
+\end{itemize}
+\newpage
+\textbf{Use-Case Diagram \vspace{0.2in}}
+\begin{figure}[ht]
+          \centering
+          \includegraphics[width=0.9\linewidth]{final-use-case.png}
+    \caption{Use-case Diagram}
+    \label{fig:enter-label}
+\end{figure}
+\newpage
+\textbf{E-R Diagram \vspace{0.2in}}
+\begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.95\linewidth]{ER Diagram V3 (1).png}
+        \caption{E-R Diagram}
+        \label{fig:enter-label}
+\end{figure}
+\subsubsection{Implementation}
+\begin{itemize}
+\item Coding Standards: Utilizes PHP for server-side scripting and HTML, CSS, and JavaScript for client-side development.
+\item Security Measures: Implements secure coding practices, including data encryption, secure user authentication, and protection against common web vulnerabilities
+\end{itemize}
+\subsubsection{Testing}
+\begin{itemize}
+% \item User Acceptance Testing (UAT): Engages stakeholders in UAT to validate that this system meets its requirements and expectations.
+\item Performance Testing: Evaluates the system's performance under various conditions, ensuring it can handle the expected load and response times are acceptable.
+\item Security Testing: Conducts thorough security testing to identify and address potential vulnerabilities, protecting sensitive patient information.
+\end{itemize}
+\newpage
+\subsubsection{Maintainence}
+\begin{itemize}
+% \item Monitoring and Support: Implements monitoring tools to track system performance and user interactions.
+\item Updates and Enhancements: Plans for periodic updates and enhancements to address emerging needs, improve functionality, and incorporate user feedback.
+\end{itemize}
+\subsection{Used Technologies}
+\textbf{1. HTML:}
+\begin{itemize}
+\item  HTML stands for Hypertext Mark-up Language. It is a standard mark-up language that defines
+the structure of a webpage. It consists of tags that wrap the content based on the content displayed on the webpage. We used HTML as a mark-up language for the project.
+\end{itemize}
+
+\textbf{2. CSS:}
+\begin{itemize}
+\item  CSS stands for Cascading Stylesheets. It is a stylesheet language that is used to style the components of a webpage. CSS is used to style the components written in HTML.
+\end{itemize}
+
+\textbf{3. JavaScript:}
+\begin{itemize}
+\item JavaScript is a client-side scripting language used to write client-side logic and validations. JavaScript is used for front-end development.
+\end{itemize}
+
+\textbf{4. PHP :}
+\begin{itemize}
+\item   PHP stands for “PHP: Hypertext Preprocessor”. It is a server-side scripting language used to write server-side logic and generate dynamic content. We will be using PHP as a scripting language for the backend of the project.
+\end{itemize}
+
+\textbf{5. MySQL:}
+\begin{itemize}
+\item  We used SQL (Structured Query Language) as a query language to interact with the database. MySQL will be used as a Relational Database Management System (RDBMS) for the project.
+\end{itemize}
+
+\textbf{6. Git and Github :}
+\begin{itemize}
+\item  Git is a distributed version control system that will be used in this project to manage different versions of the project and to collaborate with each other. 
+\item GitHub is a platform that uses Git for
+version control. We used GitHub to host the project repository, to track changes, and manage different versions of the project.
+\end{itemize}
+\newpage
+\textbf{7. VS Code:}
+\begin{itemize}
+\item  VS Code is a code editor that we used as a primary code editor for development tasks.
+\end{itemize}
+
+\textbf{8. Laravel:}
+\begin{itemize}
+\item  Laravel is a PHP web application framework that provides a streamlined and expressive syntax for developers, along with powerful tools and features. This framework was used to work easily with PHP.
+\end{itemize}
+
+\textbf{9. XAMPP:}
+\begin{itemize}
+\item  XAMPP is an open-source software package that provides a local server environment for running dynamic web applications on a personal computer. We will be using it for building and testing our web application.
+\end{itemize}
+
+\textbf{10. Tailwind CSS:}
+\begin{itemize}
+\item  Tailwind CSS is a utility-first CSS framework that streamlines web development by providing a comprehensive set of pre-designed, low-level utility classes for building modern and responsive user interfaces directly in the markup.
+This framework was used to work easily with CSS.
+\end{itemize}
+
+\section{Tasks Done So Far}
+As of the mid-term stage of the project on the MedAppoint: Doctor Appointment System, the following tasks have been completed:
+
+\textbf{1. Requirement Analysis:}
+\begin{itemize}
+\item Documented functional and non-functional requirements for the system.
+\item Prioritized requirements based on their importance and impact.
+\end{itemize}
+
+\textbf{2. Database Design:} 
+\begin{itemize}
+\item Designed and implemented the relational database schema to store and manage patient records, doctor records, and billing information.
+\item Created tables, relationships, and attributes to capture relevant information accurately.
+\item Addressed challenges related to data integrity and optimized query performance.
+\end{itemize}
+\newpage
+\textbf{3. User Interface Design:}
+\begin{itemize}
+\item Developed an intuitive and user-friendly interface for the system.
+\item Designed and implemented screens for modules such as patient management, billing management, and  dashboard that contains the list of doctor's profiles with their specialization so that users(patients) can view and book an appointment with the doctor, a patient's dashboard where the users can manage their profile and an admin's dashboard where admin can manage both doctors and patients information.
+\end{itemize}
+
+\textbf{4. Development:}
+\begin{itemize}
+\item Implemented the core functionality of the system using HTML, CSS, JavaScript, PHP and MySQL.
+\item Developed the user(patient) management module, allowing for the registration and management of their information.
+\item Developed an appointment page where users(patients) can select from the list of doctors with their specialization and book an appointment
+\item Integrated front-end components with the back-end using Laravel Blade templates.
+\end{itemize}
+The completion of these tasks reflects significant progress in the development of the MedAppoint: Doctor Appointment System. The team has successfully implemented key functionalities, designed the database structure, and created an intuitive user interface. Testing efforts have ensured the quality and reliability of the developed components.
+
+Moving forward, the team will continue to build upon these accomplishments, focusing on implementing additional modules, conducting comprehensive testing, and refining the system based on user feedback and requirements.
+
+\section{Results and Discussion}
+\textbf{1.	Results:} 
+
+During the mid-term phase of the project on the MedAppoint: Doctor Appointment System, significant progress has been made in various aspects. The key results achieved so far includes:
+
+a.	Functional Modules:
+\begin{itemize}
+\item Patient Management: The patient management module has been successfully implemented, allowing users to register account, schedule, reschedule, or cancel appointments if needed and maintains patient's profile with the necessary information in the system.
+\item Healthcare Provider Management: The healthcare management module has been developed allowing healthcare providers to create and manage their profile, list their time, view patients records and also view the appointment list.
+\item Resource management: the resource management module has been developed allowing admin to manage user accounts and permissions ensuring secure and compliant authentication processes,  monitoring and optimizing healthcare provider schedules, managing appointment queues and system availability, streamlining financial processes and revenue management and ensuring transparency in financial transactions.
+\end{itemize}
+
+b.	Database Design:
+\begin{itemize}
+\item The database schema has been designed and implemented, providing a structured framework for storing and managing data related to patients, healthcare providers and billing.
+\end{itemize}
+
+c.	User Interface:
+\begin{itemize}
+\item An intuitive and user-friendly interface has been designed and implemented, ensuring easy navigation and efficient interaction with the system.
+\end{itemize}
+
+\textbf{2.	Discussion:} 
+
+The progress made in the project's mid-term phase has laid a strong foundation for the successful completion of the MedAppoint: Doctor Appointment System . The completed tasks and achieved results have enabled the users(patients) to book the doctors of their required specialization as per their need.
+
+The implementation of the patient management module allows the admin to register and maintain patient records, ensuring easy access to relevant information and enhancing the efficiency of administrative processes.
+With the resource management module in place, the admin can monitor both users and healthcare provider's information ensuring data breaching that don't occur, managing appointment schedules and also ensuring transparency in billing information.
+
+The database design ensures a structured and organized storage of data, enabling efficient retrieval and manipulation of information. The user interface design focuses on usability and user experience, facilitating smooth interaction with the system.
+
+The achieved results and progress made thus far demonstrate the project's successful execution and its potential to deliver a comprehensive MedAppoint: Doctor Appointment System . The discussion and analysis of the results obtained will inform further development, testing, and refinement in the remaining phases of the project.
+
+Moving forward, the team will continue to build upon these results, incorporating additional modules, conducting further testing, and addressing any feedback received from stakeholders. The ultimate goal is to deliver a robust, user-friendly, and efficient system that meets the patient's requirements and enhances its capabilities.
+
+\section{Tasks Remaining}
+While essential progress has been made in the development of the MedAppoint: Doctor Appointment System, several tasks still remain to be completed. The following tasks are
+planned for the remaining phases of the project:
+
+ 1. Adding New Pages:
+\begin{itemize}
+\item Identify the specific pages needed 
+\item Create UI designs for the new pages.
+\item Implement the front end for each new page.
+\item Integrate new pages into the existing navigation structure.
+\end{itemize}
+
+2. Dynamic Page Using JavaScript:
+\begin{itemize}
+\item Identify areas for dynamic content or behavior.
+\item Write JavaScript functions to update page elements dynamically.
+\item Ensure a responsive and intuitive user experience.
+\end{itemize}
+
+3. UI/UX Improvement:
+\begin{itemize}
+\item Conduct a usability analysis to identify pain points.
+\item Redesign UI elements for improved aesthetics and usability.
+\item Implement responsive design for a consistent experience across devices.
+\end{itemize}
+
+4. Backend Additional Comments:
+\begin{itemize}
+\item Extend the database schema to include a comments field.
+\item Update the front-end to allow users to input additional comments.
+\item Ensure data integrity and security for comment storage.
+\end{itemize}
+
+5. Improvements to Controller Logic:
+\begin{itemize}
+\item Review existing controller code for inefficiencies.
+\item Identify and implement improvements to algorithms and business logic.
+\end{itemize}
+\newpage
+6. Strengthening Security:
+\begin{itemize}
+\item Conduct performance testing to identify potential vulnerabilities.
+\item Enhance user authentication and authorization mechanisms.
+\end{itemize}
+% Modular Code:
+
+% Task: Refactor existing code to follow a modular structure for better maintainability.
+% Subtasks:
+% Identify and group related functions into modules.
+% Implement a modular directory structure.
+% Encapsulate functionality within well-defined modules.
+% Update dependencies and ensure compatibility.
+% Remove Obsolete Code:
+
+% Task: Identify and remove unused or obsolete code to streamline the application.
+% Subtasks:
+% Perform a code review to identify deprecated or unused functions.
+% Safely remove obsolete code segments.
+% Update documentation to reflect changes.
+% Ensure all dependencies are still relevant.
+7. Documentation:
+\begin{itemize}
+\item Prepare comprehensive documentation, including user manuals and system guides
+\end{itemize}
+
+
+\section{Delieverable/Output}
+The proposed Medicare: Doctor Management System will provide the following deliverables and outputs:
+
+1.	User Interface: 
+A user-friendly and responsive web-based interface to access the system from any device with an internet connection.
+
+2.	Patient Management Module:
+A module to manage patient data, including registration and appointing healthcare providers.
+
+3.	Resource Management Module: 
+A module where admin can manage both users and healthcare provider's information along with monitoring doctor's schedules.
+
+4.	Billing Management Module: A module to manage billing and payment processing after patients appoint a doctor.
+
+5.	Security Measures: A secure and protected system with role-based access control, data encryption, and regular data backups.
+
+6.	Performance Analysis Report: A comprehensive report outlining the system's performance metrics, including response time and scalability.
+
+The deliverables and outputs of the proposed system will enable the patients to book doctor and allows admin to handle information of both patients and healthcare providers, billing, and reporting efficiently and securely.
+\newpage
+\section{Task and Time schedule}
+
+The project schedule has been designed as per the requirements and constraints involved. This
+project is estimated to be completed in about 9-10 weeks. Research and database management is to be done first and well documented. Debugging and testing are to be done prior to the completion of the project.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+         TASK & APPROX DURATION IN DAYS  \\
+         \hline
+         Requirement Gathering& 6  \\
+         \hline
+         Analysis & 11  \\
+         \hline
+         Design & 36 \\
+         \hline 
+         Coding & 42 \\
+         \hline
+         Testing & 7 \\
+         \hline
+         Documentation & 65 \\
+         \hline
+    \end{tabular}
+     \caption{Time Schedule}
+  \label{tab:example}
+    \end{table}
+
+\section{Gantt Chart}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Gantt Chart 2.drawio.png}
+    % \vspace{0.1in}
+    % \caption{Gantt Chart}
+    % \label{fig:enter-label}
+\end{figure}
+
+\section{Database Tables}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{appointments.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{contacts.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=\linewidth]{doctors.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{orders.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{patients.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=\linewidth]{specialization.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=\linewidth]{timeslots.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{users.png}
+   
+  \end{subfigure}
+
+\end{figure}
+
+\section{Appendix}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-register-2024-01-21-18_05_32.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.5\columnwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-login-2024-01-21-18_05_25.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-2024-01-21-18_03_51.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.5\columnwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-profile-2024-01-21-18_07_57.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-appointments-2024-01-21-18_33_43.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-contacts-2024-01-21-18_04_49.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-admin-1-edit-2024-01-21-18_06_23.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-admin-dashboard-2024-01-21-18_05_53.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-admin-timeslots-2024-01-21-18_07_13.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-admin-view-2024-01-21-18_06_11.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-doctor-dashboard-2024-01-21-18_08_16.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-patient-dashboard-2024-01-21-18_08_46.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-payment-16-2024-01-21-18_34_10.png}
+   
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.45\textwidth}
+    \includegraphics[width=\linewidth]{screencapture-127-0-0-1-8000-success-2024-01-21-18_11_48.png}
+   
+  \end{subfigure}
+
+\end{figure}
+\newpage
+\section*{References}
+
+1. Zhang X, Yu P, Yan J. Patients' adoption of the e-appointment scheduling service: a case study in primary healthcare. Stud Health Technol Inform. 2014;204:176–181. 
+% \newline [https://pubmed.ncbi.nlm.nih.gov/25087546/]
+
+2. Zhao P, Yoo I, Lavoie J, Lavoie BJ, Simoes E. Web-Based Medical Appointment Systems: A Systematic Review. J Med Internet Res. 2017 Apr 26;19(4):e134. doi: 10.2196/jmir.6747. PMID: 28446422; PMCID: PMC5425771.
+
+3. Romano M. Not just a Web site. In response to consumers as well as competitors, hospitals are getting more sophisticated with their Internet presence. Mod Healthc. 2003;33(21):22-26.
+% \newline [https://pubmed.ncbi.nlm.nih.gov/12800289/]
+
+
+
+\end{document}
+
