@@ -46,10 +46,10 @@ Route::get('/testredirection', function () {
 
 
 // Contact Us Page
-Route::get('/contacts', [ContactsController::class,'create'])->name('contacts');
-Route::post('/contacts', [ContactsController::class,'store'])->middleware('web');
+Route::get('/contacts', [ContactsController::class, 'create'])->name('contacts');
+Route::post('/contacts', [ContactsController::class, 'store'])->middleware('web');
 
-Route::get('/appointments',[AppointmentsController::class,'create'])->name('appointments');
+Route::get('/appointments', [AppointmentsController::class, 'create'])->name('appointments');
 
 
 
@@ -64,15 +64,15 @@ Route::get('/appointments',[AppointmentsController::class,'create'])->name('appo
 |    2. name()  --> gives a name to the routes so that we can use them in other places like Redirect::to()...
 |
 */
-Route::middleware(['auth','disable.cache'])->group(function () {
+Route::middleware(['auth', 'disable.cache'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'checkadmin:admin','disable.cache'])->name('admin.')->group(function () {
+Route::middleware(['auth', 'checkadmin:admin', 'disable.cache'])->name('admin.')->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/admin/dashboard/appointment',[AdminDashboardController::class,'viewAppointments'])->name('appointment.view');
+    Route::get('/admin/dashboard/appointment', [AdminDashboardController::class, 'viewAppointments'])->name('appointment.view');
     Route::delete('/appointment/{AppointmentID}', [AdminDashboardController::class, 'destroyAppointment'])->name('appointment.destroy');
 
 
@@ -80,19 +80,19 @@ Route::middleware(['auth', 'checkadmin:admin','disable.cache'])->name('admin.')-
     Route::get('/admin/{id}/edit', [AdminDashboardController::class, 'edit'])->name('editusers');
     Route::put('/admin/{id}', [AdminDashboardController::class, 'update'])->name('updateusers');
     Route::delete('/admin/{id}', [AdminDashboardController::class, 'destroy'])->name('destroyusers');
-    Route::get('/admin/addspecialization', [AddSpecializationController::class,'index'])->name('addspecialization');
+    Route::get('/admin/addspecialization', [AddSpecializationController::class, 'index'])->name('addspecialization');
     Route::post('/admin/addspecialization', [AddSpecializationController::class, 'store']);
     Route::get('/admin/timeslots', [DoctorTimeSlotController::class, 'create'])->name('timeslots.create');
-    Route::post('/admin/timeslots',[DoctorTimeSlotController::class,'store'])->name('timeslots.store');
+    Route::post('/admin/timeslots', [DoctorTimeSlotController::class, 'store'])->name('timeslots.store');
 });
 
-Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->name('patient.')->group(function () {
+Route::middleware(['auth', 'checkpatient:patient', 'disable.cache'])->name('patient.')->group(function () {
     Route::get('/patient/dashboard', [PatientDashboardController::class, 'index'])->name('dashboard');
-    Route::get('/patient/appointments/view', [PatientDashboardController::class,'viewAppointments'])->name('appointment.view');
+    Route::get('/patient/appointments/view', [PatientDashboardController::class, 'viewAppointments'])->name('appointment.view');
     Route::delete('/appointment/{AppointmentID}', [PatientDashboardController::class, 'destroy'])->name('appointment.destroy');
-    
-    Route::get('/appointment/book/{doctorId}/{availabilityId}/{timeslotID}/{appointdate}/{startTime}/{endTime}', [AppointmentsController::class,'book'])->name('appointment.book');
-    Route::post('/appointment/book', [AppointmentsController::class,'store'])->name('appointment.store');
+
+    Route::get('/appointment/book/{doctorId}/{availabilityId}/{timeslotID}/{appointdate}/{startTime}/{endTime}', [AppointmentsController::class, 'book'])->name('appointment.book');
+    Route::post('/appointment/book', [AppointmentsController::class, 'store'])->name('appointment.store');
 });
 
 
@@ -102,15 +102,17 @@ Route::middleware(['auth', 'checkpatient:patient','disable.cache'])->name('patie
 // Route::middleware(['auth', 'checkdoctor:doctor','disable.cache'])->get('/doctor/dashboard', [DoctorDashboardController::class, 'index'])->name('doctor.dashboard');
 
 Route::middleware(['auth', 'checkdoctor:doctor', 'disable.cache'])->name('doctor.')->group(function () {
-    Route::get('/doctor/dashboard', [DoctorDashboardController::class,'index'])->name('dashboard');
+    Route::get('/doctor/dashboard', [DoctorDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/doctor/dashboard/appointment', [DoctorDashboardController::class, 'viewAppointments'])->name('appointment.view');
+    Route::delete('/doctor/appointment/{AppointmentID}', [DoctorDashboardController::class, 'destroyAppointment'])->name('appointment.destroy');
 });
 
 
 
 
 Route::get('/payment/{appointmentID}', [EsewaController::class, 'create'])->name('payments.create')->middleware('auth');
-Route::post('/payment',[EsewaController::class,'store'])->name('payments.store')->middleware('auth');
-Route::get('/success', [EsewaController::class,'paymentSuccess'])->middleware('auth');
-Route::get('/failure', [EsewaController::class,'paymentFailure'])->middleware('auth');
+Route::post('/payment', [EsewaController::class, 'store'])->name('payments.store')->middleware('auth');
+Route::get('/success', [EsewaController::class, 'paymentSuccess'])->middleware('auth');
+Route::get('/failure', [EsewaController::class, 'paymentFailure'])->middleware('auth');
 
 require __DIR__ . '/auth.php';

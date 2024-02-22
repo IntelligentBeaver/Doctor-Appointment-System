@@ -97,6 +97,10 @@
                                 <a class="py-5 font-bold hover:shadow-lg" href="{{ route('doctor.dashboard') }}">Doctor
                                     Dashboard</a>
                             </li>
+                            <li><a class="py-5 font-bold hover:shadow-lg"
+                                    href="{{ route('doctor.appointment.view') }}">View
+                                    Appointments</a>
+                            </li>
                         @elseif(auth()->user()->role === 'patient')
                             <li><a class="py-5 font-bold hover:shadow-lg" href="{{ route('patient.dashboard') }}">Patient
                                     Dashboard</a>

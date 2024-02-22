@@ -6,7 +6,7 @@
     </div>
 
     <div class="xs:flex-col my-8 flex flex-wrap justify-evenly gap-2 sm:flex-row">
-        <x-status-card class="basis-1/4">
+        <x-status-card class="basis-1/4" href="{{ route('doctor.appointment.view') }}">
             <x-slot:title>Appointments</x-slot>
             {{ $appointmentCount }}
         </x-status-card>

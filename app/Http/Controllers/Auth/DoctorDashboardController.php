@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use Carbon\Carbon;
 use Illuminate\View\View;
+use App\Models\Appointment;
+use App\Models\Availability;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -42,4 +44,34 @@ class DoctorDashboardController extends Controller
         
         return view('doctor.dashboard',compact('appointmentCount','todaysAppointments','count')); // Return the doctor dashboard view
     }
+
+    public function viewAppointments()
+    {
+        $appointments = Appointment::all();
+        return view('doctor.appointments.viewappointments', compact('appointments'));
+    }
+
+    public function destroyAppointment($AppointmentID)
+    {
+        $appointment = Appointment::find($AppointmentID);
+
+        if ($appointment) {
+
+            $doctorid = $appointment->DoctorID;
+            $timeSlotid = $appointment->TimeSlotID;
+            $date = $appointment->Date;
+            $availibility = Availability::create([
+                'DoctorID' => $doctorid,
+                'TimeSlotID' => $timeSlotid,
+                'Date' => $date,
+                'Status' => 'active',
+            ]);
+
+            $appointment->delete();
+            return redirect()->back()->with('success', ['Appointment deleted succesfully.']);
+        } else {
+            return redirect()->route('doctor.appointment.view')->with('errormessages', ['Could not cancel the appointment. Please try again later.']);
+        }
+    }
+
 }   

@@ -81,10 +81,7 @@
                     <input class="btn btn-success w-36 lg:w-48 2xl:w-56" type="submit" value="Pay with E-Sewa">
                 </div>
                 <div>
-                    <img class="h-full w-full object-cover dark:hidden" src="{{ asset('images/esewa-logo.png') }}"
-                        alt="Light Image">
-                    <img class="max-w-24 hidden h-full w-full object-cover dark:block"
-                        src="{{ asset('images/logo-dark.svg') }}" alt="Dark Image">
+                    <img class="h-full w-full object-cover" src="{{ asset('images/esewa-logo.png') }}" alt="Light Image">
                 </div>
             </div>
 
