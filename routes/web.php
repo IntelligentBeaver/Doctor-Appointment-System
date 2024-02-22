@@ -72,6 +72,10 @@ Route::middleware(['auth','disable.cache'])->group(function () {
 
 Route::middleware(['auth', 'checkadmin:admin','disable.cache'])->name('admin.')->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admin/dashboard/appointment',[AdminDashboardController::class,'viewAppointments'])->name('appointment.view');
+    Route::delete('/appointment/{AppointmentID}', [AdminDashboardController::class, 'destroyAppointment'])->name('appointment.destroy');
+
+
     Route::get('/admin/view', [AdminDashboardController::class, 'view_Users'])->name('viewusers');
     Route::get('/admin/{id}/edit', [AdminDashboardController::class, 'edit'])->name('editusers');
     Route::put('/admin/{id}', [AdminDashboardController::class, 'update'])->name('updateusers');

@@ -12,7 +12,7 @@
                 {{-- <x-styling.header class="mx-10">Users</x-styling.header>
                 <x-styling.subheader class="mx-10">View current users</x-styling.subheader> --}}
 
-                <div class="xs:m-0 md:m-10">
+                <div class="xs:m-0 overflow-scroll md:m-10">
                     <table class="z-0 table">
                         <thead>
                             <tr class="bg-base-300">
