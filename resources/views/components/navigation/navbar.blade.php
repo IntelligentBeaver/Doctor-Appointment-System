@@ -11,7 +11,7 @@
                 <li><a class="py-3" href="{{ route('contacts') }}">Contact Us</a></li>
             @endif
             @if (Route::has('appointments'))
-                <li><a class="py-3" href="{{ route('appointments') }}">Appointments</a></li>
+                <li><a class="py-3" href="{{ route('about') }}">Appointments</a></li>
             @endif
         </ul>
     </div>

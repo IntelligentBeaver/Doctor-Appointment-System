@@ -11,6 +11,10 @@ use App\Models\Specialization;
 
 class AppointmentsController extends Controller
 {
+    public function view(){
+        return view('about');
+    }
+    
     public function create()
     {
 

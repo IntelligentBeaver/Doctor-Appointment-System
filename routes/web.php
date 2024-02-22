@@ -51,6 +51,8 @@ Route::post('/contacts', [ContactsController::class, 'store'])->middleware('web'
 
 Route::get('/appointments', [AppointmentsController::class, 'create'])->name('appointments');
 
+Route::get('/bookappointment', [AppointmentsController::class, 'view'])->name('about');
+
 
 
 // Route::get('/appointments/book',[AppointmentsController::class,'store'])->name('bookappointment');

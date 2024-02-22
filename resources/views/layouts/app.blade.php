@@ -9,7 +9,7 @@
         <title>Your Doctor Appointment System</title>
 
         <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.js"></script>
+        {{-- <link href="{{ asset('css/appointment.css') }}" rel="stylesheet"> --}}
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -17,13 +17,14 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
             rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.6/dist/flatpickr.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Slick JS -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
         <script src="https://kit.fontawesome.com/bfa75e5c98.js" crossorigin="anonymous"></script>
-
-        <!-- Alpine Plugins -->
-        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-
-        <!-- Alpine Core -->
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -68,6 +69,7 @@
 
             {{-- Appointment Contents --}}
             <div class="animate-fade-in">
+                @yield('about-section')
                 @yield('appointments-section')
             </div>
 
@@ -80,6 +82,7 @@
 
             {{-- Footer --}}
             <x-footer />
+
         </div>
     </body>
 
