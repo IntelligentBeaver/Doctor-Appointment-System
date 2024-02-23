@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "appointment.css";
 :root{
         --blue:#2e37ff;
         --green:#009700;
