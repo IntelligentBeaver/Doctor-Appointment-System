@@ -1,81 +1,53 @@
-<div style="display: flex;">
-  <div style="flex: 1; margin-right: 10px;">
-    <img src="./public/images/logo-light.svg" alt="Laravel Logo" style="width: auto; height: 200px;">
-  </div>
-  <div style="flex: 1;">
-    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" alt="Laravel Logo" style="width: auto; height: 200px;">
-  </div>
-</div>
+<p align="center">
+    <img src="./public/images/logo-light.svg" alt="Laravel Logo" style="width: auto; height: 150px;">
+</p> 
 
-<p style="font-weight: 800;
-         text-align: center;
-         font-size: 2.3rem;
-         padding:20px;">
-         Doctor Appointment System</p>
-<p><span style="font-weight: 700;">MedAppoint: Doctor Appointment System</span> is a technological solution designed to address the evolving needs and challenges within the healthcare sector. This innovative platform leverages digital advancements to streamline and enhance the process of scheduling appointments with healthcare professionals.</p>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" alt="Laravel Logo" style="width: auto; height: 150px;">
+</p> 
 
-<p style="font-weight: 800;
-         text-align: center;
-         font-size: 1.6rem;
-         padding:20px;">
-         Objectives</p>
-<ul>
-   <li>Efficient Appointment Scheduling</li>
-   <li>Real-time Availability Information</li>
-   <li>Centralized Patient Informationl</li>
-   <li>User Authentication and Security</li>
-   <li>Multi-Provider Support</li>
-   <li>Customizable Profiles</li>
-</ul>
+# Doctor Appointment System
 
-<p style="font-weight: 800;
-         text-align: center;
-         font-size: 1.6rem;
-         padding:20px;">
-         Methodology</p>
+**MedAppoint: Doctor Appointment System** is a technological solution designed to address the evolving needs and challenges within the healthcare sector. This innovative platform leverages digital advancements to streamline and enhance the process of scheduling appointments with healthcare professionals.
 
-<p style="font-weight: 700;
-         font-size: 1.2rem;">
-Incremental Software Development: </p>
-<p>Project follows incremental approach for segmented development and testing cycles.</p>
+## Objectives
 
-<p style="font-weight: 700;
-         font-size: 1.2rem;">
-Programming Language and Database: </p>
-<p>Developed using PHP with MySQL database backend.</p>
+- Efficient Appointment Scheduling
+- Real-time Availability Information
+- Centralized Patient Information
+- User Authentication and Security
+- Multi-Provider Support
+- Customizable Profiles
 
-<p style="font-weight: 700;
-         font-size: 1.2rem;">
-Comprehensive Platform Design: </p>
-<p>System designed as a website for doctor appointments accessible from any internet-connected device.</p>
+## Methodology
 
-<p style="font-weight: 700;
-         font-size: 1.2rem;">
-Operational Modules: </p>
-<p>Includes modules for user (patient) registration, doctor viewing, appointment scheduling, and payment.</p>
+### Incremental Software Development
 
-<p style="font-weight: 700;
-         font-size: 1.2rem;">
-Three-Tier Technical Architecture: </p>
-<p>Client-side (presentation layer): HTML, CSS, and JavaScript for user-friendly design.</p>
+Project follows incremental approach for segmented development and testing cycles.
 
-<p style="font-weight: 700;
-         font-size: 1.2rem;">Server-side (application layer): </p>
-<p>PHP for data processing functions.</p>
+### Programming Language and Database
 
-<p style="font-weight: 700;
-         font-size: 1.2rem;">Database layer: </p>
-<p>MySQL for data storage and retrieval.</p>
+Developed using PHP with MySQL database backend.
 
-<p style="font-weight: 700;
-         font-size: 1.2rem;">Security Measures: </p>
-<p>Role-based access control, data encryption, and regular data backups ensure privacy and confidentiality of patient data.</p>
+### Comprehensive Platform Design
 
-<p style="font-weight: 800;
-         text-align: center;
-         font-size: 1.6rem;
-         padding:20px;">
-         Pages</p>
+System designed as a website for doctor appointments accessible from any internet-connected device.
+
+### Operational Modules
+
+Includes modules for user (patient) registration, doctor viewing, appointment scheduling, and payment.
+
+### Three-Tier Technical Architecture
+
+- **Client-side (presentation layer):** HTML, CSS, and JavaScript for user-friendly design.
+- **Server-side (application layer):** PHP for data processing functions.
+- **Database layer:** MySQL for data storage and retrieval.
+
+### Security Measures
+
+Role-based access control, data encryption, and regular data backups ensure privacy and confidentiality of patient data.
+
+## Pages
 
 1. Home
 2. Appointment
@@ -83,8 +55,8 @@ Three-Tier Technical Architecture: </p>
 4. Login
 5. Sign Up
 6. Dashboard
-    1. Admin
-    2. Doctor
-    3. Patient
+   - Admin
+   - Doctor
+   - Patient
 7. Contact
 8. Profile
