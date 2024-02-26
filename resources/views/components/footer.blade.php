@@ -14,7 +14,7 @@
     </aside>
     <nav>
         <header class="footer-title">Services</header>
-        <a class="link link-hover" href="{{ route('appointments') }}">Find Doctors</a>
+        <a class="link link-hover" href="{{ route('about') }}">Find Doctors</a>
         <a class="link link-hover" href="{{ route('appointments') }}">Book an appointment</a>
         @auth
             @if (auth()->user()->role === 'doctor')
@@ -34,8 +34,10 @@
     </nav>
     <nav>
         <header class="footer-title">Company</header>
-        <a class="link link-hover">About</a>
+        <a class="link link-hover" href="{{ route('home') }}">Home</a>
         <a class="link link-hover" href="{{ route('contacts') }}">Contact Us</a>
+        <a class="link link-hover" href="{{ route('login') }}">Login</a>
+        <a class="link link-hover" href="{{ route('register') }}">Sign up</a>
     </nav>
     <nav>
         <header class="footer-title">Socials</header>
