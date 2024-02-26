@@ -131,8 +131,8 @@
             </div>
         </div>
     @endauth
-    <div><a class="mx-4" href="{{ route('home') }}">
-            <div class="h-12">
+    <div><a class="mx-4 flex flex-col" href="{{ route('home') }}">
+            <div class="h-10 sm:h-16 lg:h-20">
                 <img class="h-full w-full object-cover dark:hidden" src="{{ asset('images/logo-light.svg') }}"
                     alt="Light Image">
                 <img class="hidden h-full w-full object-cover dark:block" src="{{ asset('images/logo-dark.svg') }}"
