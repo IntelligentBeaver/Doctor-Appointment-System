@@ -39,7 +39,7 @@
             border-radius: .5rem;
             box-shadow: var(--box-shadow);
             color:white;
-            background-color: #009700;
+            background-color: var(--blue);
             cursor: pointer;
             font-size: 1.7rem;
         }
@@ -47,7 +47,7 @@
 .btnappointment span{
     padding: .7rem .1rem;
     border-radius: .5rem;
-    background:var(--green);
+    background:var(--blue);
     color: white;
     margin-left: .5rem;
 
@@ -80,7 +80,8 @@
         }
         .home .content p{
             /* font-size: 2rem; */
-            color: var(--blue);
+            color: black !important;
+            font-weight: 520;
             line-height: 2.1;
             /* text-shadow: var(--text-shadow); */
             /* padding:1rem; */
@@ -149,7 +150,8 @@
         line-height: 1.8; */
     }
     .about .row .content p{
-        color: var(--blue);
+        color: black !important;
+        font-weight: 520;
        /* padding: 1rem 0; */
         /* font-size: 2rem; */
         line-height: 1.8;
@@ -173,10 +175,10 @@
         overflow: hidden;
         z-index: 0;
     }
-    .review .box-container .box h3{
-        /* font-size: 2.3rem;
-        padding:.5rem 0; */
-    }
+    /* .review .box-container .box h3{
+        font-size: 2.3rem;
+        padding:.5rem 0;
+    } */
     .review .box-container .box .stars{
         font-size: 1.5rem;
     }

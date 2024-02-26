@@ -14,7 +14,7 @@
                     more proactive approach to care for you and your loved ones.
                 </p>
                 <a class="btnappointment" href="{{ route('appointments') }}">
-                    Book An Appointment <span class="fas fa-chevron-right"></span></a>
+                    Book appointment <span class="fas fa-chevron-right"></span></a>
             </div>
         </section>
         <section class="icons-container py-20">
