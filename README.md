@@ -76,9 +76,15 @@ Three-Tier Technical Architecture: </p>
          font-size: 1.6rem;
          padding:20px;">
          Pages</p>
+
 1. Home
-2. Contacts
-3. Appointments [Soon]
+2. Appointment
+3. About
 4. Login
-5. Signup
-6. Payment [Soon]
+5. Sign Up
+6. Dashboard
+    1. Admin
+    2. Doctor
+    3. Patient
+7. Contact
+8. Profile
