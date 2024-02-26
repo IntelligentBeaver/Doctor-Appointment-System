@@ -13,7 +13,7 @@
     margin: 0px 0px 60px 0px;
 }
 .contain1 .text1{
-    width: 50%;
+    width: 100%;
     float: left;
     margin-top: 118px;
     font-size: 55px;
@@ -139,6 +139,75 @@
     flex-direction: column;
     justify-content: center;
 }
+
+/* For mobile devices */
+@media only screen and (max-width: 600px) {
+    .contain1 {
+        flex-direction: column;
+        padding: auto;
+    }
+    .text1 {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 45px !important;
+    }
+    .icon1 {
+        width: 100%;
+        text-align: center;
+    }
+    .icon1 img {
+        width: 100%; 
+    }
+    /* slider */
+    .wrapper {
+        padding-top: 10px;
+    }
+    .carousel {
+        width: 100%;
+    }
+    /* slider */
+    .doc_id_card {
+        padding: 20px;
+        width: 100%;
+    }
+    h2{
+        font-size: 20px;
+    }
+    .docprofile {
+        flex-direction: column;
+    }
+    .doc {
+        width: 80%;
+        align-self: center;
+        background-color: rgb(156, 153, 153,0.3);
+        margin-bottom: 14px;
+    }
+    .doc button {
+        width: 100%;
+    }
+    .why_book {
+        flex-direction: column;
+    }
+    .card_left{
+        font-size: 20px;
+    }
+    .card_right h4, .card_left p{
+        font-size: 18px;
+    }
+    
+    .card_left, .card_right {
+        width: 100%;
+        padding: 10px;
+    }
+    .card_right {
+        display: flex;
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
 
 
 
