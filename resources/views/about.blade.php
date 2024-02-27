@@ -32,7 +32,10 @@
     }
 
     /* browse card slider */
-
+    .top_searched{
+        margin:20px;
+        width:100%;
+    }
     .wrapper {
         display: flex;
         width: 100%;
