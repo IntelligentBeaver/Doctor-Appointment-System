@@ -71,13 +71,12 @@
                         <span class="label-text text-base font-semibold">Price:</span>
                     </div>
                     <input class='input input-bordered input-primary w-full rounded-xl' id="price" name="price"
-                        type="email" value="Rs.500" autofocus disabled>
+                        type="text" value="Rs.{{ number_format($fee) }}" disabled>
                 </label>
             </div>
 
             <div class="mt-8 flex items-center justify-between gap-10">
                 <div class="flex items-center justify-center">
-                    <input name="amount" type="hidden" value="500">
                     <input class="btn btn-success w-36 lg:w-48 2xl:w-56" type="submit" value="Pay with E-Sewa">
                 </div>
                 <div>
