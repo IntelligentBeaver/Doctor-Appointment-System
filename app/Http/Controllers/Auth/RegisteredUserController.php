@@ -9,7 +9,9 @@ use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Specialization;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,84 +37,64 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'image' => ['nullable','image','max:8192', 'mimes:png,jpg,jpeg,webp'],
+            'image' => ['nullable', 'image', 'max:8192', 'mimes:png,jpg,jpeg,webp'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required'],
+            // Only patients and doctors can self-register. Admins are created by an existing admin.
+            'role' => ['required', Rule::in(['patient', 'doctor'])],
 
             // Requires only if role is patient
-            'phone' => ['required_if:role,patient'],
-            'address' => ['required_if:role,patient'],
+            'phone' => ['required_if:role,patient', 'nullable', 'string', 'max:30'],
+            'address' => ['required_if:role,patient', 'nullable', 'string', 'max:255'],
 
             // Requires only if role is doctor
-            'specialization' => ['required_if:role,doctor'],
-            'contact_information' => ['required_if:role,doctor'],
+            'specialization' => ['required_if:role,doctor', 'nullable', 'string', Rule::exists('specializations', 'SpecializationName')],
+            'contact_information' => ['required_if:role,doctor', 'nullable', 'string', 'max:255'],
         ]);
 
-        if ($request->has('image')) {
+        $path = 'images/avatar/';
+        $image = $path . 'placeholder.jpg';
+
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $type = $file->getMimeType();
-            $filename =time().'.'. $extension;
-            $path = 'images/avatar/';
+            // hashName() gives a random, collision-free file name with a safe extension.
+            $filename = $file->hashName();
             $file->move(public_path($path), $filename);
-            
+            $image = $path . $filename;
+        }
+
+        $user = DB::transaction(function () use ($request, $image) {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'image'=>$path.$filename,
+                'image' => $image,
                 'password' => Hash::make($request->password),
-                'role' => $request['role'],
+                'role' => $request->role,
             ]);
-        }
-        else{
-            $path = 'images/avatar/';
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'image'=>$path.'placeholder.jpg',
-                'password' => Hash::make($request->password),
-                'role' => $request['role'],
-            ]);
-        }
 
+            if ($request->role === 'patient') {
+                Patient::create([
+                    'user_id' => $user->id,
+                    'PatientName' => $request->name,
+                    'Address' => $request->address,
+                    'Phone' => $request->phone,
+                    'Email' => $request->email,
+                ]);
+            } else {
+                $specialization = Specialization::where('SpecializationName', $request->specialization)->firstOrFail();
 
-
-        $user->save();
-
-        $userId = $user->id;
-
-        if ($request['role'] === 'patient') {
-            Patient::create([
-                'user_id' => $userId,
-                'PatientName' => $request['name'],
-                'Address' => $request['address'],
-                'Phone' => $request['phone'],
-                'Email' => $request['email'],
-            ]);
-        } elseif ($request['role'] === 'doctor') {
-
-            $specialization = Specialization::where('SpecializationName', $request['specialization'])->first();
-
-            // Check if Specialization is found
-            if ($specialization === null) {
-                // Handle the case where the specialization is not found
-                return redirect()->route('register')->withErrors(['specialization' => 'Specialization not found for ' . $request['specialization']]);
+                Doctor::create([
+                    'user_id' => $user->id,
+                    'DoctorName' => $request->name,
+                    'SpecializationID' => $specialization->SpecializationID,
+                    'ContactInformation' => $request->contact_information,
+                ]);
             }
 
-            // Create a new doctor
-            $doctor = Doctor::create([
-                'user_id' => $user->id,
-                'DoctorName' => $request['name'],
-                'SpecializationID' => $specialization->SpecializationID,
-                'ContactInformation' => $request['contact_information']
-                // 'SpecializationID' => $request['specialization'],
-            ]);
-            $doctor->save();
-        }
+            return $user;
+        });
 
         event(new Registered($user));
 
