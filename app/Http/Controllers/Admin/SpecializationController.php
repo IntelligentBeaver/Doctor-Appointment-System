@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Specialization;
 
-class AddSpecializationController extends Controller
+class SpecializationController extends Controller
 {
     public function index()
     {

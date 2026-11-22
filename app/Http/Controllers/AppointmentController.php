@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Specialization;
 use App\Services\AppointmentService;
 
-class AppointmentsController extends Controller
+class AppointmentController extends Controller
 {
     public function view()
     {

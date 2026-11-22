@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Patient;
 
 use Carbon\Carbon;
 use App\Models\Appointment;
 use App\Http\Controllers\Controller;
 use App\Services\AppointmentService;
 
-class PatientDashboardController extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {

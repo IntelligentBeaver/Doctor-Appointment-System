@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Appointment;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\AppointmentService;
 
-class AdminDashboardController extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {

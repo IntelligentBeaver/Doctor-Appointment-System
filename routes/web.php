@@ -3,16 +3,16 @@
 use App\Models\Specialization;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EsewaController;
+use App\Http\Controllers\Payment\EsewaController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ContactsController;
-use App\Http\Controllers\AdminLoginController;
-use App\Http\Controllers\AppointmentsController;
-use App\Http\Controllers\DoctorTimeSlotController;
-use App\Http\Controllers\AddSpecializationController;
-use App\Http\Controllers\Auth\AdminDashboardController;
-use App\Http\Controllers\Auth\DoctorDashboardController;
-use App\Http\Controllers\Auth\PatientDashboardController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\Admin\TimeSlotController;
+use App\Http\Controllers\Admin\SpecializationController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Doctor\DashboardController as DoctorDashboardController;
+use App\Http\Controllers\Patient\DashboardController as PatientDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,8 +61,8 @@ Route::get('/', function () {
 | Routes for Login
 |--------------------------------------------------------------------------
 */
-Route::get('/admin/login', [AdminLoginController::class, 'create'])->name('admin.login');
-Route::post('/admin/login', [AdminLoginController::class, 'store']);
+Route::get('/admin/login', [LoginController::class, 'create'])->name('admin.login');
+Route::post('/admin/login', [LoginController::class, 'store']);
 
 
 
@@ -71,8 +71,8 @@ Route::post('/admin/login', [AdminLoginController::class, 'store']);
 | Routes for Contacts Page
 |--------------------------------------------------------------------------
 */
-Route::get('/contacts', [ContactsController::class, 'create'])->name('contacts');
-Route::post('/contacts', [ContactsController::class, 'store'])->middleware('throttle:5,1');
+Route::get('/contacts', [ContactController::class, 'create'])->name('contacts');
+Route::post('/contacts', [ContactController::class, 'store'])->middleware('throttle:5,1');
 
 
 
@@ -81,8 +81,8 @@ Route::post('/contacts', [ContactsController::class, 'store'])->middleware('thro
 | Routes for Appointment
 |--------------------------------------------------------------------------
 */
-Route::get('/appointments', [AppointmentsController::class, 'create'])->name('appointments');
-Route::get('/bookappointment', [AppointmentsController::class, 'view'])->name('about');
+Route::get('/appointments', [AppointmentController::class, 'create'])->name('appointments');
+Route::get('/bookappointment', [AppointmentController::class, 'view'])->name('about');
 
 
 
@@ -117,12 +117,12 @@ Route::middleware(['auth', 'checkadmin:admin', 'disable.cache'])->name('admin.')
     Route::delete('/admin/{id}', [AdminDashboardController::class, 'destroy'])->name('destroyusers');
     
     // Add Specialization Routes
-    Route::get('/admin/addspecialization', [AddSpecializationController::class, 'index'])->name('addspecialization');
-    Route::post('/admin/addspecialization', [AddSpecializationController::class, 'store']);
+    Route::get('/admin/addspecialization', [SpecializationController::class, 'index'])->name('addspecialization');
+    Route::post('/admin/addspecialization', [SpecializationController::class, 'store']);
     
     // Add Timeslots Routes
-    Route::get('/admin/timeslots', [DoctorTimeSlotController::class, 'create'])->name('timeslots.create');
-    Route::post('/admin/timeslots', [DoctorTimeSlotController::class, 'store'])->name('timeslots.store');
+    Route::get('/admin/timeslots', [TimeSlotController::class, 'create'])->name('timeslots.create');
+    Route::post('/admin/timeslots', [TimeSlotController::class, 'store'])->name('timeslots.store');
 });
 
 
@@ -139,8 +139,8 @@ Route::middleware(['auth', 'checkpatient:patient', 'disable.cache'])->name('pati
     Route::delete('/appointment/{AppointmentID}', [PatientDashboardController::class, 'destroy'])->name('appointment.destroy');
     
     // Book Appointment
-    Route::get('/appointment/book/{doctorId}/{availabilityId}/{timeslotID}/{appointdate}/{startTime}/{endTime}', [AppointmentsController::class, 'book'])->name('appointment.book');
-    Route::post('/appointment/book', [AppointmentsController::class, 'store'])->name('appointment.store');
+    Route::get('/appointment/book/{doctorId}/{availabilityId}/{timeslotID}/{appointdate}/{startTime}/{endTime}', [AppointmentController::class, 'book'])->name('appointment.book');
+    Route::post('/appointment/book', [AppointmentController::class, 'store'])->name('appointment.store');
 });
 
 

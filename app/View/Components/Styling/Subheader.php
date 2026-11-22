@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\styling;
+namespace App\View\Components\Styling;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Header extends Component
+class Subheader extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class Header extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.styling.header');
+        return view('components.styling.subheader');
     }
 }

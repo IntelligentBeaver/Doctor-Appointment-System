@@ -17,3 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# User-uploaded avatars (keep the placeholder)
+/public/images/avatar/*
+!/public/images/avatar/placeholder.jpg

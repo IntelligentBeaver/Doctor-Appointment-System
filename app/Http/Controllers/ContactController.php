@@ -6,7 +6,7 @@ use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class ContactsController extends Controller
+class ContactController extends Controller
 {
     public function create()
     {

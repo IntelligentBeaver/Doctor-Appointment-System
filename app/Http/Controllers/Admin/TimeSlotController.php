@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\Doctor;
 use App\Models\TimeSlot;
 use App\Models\Availability;
 use Illuminate\Http\Request;
 
-class DoctorTimeSlotController extends Controller
+class TimeSlotController extends Controller
 {
     public function create()
     {
