@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Validation\Rules\Password;
 
 class AdminLoginController extends Controller
 {
@@ -14,20 +11,27 @@ class AdminLoginController extends Controller
     {
         if (Auth::check()) {
             return back()->with('errormessages', ['You have already Logged in. Please Log out and try again.']);
-        } else {
-            return view('admin.login');
         }
+
+        return view('admin.login');
     }
+
     public function store(LoginRequest $request)
     {
+        // LoginRequest::authenticate() applies the same rate limiting as the main login form.
         $request->authenticate();
+
+        if ($request->user()->role !== 'admin') {
+            // Valid credentials, wrong account type: don't leave a non-admin session behind.
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return back()->withInput($request->only('email'))->with('errormessages', ['Invalid Login']);
+        }
+
         $request->session()->regenerate();
 
-        if (auth()->user()->role == 'admin')
-            return redirect()->route('admin.dashboard');
-
-            else{
-            return back()->with('errormessages', ['Invalid Login']);
-            }
+        return redirect()->intended(route('admin.dashboard'));
     }
 }
