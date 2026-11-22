@@ -27,7 +27,6 @@ use App\Http\Controllers\Auth\PatientDashboardController;
 
 // This route will get called if something fails.
 Route::get('/denied', function () {
-    // dd(session());
     echo "Authentication failed or Permission Denied.";
 })->name('denied');
 
@@ -73,7 +72,7 @@ Route::post('/admin/login', [AdminLoginController::class, 'store']);
 |--------------------------------------------------------------------------
 */
 Route::get('/contacts', [ContactsController::class, 'create'])->name('contacts');
-Route::post('/contacts', [ContactsController::class, 'store'])->middleware('web');
+Route::post('/contacts', [ContactsController::class, 'store'])->middleware('throttle:5,1');
 
 
 

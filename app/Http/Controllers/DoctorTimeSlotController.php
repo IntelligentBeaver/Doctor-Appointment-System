@@ -13,54 +13,48 @@ class DoctorTimeSlotController extends Controller
     public function create()
     {
         $doctors = Doctor::all();
+
         return view('admin.timeslots.create', compact('doctors'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'doctor' => 'required',
+            'doctor' => ['required', 'exists:doctors,DoctorID'],
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
             'selected_days' => 'required|string',
         ]);
 
-        // dd($request);
-        $doctorid = Doctor::where('DoctorID', $request['doctor'])->first();
-        // $doctorId = auth()->user()->doctor->DoctorID;
-        $startTime = Carbon::createFromFormat('H:i', $request->input('start_time'))->format('H:i');
-        $endTime = Carbon::createFromFormat('H:i', $request->input('end_time'))->format('H:i');
+        $startTime = Carbon::createFromFormat('H:i', $request->input('start_time'))->format('H:i:00');
+        $endTime = Carbon::createFromFormat('H:i', $request->input('end_time'))->format('H:i:00');
 
-        // Parse the selected_days string into an array
-        $selectedDays = explode(', ', $request->input('selected_days'));
+        $selectedDays = array_filter(array_map('trim', explode(',', $request->input('selected_days'))));
 
-        // Validate each date in the array
         foreach ($selectedDays as $date) {
-            if (!Carbon::createFromFormat('Y-m-d', $date, 'UTC')->isValid()) {
+            $parsed = Carbon::canBeCreatedFromFormat($date, 'Y-m-d') ? Carbon::createFromFormat('Y-m-d', $date) : null;
+
+            if (! $parsed || $parsed->format('Y-m-d') !== $date || $parsed->isBefore(Carbon::today())) {
                 return redirect()->route('admin.timeslots.create')
-                    ->withErrors(['selected_days' => 'Invalid date format'])
+                    ->withErrors(['selected_days' => 'Pick valid dates from today onwards (format: YYYY-MM-DD).'])
                     ->withInput();
             }
         }
 
         $timeSlots = TimeSlot::whereTime('StartTime', '>=', $startTime)
             ->whereTime('EndTime', '<=', $endTime)
-            ->where('StartTime', '<', $endTime)  // Exclude slots that end before they start
             ->get();
 
         foreach ($selectedDays as $selectedDay) {
             foreach ($timeSlots as $timeSlot) {
-                // Create Availability record with doctor's ID, time slot ID, and selected day
-                Availability::create([
-                    'DoctorID' => $doctorid->DoctorID,
+                // Re-submitting the same range does not create duplicate slots.
+                Availability::firstOrCreate([
+                    'DoctorID' => $request->integer('doctor'),
                     'TimeSlotID' => $timeSlot->TimeSlotID,
-                    'Status' => 'active',
                     'Date' => $selectedDay,
-                ]);
+                ], ['Status' => 'active']);
             }
         }
-        // Get the authenticated doctor
-        $doctor = auth()->user()->doctor;
 
         return redirect()->back()->with('success', ['Time slot added successfully']);
     }

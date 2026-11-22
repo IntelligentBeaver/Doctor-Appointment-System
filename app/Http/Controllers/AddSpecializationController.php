@@ -16,15 +16,15 @@ class AddSpecializationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'specializationname' => ['required', 'string', 'max:255'],
+            'specializationname' => ['required', 'string', 'max:255', 'unique:specializations,SpecializationName'],
             'description' => ['required', 'string', 'max:1000']
         ]);
 
-        $user = Specialization::create([
+        Specialization::create([
             'SpecializationName' => $request->specializationname,
             'Description' => $request->description,
         ]);
-        
+
         return redirect()->back()->with('success', ["Specialization Added Successfully."]);
     }
 }

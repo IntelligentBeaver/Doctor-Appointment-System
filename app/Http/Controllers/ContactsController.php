@@ -13,18 +13,20 @@ class ContactsController extends Controller
         return view('contacts');
     }
 
-    public function store(Request $request):RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        
-        $user = Contact::create([
-            'Email'=> $request->email,
-            'Phone'=> $request->phone,
-            'Description'=> $request->description
+        $validated = $request->validate([
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'string', 'max:30'],
+            'description' => ['required', 'string', 'max:2000'],
         ]);
 
-        if ($user->save()) {
-            return redirect()->route('home')->with('success', ['Message sent Successfully']);
-        }    
-        return redirect()->route('home')->with('error', ['bruh']);
+        Contact::create([
+            'Email' => $validated['email'],
+            'Phone' => $validated['phone'],
+            'Description' => $validated['description'],
+        ]);
+
+        return redirect()->route('home')->with('success', ['Message sent Successfully']);
     }
 }
