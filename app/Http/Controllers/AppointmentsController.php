@@ -4,81 +4,77 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Doctor;
-use App\Models\Appointment;
 use App\Models\Availability;
 use Illuminate\Http\Request;
 use App\Models\Specialization;
+use App\Services\AppointmentService;
 
 class AppointmentsController extends Controller
 {
-    public function view(){
+    public function view()
+    {
         return view('about');
     }
-    
+
     public function create()
     {
-
-        $doctors = Doctor::with(['availabilities.timeSlot'])->get();
         $specializations = Specialization::with('doctors')->get();
 
-        $doctors->transform(function ($doctor) {
-            $doctor->availabilities = $doctor->availabilities->reject(function ($availability) {
-                // Checks if the date is less than today
-                return Carbon::parse($availability->Date)->isPast();
-            });
+        // Only open, upcoming slots are shown.
+        $doctors = Doctor::with(['availabilities' => function ($query) {
+            $query->where('Status', 'active')
+                ->whereDate('Date', '>=', Carbon::today())
+                ->with('timeSlot');
+        }])->get();
 
-            return $doctor;
+        $doctors->each(function ($doctor) {
+            $doctor->setRelation('availabilities', $doctor->availabilities->reject(function ($availability) {
+                $date = Carbon::parse($availability->Date)->toDateString();
+
+                return Carbon::parse("$date {$availability->timeSlot->StartTime}")->isPast();
+            })->values());
         });
 
         // Removes doctors without available appointments
-        $doctors = $doctors->reject(function ($doctor) {
-            return $doctor->availabilities->isEmpty();
-        });
-
+        $doctors = $doctors->reject(fn ($doctor) => $doctor->availabilities->isEmpty());
 
         if ($doctors->isEmpty()) {
             $message = "No doctors available. Please check back later.";
+
             return view('appointments', compact('specializations', 'message'));
         }
 
         return view('appointments', compact('specializations', 'doctors'));
     }
+
+    /**
+     * Confirmation page. The URL keeps its old shape for existing links, but every
+     * value shown comes from the availability row, not from the URL.
+     */
     public function book($doctorId, $availabilityId, $timeslotID, $appointdate, $startTime, $endTime)
     {
-        $doctor = Doctor::find($doctorId);
-        $availability = Availability::find($availabilityId);
+        $availability = Availability::with(['doctor', 'timeSlot'])
+            ->whereKey($availabilityId)
+            ->where('Status', 'active')
+            ->firstOrFail();
 
-        // // Redirect back to the appointments page with updated availabilities
+        $doctor = $availability->doctor;
+        $timeslotID = $availability->TimeSlotID;
+        $appointdate = Carbon::parse($availability->Date)->toDateString();
+        $startTime = Carbon::parse($availability->timeSlot->StartTime)->format('H:i');
+        $endTime = Carbon::parse($availability->timeSlot->EndTime)->format('H:i');
+
         return view('patient.appointments.confirm', compact('doctor', 'availability', 'timeslotID', 'appointdate', 'startTime', 'endTime'));
     }
 
-
-    public function store(Request $request)
+    public function store(Request $request, AppointmentService $appointments)
     {
-        $request->validate([
-            'date' => 'required|date_format:Y-m-d',
-            'doctor_id' => 'required|exists:doctors,DoctorID',
-            'availability_id' => 'required|exists:availabilities,AvailabilityID',
-            'timeslotID' => ['required'],
-            'start_time' => 'required|date_format:Y-m-d H:i:s',
+        $validated = $request->validate([
+            'availability_id' => ['required', 'integer'],
         ]);
 
-        $availability = Availability::where('AvailabilityID', $request->availability_id)->first();
-        $tokenNumber = mt_rand(10000000, 99999999);
+        $appointment = $appointments->book($request->user()->patient, (int) $validated['availability_id']);
 
-        // Store the appointment in the database
-        $appointment = Appointment::create([
-            'PatientID' => auth()->user()->patient->PatientID,
-            'DoctorID' => $request->doctor_id,
-            'TimeSlotID' => $request->timeslotID,
-            'Date' => $request->date,
-            'Status' => 'Unpaid',
-            'TokenNumber' => $tokenNumber,
-        ]);
-        // Capture the AppointmentID
-        $appointmentID = $appointment->AppointmentID;
-        $availability->delete();
-
-        return redirect()->route('payments.create', compact('appointmentID'));
+        return redirect()->route('payments.create', ['appointmentID' => $appointment->AppointmentID]);
     }
 }

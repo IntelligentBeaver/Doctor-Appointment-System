@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Appointment extends Model
 {
+    public const STATUS_UNPAID = 'Unpaid';
+
+    public const STATUS_BOOKED = 'Booked';
+
     protected $primaryKey = 'AppointmentID';
 
     protected $fillable = ['PatientID', 'DoctorID', 'TimeSlotID', 'Date', 'Status','TokenNumber'];

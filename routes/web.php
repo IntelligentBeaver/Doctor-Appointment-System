@@ -10,9 +10,9 @@ use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AppointmentsController;
 use App\Http\Controllers\DoctorTimeSlotController;
 use App\Http\Controllers\AddSpecializationController;
-use App\Http\Controllers\auth\AdminDashboardController;
-use App\Http\Controllers\auth\DoctorDashboardController;
-use App\Http\Controllers\auth\PatientDashboardController;
+use App\Http\Controllers\Auth\AdminDashboardController;
+use App\Http\Controllers\Auth\DoctorDashboardController;
+use App\Http\Controllers\Auth\PatientDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ Route::middleware(['auth', 'checkadmin:admin', 'disable.cache'])->name('admin.')
 
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/admin/dashboard/appointment', [AdminDashboardController::class, 'viewAppointments'])->name('appointment.view');
-    Route::delete('/appointment/{AppointmentID}', [AdminDashboardController::class, 'destroyAppointment'])->name('appointment.destroy');
+    Route::delete('/admin/appointment/{AppointmentID}', [AdminDashboardController::class, 'destroyAppointment'])->name('appointment.destroy');
     
     // CRUD Operation Routes for Admin
     Route::get('/admin/view', [AdminDashboardController::class, 'view_Users'])->name('viewusers');
@@ -169,8 +169,8 @@ Route::middleware(['auth', 'checkdoctor:doctor', 'disable.cache'])->name('doctor
 */
 Route::get('/payment/{appointmentID}', [EsewaController::class, 'create'])->name('payments.create')->middleware('auth');
 Route::post('/payment', [EsewaController::class, 'store'])->name('payments.store')->middleware('auth');
-Route::get('/success', [EsewaController::class, 'paymentSuccess'])->middleware('auth');
-Route::get('/failure', [EsewaController::class, 'paymentFailure'])->middleware('auth');
+Route::get('/success', [EsewaController::class, 'paymentSuccess'])->name('payments.success')->middleware('auth');
+Route::get('/failure', [EsewaController::class, 'paymentFailure'])->name('payments.failure')->middleware('auth');
 
 
 

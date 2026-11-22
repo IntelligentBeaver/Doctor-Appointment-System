@@ -6,122 +6,113 @@ use App\Models\User;
 use App\Models\Appointment;
 use App\Models\Availability;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Services\AppointmentService;
 
 class AdminDashboardController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
-        if (auth()->user()->role == 'admin') {
-            $users = User::all();
-            $totalpatients = User::where('role', 'patient')->count();
-            $totaldoctors = User::where('role', 'doctor')->count();
-            $totalappointments = Appointment::all()->count();
+        $totalpatients = User::where('role', 'patient')->count();
+        $totaldoctors = User::where('role', 'doctor')->count();
+        $totalappointments = Appointment::count();
 
-            return view('admin.dashboard', compact('totalpatients', 'totaldoctors', 'totalappointments'));
-        }
-
-        // If the user doesn't have the required role, go back and display an error message
-        return redirect()->route('home')->with('errormessage', ['Unauthorized access.']);
+        return view('admin.dashboard', compact('totalpatients', 'totaldoctors', 'totalappointments'));
     }
-
 
     public function viewAppointments()
     {
-        $appointments = Appointment::all();
+        $appointments = Appointment::with(['doctor', 'patient', 'timeSlot'])->orderBy('Date')->get();
+
         return view('admin.appointments.viewappointments', compact('appointments'));
     }
-    public function destroyAppointment($AppointmentID)
+
+    public function destroyAppointment($AppointmentID, AppointmentService $appointments)
     {
         $appointment = Appointment::find($AppointmentID);
 
-        if ($appointment) {
-
-            $doctorid = $appointment->DoctorID;
-            $timeSlotid = $appointment->TimeSlotID;
-            $date = $appointment->Date;
-            $availibility = Availability::create([
-                'DoctorID' => $doctorid,
-                'TimeSlotID' => $timeSlotid,
-                'Date' => $date,
-                'Status' => 'active',
-            ]);
-
-            $appointment->delete();
-            return redirect()->back()->with('success', ['Appointment deleted succesfully.']);
-        } else {
-            return redirect()->route('patient.appointment.view')->with('errormessages', ['Could not cancel the appointment. Please try again later.']);
+        if (! $appointment) {
+            return redirect()->route('admin.appointment.view')->with('errormessages', ['Could not cancel the appointment. Please try again later.']);
         }
+
+        $this->authorize('cancel', $appointment);
+
+        $appointments->cancel($appointment);
+
+        return redirect()->back()->with('success', ['Appointment deleted succesfully.']);
     }
-
-
 
     public function view_Users()
     {
-        if (auth()->user()->role == 'admin') {
-            $users = User::all();
+        $users = User::all();
 
-            return view('admin.users.index', compact('users'));
-        }
-
-        // If the user doesn't have the required role, go back and display an error message
-        return redirect()->route('home')->with('errormessage', ['Unauthorized access.']);
+        return view('admin.users.index', compact('users'));
     }
+
     public function edit($id)
     {
-        // This will find the users from our User model (users table in MySQL) and store the array of record in $users
-        $users = User::find($id);
+        $users = User::findOrFail($id);
 
         return view('admin.users.edit', compact('users'));
     }
 
     public function update(Request $request, $id)
     {
-        // Validate the request and update the user information
-        $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . $id,
+        $user = User::findOrFail($id);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
         ]);
 
-        $user = User::find($id);
+        DB::transaction(function () use ($request, $user, $validated) {
+            // Only name and email are editable here. The role can only change through
+            // the explicit "make admin" checkbox, never from arbitrary request fields.
+            $user->update($validated);
 
-        // $adminRole = $request->has('admin_role') ? 'admin' : $user->role;
-        // $user->update(['role' => $adminRole]);
+            if ($request->boolean('admin_role') && $user->role !== 'admin') {
+                $this->removeDoctorRecords($user);
+                $user->patient()->delete();
+                $user->update(['role' => 'admin']);
+            }
+        });
 
-        if ($request->has('admin_role')) {
-
-            // Checkbox is checked, assign admin role
-            $user->update(['role' => 'admin']);
-
-            // Handle deletion from related tables
-            $user->doctor()->delete();
-            $user->patient()->delete();
-        } else {
-            $user->update(['role' => $user->role]);
-        }
-
-        $user->update($request->all());
         return redirect()->route('admin.viewusers')->with('success', ['User updated successfully']);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $user = User::find($id);
 
-        if ($user) {
-            // Update appointments
-            Appointment::where('DoctorID', $user->doctor->DoctorID)->delete();
-            Availability::where('DoctorID', $user->doctor->DoctorID)->delete();
-
-            $user->delete();
-            return redirect()->route('admin.viewusers')->with('success', ['User deleted successfully']);
+        if (! $user) {
+            return redirect()->route('admin.viewusers')->with('errormessages', ['User not found']);
         }
 
-        return redirect()->route('admin.viewusers')->with('errormessages', ['User not found']);
+        if ($user->is($request->user())) {
+            return redirect()->route('admin.viewusers')->with('errormessages', ['You cannot delete your own account here.']);
+        }
+
+        DB::transaction(function () use ($user) {
+            $this->removeDoctorRecords($user);
+            $user->delete();
+        });
+
+        return redirect()->route('admin.viewusers')->with('success', ['User deleted successfully']);
+    }
+
+    /**
+     * Appointments and slots reference the doctor row without cascading, so they must go
+     * before the doctor does. Patients' appointments cascade from the patients table.
+     */
+    private function removeDoctorRecords(User $user): void
+    {
+        if (! $user->doctor) {
+            return;
+        }
+
+        Appointment::where('DoctorID', $user->doctor->DoctorID)->delete();
+        Availability::where('DoctorID', $user->doctor->DoctorID)->delete();
+        $user->doctor->delete();
     }
 }
