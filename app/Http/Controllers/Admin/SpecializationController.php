@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Specialization;
+use Illuminate\Http\Request;
 
 class SpecializationController extends Controller
 {
     public function index()
     {
         $specialization = Specialization::all();
+
         return view('admin.addspecialization', compact('specialization'));
     }
 
@@ -18,7 +19,7 @@ class SpecializationController extends Controller
     {
         $request->validate([
             'specializationname' => ['required', 'string', 'max:255', 'unique:specializations,SpecializationName'],
-            'description' => ['required', 'string', 'max:1000']
+            'description' => ['required', 'string', 'max:1000'],
         ]);
 
         Specialization::create([
@@ -26,6 +27,6 @@ class SpecializationController extends Controller
             'Description' => $request->description,
         ]);
 
-        return redirect()->back()->with('success', ["Specialization Added Successfully."]);
+        return redirect()->back()->with('success', ['Specialization Added Successfully.']);
     }
 }

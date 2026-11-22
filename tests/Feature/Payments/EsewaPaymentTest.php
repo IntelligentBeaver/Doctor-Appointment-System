@@ -75,7 +75,7 @@ class EsewaPaymentTest extends TestCase
         ];
 
         $message = collect(explode(',', $data['signed_field_names']))
-            ->map(fn ($field) => $field . '=' . $data[$field])
+            ->map(fn ($field) => $field.'='.$data[$field])
             ->implode(',');
 
         $data['signature'] = base64_encode(hash_hmac('sha256', $message, $secret ?? self::SECRET, true));

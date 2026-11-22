@@ -22,9 +22,8 @@ class CreateOrdersTable extends Migration
             $table->float('amount')->unsigned()->nullable();
             $table->string('esewa_status');
 
-            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }

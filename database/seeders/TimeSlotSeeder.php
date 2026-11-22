@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\TimeSlot;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class TimeSlotSeeder extends Seeder
 {
@@ -39,7 +38,7 @@ class TimeSlotSeeder extends Seeder
             ['22:00:00', '23:00:00'],
             ['23:00:00', '00:00:00'],
         ];
-        
+
         foreach ($times as $timeindex) {
             TimeSlot::create([
                 'StartTime' => $timeindex[0],

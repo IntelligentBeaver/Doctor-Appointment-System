@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Models\Availability;
 use App\Models\Doctor;
 use App\Models\TimeSlot;
-use App\Models\Availability;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TimeSlotController extends Controller

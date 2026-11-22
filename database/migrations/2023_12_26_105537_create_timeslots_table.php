@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('timeslots', function (Blueprint $table) {
-        $table->id('TimeSlotID');
-        $table->time('StartTime');
-        $table->time('EndTime');
-        // $table->string('SelectedDay');
-        // $table->unsignedBigInteger('DoctorID');
-        $table->timestamps();
+            $table->id('TimeSlotID');
+            $table->time('StartTime');
+            $table->time('EndTime');
+            // $table->string('SelectedDay');
+            // $table->unsignedBigInteger('DoctorID');
+            $table->timestamps();
 
-        // $table->foreign('DoctorID')->references('DoctorID')->on('doctors')->onDelete('cascade');
-    });
+            // $table->foreign('DoctorID')->references('DoctorID')->on('doctors')->onDelete('cascade');
+        });
     }
 
     /**

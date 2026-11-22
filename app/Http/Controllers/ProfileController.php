@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $user->fill($request->validated());
 
         if ($request->hasFile('image')) {
-            
+
             // Delete the old photo if it exists
             if ($user->image) {
                 Storage::delete($user->image);
@@ -41,7 +41,7 @@ class ProfileController extends Controller
             // Store the new photo
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
+            $filename = time().'.'.$extension;
             $path = 'images/avatar/';
             $file->move(public_path($path), $filename);
 
@@ -50,7 +50,7 @@ class ProfileController extends Controller
             }
 
             // Save the photo path to the user model
-            $user->image = $path . $filename;
+            $user->image = $path.$filename;
         }
 
         if ($user->isDirty('email')) {

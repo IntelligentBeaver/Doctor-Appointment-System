@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use App\Models\Patient;
-use Illuminate\View\View;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Models\Specialization;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Auth\Events\Registered;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
@@ -30,16 +29,17 @@ class RegisteredUserController extends Controller
 
         return view('auth.register', compact('specializations'));
     }
+
     /**
      * Handle an incoming registration request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'image' => ['nullable', 'image', 'max:8192', 'mimes:png,jpg,jpeg,webp'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             // Only patients and doctors can self-register. Admins are created by an existing admin.
@@ -55,14 +55,14 @@ class RegisteredUserController extends Controller
         ]);
 
         $path = 'images/avatar/';
-        $image = $path . 'placeholder.jpg';
+        $image = $path.'placeholder.jpg';
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             // hashName() gives a random, collision-free file name with a safe extension.
             $filename = $file->hashName();
             $file->move(public_path($path), $filename);
-            $image = $path . $filename;
+            $image = $path.$filename;
         }
 
         $user = DB::transaction(function () use ($request, $image) {

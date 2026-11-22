@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Doctor;
 
-use Carbon\Carbon;
-use App\Models\Appointment;
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 use App\Services\AppointmentService;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {

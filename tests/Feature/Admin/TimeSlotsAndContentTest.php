@@ -26,7 +26,7 @@ class TimeSlotsAndContentTest extends TestCase
             'doctor' => $doctor->DoctorID,
             'start_time' => '10:00',
             'end_time' => '11:00',
-            'selected_days' => now()->addDay()->toDateString() . ', ' . now()->addDays(2)->toDateString(),
+            'selected_days' => now()->addDay()->toDateString().', '.now()->addDays(2)->toDateString(),
         ];
 
         $this->actingAs($admin)->post(route('admin.timeslots.store'), $payload)->assertSessionHasNoErrors();

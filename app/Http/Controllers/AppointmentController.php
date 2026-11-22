@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Models\Doctor;
 use App\Models\Availability;
-use Illuminate\Http\Request;
+use App\Models\Doctor;
 use App\Models\Specialization;
 use App\Services\AppointmentService;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
@@ -39,7 +39,7 @@ class AppointmentController extends Controller
         $doctors = $doctors->reject(fn ($doctor) => $doctor->availabilities->isEmpty());
 
         if ($doctors->isEmpty()) {
-            $message = "No doctors available. Please check back later.";
+            $message = 'No doctors available. Please check back later.';
 
             return view('appointments', compact('specializations', 'message'));
         }
