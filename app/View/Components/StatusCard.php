@@ -9,7 +9,8 @@ use Illuminate\View\Component;
 class StatusCard extends Component
 {
     public $href;
-    public function __construct(string $href="#")
+
+    public function __construct(string $href = '#')
     {
         $this->href = $href;
     }

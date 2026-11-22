@@ -17,3 +17,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# User-uploaded avatars (keep the placeholder)
+/public/images/avatar/*
+!/public/images/avatar/placeholder.jpg
+
+# Claude Code skills stay local and are never committed
+/.claude/skills/

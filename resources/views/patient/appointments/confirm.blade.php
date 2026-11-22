@@ -35,7 +35,7 @@
             <x-styling.subheader class="text-neutral">
                 Price:
             </x-styling.subheader>
-            <p class="text-neutral font-black">Rs.500</p>
+            <p class="text-neutral font-black">Rs.{{ number_format(config('services.esewa.appointment_fee')) }}</p>
             <form method="POST" action="{{ route('patient.appointment.store') }}">
                 @csrf
                 <input name="date" type="hidden" value="{{ \Carbon\Carbon::parse($appointdate)->format('Y-m-d') }}">

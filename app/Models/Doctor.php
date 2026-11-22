@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
@@ -25,7 +24,6 @@ class Doctor extends Model
     {
         return $this->hasMany(Availability::class, 'DoctorID');
     }
-
 
     public function appointments()
     {

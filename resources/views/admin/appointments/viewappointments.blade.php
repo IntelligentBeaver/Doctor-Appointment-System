@@ -40,7 +40,7 @@
                             </td>
                             <td class="flex gap-2 text-base font-normal">
                                 <form class="inline" id="cancelForm" method="POST"
-                                    action="{{ route('patient.appointment.destroy', ['AppointmentID' => $appointmentindex->AppointmentID]) }}">
+                                    action="{{ route('admin.appointment.destroy', ['AppointmentID' => $appointmentindex->AppointmentID]) }}">
                                     @csrf
                                     @method('delete')
                                     @if ($appointmentindex->Status == 'Unpaid')
