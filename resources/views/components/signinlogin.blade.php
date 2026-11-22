@@ -14,11 +14,6 @@
             href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
             rel="stylesheet">
         <script src="https://kit.fontawesome.com/bfa75e5c98.js" crossorigin="anonymous"></script>
-        <!-- Alpine Plugins -->
-        <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-
-        <!-- Alpine Core -->
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
